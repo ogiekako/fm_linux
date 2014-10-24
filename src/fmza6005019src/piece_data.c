@@ -13,18 +13,18 @@ uchar_t hand_pc_order[] = {
 };
 
 // --------------
-//  ˆÚ“®ƒxƒNƒgƒ‹
+//  ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«
 // --------------
-// ˆÚ“®‚È‚µ
+// ç§»å‹•ãªã—
 static vec_t vec_nul[] = { { 0, 0 }, };
-// ‘O–Ê  . . . . . | . . . . .
+// å‰é¢  . . . . . | . . . . .
 //       . . * . . | . . . . .
 //       . . # . . | . . # . .
 //       . . . . . | . . * . .
 //       . . . . . | . . . . .
 static vec_t hi_vec_fw[] = { { 0, -1 }, { 0, 0 }, };
 static vec_t yo_vec_fw[] = { { 0, 1 }, { 0, 0 }, };
-// Œj”n  . . . . . . . | . . . . . . .
+// æ¡‚é¦¬  . . . . . . . | . . . . . . .
 //       . . L . L . . | . . . . . . .
 //       . . . . . . . | . . . . . . .
 //       . . . # . . . | . . . # . . .
@@ -33,14 +33,14 @@ static vec_t yo_vec_fw[] = { { 0, 1 }, { 0, 0 }, };
 //       . . . . . . . | . . . . . . .
 static vec_t hi_vec_ke[] = { { -1, -2 }, { 1, -2 }, { 0, 0 }, };
 static vec_t yo_vec_ke[] = { { -1, 2 }, { 1, 2 }, { 0, 0 }, };
-// ‹â«  . . . . . | . . . . .
+// éŠ€å°†  . . . . . | . . . . .
 //       . L L L . | . L . L .
 //       . . # . . | . . # . .
 //       . L . L . | . L L * .
 //       . . . . . | . . . . .
 static vec_t hi_vec_gi[] = { { -1, -1 }, { -1, 1 }, { 0, -1 }, { 1, -1 }, { 1, 1 }, { 0, 0 }, };
 static vec_t yo_vec_gi[] = { { -1, -1 }, { -1, 1 }, { 0, 1 }, { 1, -1 }, { 1, 1 }, { 0, 0 }, };
-// ‹à«  . . . . . | . . . . .
+// é‡‘å°†  . . . . . | . . . . .
 //       . L L L . | . . L . .
 //       . L # L . | . L # L .
 //       . . L . . | . L L L .
@@ -53,23 +53,23 @@ static vec_t yo_vec_ki[] = {
 	{ -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, 0 }, { 1, 1 },
 	{ 0, 0 },
 };
-// Šps  . . . . .
+// è§’è¡Œ  . . . . .
 //       . * . * .
 //       . . # . .
 //       . * . * .
 //       . . . . .
 static vec_t vec_ka[] = { { -1, -1 }, { -1, 1 }, { 1, -1 }, { 1, 1 }, { 0, 0 }, };
-// ”òŽÔ  . . . . .
+// é£›è»Š  . . . . .
 //       . . * . .
 //       . * # * .
 //       . . * . .
 //       . . . . .
 static vec_t vec_hi[] = { { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 }, { 0, 0 }, };
-// ŽüˆÍ  . . . . .
-// ‰¤«  . * * * .
+// å‘¨å›²  . . . . .
+// çŽ‹å°†  . * * * .
 // Queen . * # * .
-// –z‰¤  . * * * .
-// ‘¾Žq  . . . . .
+// å¥”çŽ‹  . * * * .
+// å¤ªå­  . . . . .
 static vec_t vec_ar[] = {
 	{ -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 },
 	{ 0, 0 },
@@ -94,14 +94,14 @@ static vec_t vec_da[] = { { -2, 0 }, { 0, -2 }, { 0, 2 }, { 2, 0 }, { 0, 0 }, };
 // . . . . L . . . .
 // . . . . . . . . .
 static vec_t vec_tl[] = { { -3, 0 }, { 0, -3 }, { 0, 3 }, { 3, 0 }, { 0, 0 }, };
-// Knighti2014-08-05 Rose—p‚Éƒf[ƒ^‡‚ð‰Eã‚©‚çŽžŒv‰ñ‚è‚É•ÏXj
-// . . . . . . .   EEEEEEE
-// . . * . * . .   EE‡FE‡GEE
-// . * . . . * .   E‡EEEE‡@E
-// . . . # . . .   EEEåKEEE
-// . * . . . * .   E‡DEE. ‡AE
-// . . * . * . .   EE‡CE‡BEE
-// . . . . . . .   EEEEEEE
+// Knightï¼ˆ2014-08-05 Roseç”¨ã«ãƒ‡ãƒ¼ã‚¿é †ã‚’å³ä¸Šã‹ã‚‰æ™‚è¨ˆå›žã‚Šã«å¤‰æ›´ï¼‰
+// . . . . . . .   ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»
+// . . * . * . .   ãƒ»ãƒ»â‘¦ãƒ»â‘§ãƒ»ãƒ»
+// . * . . . * .   ãƒ»â‘¥ãƒ»ãƒ»ãƒ»â‘ ãƒ»
+// . . . # . . .   ãƒ»ãƒ»ãƒ»è–”ãƒ»ãƒ»ãƒ»
+// . * . . . * .   ãƒ»â‘¤ãƒ»ãƒ». â‘¡ãƒ»
+// . . * . * . .   ãƒ»ãƒ»â‘£ãƒ»â‘¢ãƒ»ãƒ»
+// . . . . . . .   ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»ãƒ»
 static vec_t vec_kn[] = {
 	{ -2, -1, 8 }, { -2, 1, 8 }, { -1, 2, 8 }, { 1, 2, 8 },
 	{ 2, 1, 8 }, { 2, -1, 8 }, { 1, -2, 8 }, { -1, -2, 8 },
@@ -278,7 +278,7 @@ static vec_t vec_r6[] = {
 	{ 1, -8 }, { 1, 8 }, { 4, -7 }, { 4, 7 }, { 7, -4 }, { 7, 4 }, { 8, -1 }, { 8, 1 },
 	{ 0, 0 },
 };
-// Shani‘Šj
+// Shanï¼ˆç›¸ï¼‰
 // . . . . . . .
 // . S . . . S .
 // . . S . S . .
@@ -287,7 +287,7 @@ static vec_t vec_r6[] = {
 // . S . . . S .
 // . . . . . . .
 static vec_t vec_sh[] = { { -1, -1, 2 }, { -1, 1, 2 }, { 1, -1, 2 }, { 1, 1, 2 }, { 0, 0 }, };
-// Maoiƒ}j
+// Maoï¼ˆãƒžï¼‰
 // . . . . . . .
 // . . M . M . .
 // . M . m . M .
@@ -296,7 +296,7 @@ static vec_t vec_sh[] = { { -1, -1, 2 }, { -1, 1, 2 }, { 1, -1, 2 }, { 1, 1, 2 }
 // . . M . M . .
 // . . . . . . .
 static vec_t vec_ma[] = { { -1, 0, 1 }, { 0, 1, 1 }, { 1, 0, 1 }, { 0, -1, 1 }, { 0, 0 }, };
-// Moaiƒ‚j
+// Moaï¼ˆãƒ¢ï¼‰
 // . . . . . . .
 // . . M . M . .
 // . M m . m M .
@@ -305,7 +305,7 @@ static vec_t vec_ma[] = { { -1, 0, 1 }, { 0, 1, 1 }, { 1, 0, 1 }, { 0, -1, 1 }, 
 // . . M . M . .
 // . . . . . . .
 static vec_t vec_mo[] = { { -1, -1, 1 }, { -1, 1, 1 }, { 1, 1, 1 }, { 1, -1, 1 }, { 0, 0 }, };
-// Ž‚Žq  . . . . . . .
+// ç…å­  . . . . . . .
 //       . 2 2 2 2 2 .
 //       . 2 2 2 2 2 .
 //       . 2 2 # 2 2 .
@@ -320,8 +320,8 @@ static vec_t vec_ar2[] = {
 	{ 2, -2 }, { 2, -1 }, { 2, 0 }, { 2, 1 }, { 2, 2 },
 	{ 0, 0 },
 };
-// ŒÛ  . . . . . | . . . . .
-// ‘é    . L L L . | . L . L .
+// é…”è±¡  . . . . . | . . . . .
+// é·¹    . L L L . | . L . L .
 //       . L # L . | . L # L .
 //       . L . L . | . L L L .
 //       . . . . . | . . . . .
@@ -333,7 +333,7 @@ static vec_t yo_vec_sz[] = {
 	{ -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 },
 	{ 0, 0 },
 };
-// êi—Ù  . . . . . . .
+// éº’éºŸ  . . . . . . .
 //       . . . L . . .
 //       . . L . L . .
 //       . L . # . L .
@@ -344,7 +344,7 @@ static vec_t vec_kr[] = {
 	{ -2, 0 }, { -1, -1 }, { -1, 1 }, { 0, -2 }, { 0, 2 }, { 1, -1 }, { 1, 1 }, { 2, 0 },
 	{ 0, 0 },
 };
-// –P™€  . . . . . . .
+// é³³å‡°  . . . . . . .
 //       . L . . . L .
 //       . . . L . . .
 //       . . L # L . .
@@ -355,7 +355,7 @@ static vec_t vec_ho[] = {
 	{ -2, -2 }, { -2, 2 }, { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 }, { 2, -2 }, { 2, 2 },
 	{ 0, 0 },
 };
-// –ÓŒÕ  . . . . . | . . . . .
+// ç›²è™Ž  . . . . . | . . . . .
 //       . L . L . | . L L L .
 //       . L # L . | . L # L .
 //       . L L L . | . L . L .
@@ -368,51 +368,51 @@ static vec_t yo_vec_mk[] = {
 	{ -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 1, -1 }, { 1, 0 }, { 1, 1 },
 	{ 0, 0 },
 };
-// ‘O3Œã . . . . . | . . . . .
-// “º«  . * * * . | . . * . .
-// ”’‹î  . . # . . | . . # . .
+// å‰3å¾Œ . . . . . | . . . . .
+// éŠ…å°†  . * * * . | . . * . .
+// ç™½é§’  . . # . . | . . # . .
 //       . . * . . | . * * * .
 //       . . . . . | . . . . .
 static vec_t hi_vec_f3b[] = { { -1, -1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 0, 0 }, };
 static vec_t yo_vec_f3b[] = { { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, 1 }, { 0, 0 }, };
-// ‘OŒã3 . . . . . | . . . . .
-// Œ~éÇ  . . * . . | . * * * .
+// å‰å¾Œ3 . . . . . | . . . . .
+// é¯¨é¯¢  . . * . . | . * * * .
 //       . . # . . | . . # . .
 //       . * * * . | . . * . .
 //       . . . . . | . . . . .
 static vec_t hi_vec_fb3[] = { { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, 1 }, { 0, 0 }, };
 static vec_t yo_vec_fb3[] = { { -1, -1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 0, 0 }, };
-// ‘O3Œã3. . . . .
-// –Ò•^  . * * * .
-// ”ò‹  . . # . .
-// ’ß    . * * * .
+// å‰3å¾Œ3. . . . .
+// çŒ›è±¹  . * * * .
+// é£›ç‰›  . . # . .
+// é¶´    . * * * .
 //       . . . . .
 static vec_t vec_f3b3[] = {
 	{ -1, -1 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 1, },
 	{ 0, 0 },
 };
-// ‘OŒã  . . . . .
-// ’‡l  . . * . .
-// ”½ŽÔ  . . # . .
+// å‰å¾Œ  . . . . .
+// ä»²äºº  . . * . .
+// åè»Š  . . # . .
 //       . . * . .
 //       . . . . .
 static vec_t vec_fb[] = { { 0, -1 }, { 0, 1 }, { 0, 0 }, };
-// ¶‰E  . . . . .
-// ’Gs  . . . . .
+// å·¦å³  . . . . .
+// ç«ªè¡Œ  . . . . .
 //       . * # * .
 //       . . . . .
 //       . . . . .
 static vec_t vec_lr[] = { { -1, 0 }, { 1, 0 }, { 0, 0 }, };
-// ‘¤–Ê  . . . . .
-// ”òŽ­  . * . * .
-// –z’–  . * # * .
+// å´é¢  . . . . .
+// é£›é¹¿  . * . * .
+// å¥”çŒª  . * # * .
 //       . * . * .
 //       . . . . .
 static vec_t vec_l3r3[] = {
 	{ -1, -1 }, { -1, 0 }, { -1, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 },
 	{ 0, 0 },
 };
-// ”ò˜h  . . . . . . . | . . . . . . . | . . . R . . . | R . . R . . R
+// é£›é·²  . . . . . . . | . . . . . . . | . . . R . . . | R . . R . . R
 //       . 2 . . . 2 . | . . . . . . . | . . . R . . . | . R . R . R .
 //       . . 2 . 2 . . | . . . . . . . | . . . R . . . | . . R R R . .
 //       . . . # . . . | . . . # . . . | R R R # R R R | R R R # R R R
@@ -429,7 +429,7 @@ static vec_t yo_run_vec_hj[] = {
 	{ -1, -1 }, { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 },
 	{ 0, 0 },
 };
-// Šp‘é  . . . . . . . | . . . . . . .
+// è§’é·¹  . . . . . . . | . . . . . . .
 //       . . . 2 . . . | . . . . . . .
 //       . . . 2 . . . | . . . . . . .
 //       . . . # . . . | . . . # . . .
@@ -438,15 +438,15 @@ static vec_t yo_run_vec_hj[] = {
 //       . . . . . . . | . . . . . . .
 static vec_t hi_vec_tk[] = { { 0, -2 }, { 0, -1 }, { 0, 0 }, };
 static vec_t yo_vec_tk[] = { { 0, 1 }, { 0, 2 }, { 0, 0 }, };
-// è³    . . L . . | . . . . .
+// é›‰    . . L . . | . . . . .
 //       . . . . . | . L . L .
 //       . . # . . | . . # . .
 //       . L . L . | . . . . .
 //       . . . . . | . . L . .
 static vec_t hi_vec_tkj[] = { { -1, 1 }, { 0, -2 }, { 1, 1 }, { 0, 0 }, };
 static vec_t yo_vec_tkj[] = { { -1, -1 }, { 0, 2 }, { 1, -1 }, { 0, 0 }, };
-// ‹    . . R . . | R . . . .
-// ¶êG  . . R . . | . R . L .
+// äº«    . . R . . | R . . . .
+// å·¦é¶‰  . . R . . | . R . L .
 //       . . # . . | . . # . .
 //       . L . R . | . . R . .
 //       . . . . R | . . R . .
@@ -454,8 +454,8 @@ static vec_t hi_vec_leap_tlu[] = { { 1, 1 }, { 0, 0 }, };
 static vec_t yo_vec_leap_tlu[] = { { -1, -1 }, { 0, 0 }, };
 static vec_t hi_vec_run_tlu[] = { { -1, 1 }, { 0, -1 }, { 0, 0 }, };
 static vec_t yo_vec_run_tlu[] = { { 0, 1 }, { 1, -1 }, { 0, 0 }, };
-// ’¹    . . R . . | . . . . R
-// ‰EêG  . . R . . | . L . R .
+// é³¥    . . R . . | . . . . R
+// å³é¶‰  . . R . . | . L . R .
 //       . . # . . | . . # . .
 //       . R . L . | . . R . .
 //       R . . . . | . . R . .
@@ -463,7 +463,7 @@ static vec_t hi_vec_leap_tru[] = { { -1, 1 }, { 0, 0 }, };
 static vec_t yo_vec_leap_tru[] = { { 1, -1 }, { 0, 0 }, };
 static vec_t hi_vec_run_tru[] = { { 0, -1 }, { 1, 1 }, { 0, 0 }, };
 static vec_t yo_vec_run_tru[] = { { -1, -1 }, { 0, 1 }, { 0, 0 }, };
-// üG    R . . . . . R | . . . R . . .
+// éµ°    R . . . . . R | . . . R . . .
 //       . R . . . R . | . R . R . R .
 //       . . R L R . . | . . R R R . .
 //       . . L # L . . | . . L # L . .
@@ -480,14 +480,14 @@ static vec_t yo_vec_run_tkt[] = {
 	{ -1, -1, 2 }, { -1, 1 }, { 0, -1 }, { 1, -1, 2 }, { 1, 1 },
 	{ 0, 0 },
 };
-// éì    L . . . L | . . L . .
+// é´ˆ    L . . . L | . . L . .
 //       . . . . . | . . . . .
 //       . . # . . | . . # . .
 //       . . . . . | . . . . .
 //       . . L . . | L . . . L
 static vec_t hi_vec_tkr[] = { { -2, -2 }, { 0, 2 }, { 2, -2 }, { 0, 0 }, };
 static vec_t yo_vec_tkr[] = { { -2, 2 }, { 0, -2 }, { 2, 2 }, { 0, 0 }, };
-// ”ò—´  . . . . . . .
+// é£›é¾  . . . . . . .
 //       . R . . . R .
 //       . . R . R . .
 //       . . . # . . .
@@ -498,7 +498,7 @@ static vec_t vec_run_dhr[] = {
 	{ -1, -1, 2 }, { -1, 1, 2 }, { 1, -1, 2 }, { 1, 1, 2 },
 	{ 0, 0 },
 };
-// –Ò‹  . . . . . . .
+// çŒ›ç‰›  . . . . . . .
 //       . . . R . . .
 //       . . . R . . .
 //       . R R # R R .
@@ -511,328 +511,328 @@ static vec_t vec_run_dmg[] = {
 };
 
 // ------
-//  ‹î–Ê
+//  é§’é¢
 // ------
-// «Šû‘°
-static char *graphv_fu[] = { "•à", "FU", NULL, };
-static char *graphv_ky[] = { "", "KY", NULL, };
-static char *graphv_ke[] = { "Œj", "KE", NULL, };
-static char *graphv_gi[] = { "‹â", "GI", NULL, };
-static char *graphv_ki[] = { "‹à", "KI", NULL, };
-static char *graphv_ka[] = { "Šp", "KA", NULL, };
-static char *graphv_hi[] = { "”ò", "HI", NULL, };
-static char *graphv_ou[] = { "‰¤", "OU", "‹Ê", "GY", NULL, };
-static char *graphv_to[] = { "‚Æ", "TO", NULL, };
-static char *graphv_ny[] = { "ˆÇ", "NY", NULL, };
-static char *graphv_nk[] = { "Œ\", "NK", NULL, };
-static char *graphv_ng[] = { "‘S", "NG", NULL, };
-static char *graphv_um[] = { "”n", "UM", NULL, };
-static char *graphv_ry[] = { "—´", "RY", NULL, };
-// “ÁŽê
-static char *graphv_room[] = { "E", "  ", "@", NULL, };
-static char *graphv_rock[] = { "œ", "IS", "Î", NULL, };
-static char *graphv_pit[] = { "Ÿ", "PT", "âv", NULL, };
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ƒŠ[ƒp[‘°
-static char *graphv_ze[] = { "—ë", "ZE", NULL, };	// (0, 0)-Leaper Zero
-static char *graphv_wa[] = { "b", "WA", NULL, };	// (0, 1)-Leaper Wazir
-static char *graphv_da[] = { "í", "DA", NULL, };	// (0, 2)-Leaper Dabbaba
-static char *graphv_tl[] = { "ŽQ", "TL", NULL, };	// (0, 3)-Leaper Threeleaper
-static char *graphv_fe[] = { "Œ«", "FE", NULL, };	// (1, 1)-Leaper Fers
-static char *graphv_kn[] = { "‹R", "KN", NULL, };	// (1, 2)-Leaper Knight
-static char *graphv_cm[] = { "ép", "CM", NULL, };	// (1, 3)-Leaper Camel
-static char *graphv_gr[] = { "‚«", "GR", NULL, };	// (1, 4)-Leaper Giraffe
-static char *graphv_fl[] = { "g", "FL", NULL, };	// (1, 6)-Leaper Flamingo
-static char *graphv_al[] = { "‚¼", "AL", NULL, };	// (2, 2)-Leaper Alfil
-static char *graphv_zb[] = { "ŽÈ", "ZB", NULL, };	// (2, 3)-Leaper Zebra
-static char *graphv_tr[] = { "ŽV", "TR", NULL, };	// (3, 3)-Leaper Tripper
-static char *graphv_l5[] = { "ŒÞ", "L5", NULL, };	// (1, 5)+(3, 4)-Leaper 5-Leaper 
-static char *graphv_r4[] = { "²", "R4", NULL, };	// (2, 6)-Leaper Root-40-Leaper 
-static char *graphv_r5[] = { "Œæ", "R5", NULL, };	// (1, 7)+(5, 5)-Leaper Root-50-Leaper
-static char *graphv_r6[] = { "˜O", "R6", NULL, };	// (1, 8)+(4, 7)-Leaper Root-65-Leaper
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ƒ‰ƒCƒ_[‘°
-static char *graphv_qu[] = { "‚p", "QU", NULL, };	// (0, 1)+(1, 1)-Rider Queen
-static char *graphv_nr[] = { "–é", "NR", NULL, };	// (1, 2)-Rider Nightrider
-static char *graphv_cr[] = { "ép", "CR", NULL, };	// (1, 3)-Rider Camelrider
-static char *graphv_zr[] = { "ŽÈ", "ZR", NULL, };	// (2, 3)-Rider Zebrarider
-static char *graphv_rs[] = { "åK", "RS", NULL, };	// (1, 2)-CircleRider Rose
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - •¡‡iƒŠ[ƒp[Aƒ‰ƒCƒ_[j‘°
-static char *graphv_em[] = { "@", "EM", NULL, };	// (0, 1)-Rider+(1, 2)-Leaper Empress
-static char *graphv_pr[] = { "•P", "PR", NULL, };	// (1, 1)-Rider+(1, 2)-Leaper Princess
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ƒzƒbƒp[‘°
-static char *graphv_gh[] = { "‚f", "GH", NULL, };	// Grasshopper
-static char *graphv_lo[] = { "å›", "LO", NULL, };	// Locust
-static char *graphv_li[] = { "é¥", "LI", NULL, };	// Lion
-static char *graphv_ro[] = { "l", "RO", NULL, };	// Kangaroo
-static char *graphv_ne[] = { "‚d", "NE", "‹Ï", NULL, };	// Non-stop equihopper
-static char *graphv_eh[] = { "‚d", "EH", "“™", NULL, };	// Equihopper
-static char *graphv_sp[] = { "", "SP", NULL, };	// Sparrow
-static char *graphv_ea[] = { "˜h", "EA", NULL, };	// Eagle
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ÛŠû‘°
-static char *graphv_pa[] = { "•ï", "PA", NULL, };	// ÛŠûF•ïEà{
-static char *graphv_va[] = { "•ï", "VA", NULL, };
-static char *graphv_le[] = { "•ï", "LE", NULL, };
-static char *graphv_sh[] = { "‘Š", "SH", NULL, };	// ÛŠûF‘ŠEÛ
-static char *graphv_ma[] = { "ƒ}", "MA", NULL, };	// ÛŠûF”n
-static char *graphv_mo[] = { "ƒ‚", "MO", NULL, };	// ÛŠûF”n‚ð45“x‰ñ“]
-// ’†«Šû‘°
-static char *graphv_ss[] = { "Ž‚", "SS", NULL, };
-static char *graphv_sz[] = { "Û", "SZ", NULL, };	// ->‘¾
-static char *graphv_kr[] = { "êi", "KR", NULL, };	// ->ŽtiŽ‚j
-static char *graphv_ho[] = { "–P", "HO", NULL, };	// ->–{i–zj
-static char *graphv_mk[] = { "ŒÕ", "MK", NULL, };	// ->Ž­
-static char *graphv_do[] = { "“º", "DO", NULL, };	// ->‰©i‰¡j
-static char *graphv_mh[] = { "•^", "MH", NULL, };	// ->ƒNiŠpj
-static char *graphv_cn[] = { "’‡", "CN", NULL, };	// ->æ³iÛj
-static char *graphv_hn[] = { "–z", "HN", NULL, };
-static char *graphv_jg[] = { "’G", "JG", NULL, };	// ->‹
-static char *graphv_og[] = { "‰¡", "OG", NULL, };	// ->’–
-static char *graphv_he[] = { "”½", "HE", NULL, };	// ->Œ~
-static char *graphv_ts[] = { "‘¾", "TS", NULL, };
-static char *graphv_hr[] = { "Ž­", "HR", NULL, };	// <-ŒÕ
-static char *graphv_hj[] = { "˜h", "HJ", NULL, };	// <-’†«ŠûF—´
-static char *graphv_tk[] = { "‘é", "TK", NULL, };	// <-’†«ŠûF”n
-static char *graphv_hg[] = { "‹", "HG", NULL, };	// <-’G
-static char *graphv_hc[] = { "’–", "HC", NULL, };	// <-‰¡
-static char *graphv_kg[] = { "Œ~", "KG", NULL, };	// <-”½
-static char *graphv_hk[] = { "‹î", "HK", NULL, };	// <-’†«ŠûF
-static char *graphv_chi[] = { "”ò", "CHI", NULL, };	// ->ƒŠi—´j
-static char *graphv_cka[] = { "Šp", "CKA", NULL, };	// ->ƒ}i”nj
-static char *graphv_cki[] = { "‹à", "CKI", NULL, };	// ->ƒqi”òj
-static char *graphv_cgi[] = { "‹â", "CGI", NULL, };	// ->—§i’Gj
-static char *graphv_cry[] = { "—´", "CRY", NULL, };	// ->˜h
-static char *graphv_cum[] = { "”n", "CUM", NULL, };	// ->‘é
-static char *graphv_cky[] = { "", "CKY", NULL, };	// ->‹î
-static char *graphv_pss[] = { "Žt", "PSS", NULL, };	// <-êi
-static char *graphv_phn[] = { "–{", "PHO", NULL, };	// <-–P
-static char *graphv_pry[] = { "ƒŠ", "PRY", NULL, };	// <-’†«ŠûF”ò
-static char *graphv_pum[] = { "ƒ}", "PUM", NULL, };	// <-’†«ŠûFŠp
-static char *graphv_phi[] = { "ƒq", "PHI", NULL, };	// <-’†«ŠûF‹à
-static char *graphv_pka[] = { "ƒN", "PKA", NULL, };	// <-•^
-static char *graphv_pjg[] = { "—§", "PJG", NULL, };	// <-’†«ŠûF‹â
-static char *graphv_pog[] = { "‰©", "POG", NULL, };	// <-“º
-static char *graphv_psz[] = { "æ³", "PSZ", NULL, };	// <-’‡
-// ‹×«Šû‘°
-static char *graphv_tho[] = { "–Q", "THO", NULL, };	// –Q
-static char *graphv_ttr[] = { "’ß", "TTR", NULL, };	// ’ß
-static char *graphv_tkj[] = { "è³", "TKJ", NULL, };	// è³
-static char *graphv_tlu[] = { "‹", "TLU", NULL, };	// ¶êG
-static char *graphv_tru[] = { "’¹", "TRU", NULL, };	// ‰EêG
-static char *graphv_ttk[] = { "‘é", "TTK", NULL, };	// ‘é
-static char *graphv_tkt[] = { "üG", "TKT", NULL, };	// üG
-static char *graphv_ttb[] = { "‰", "TTB", NULL, };	// ‰
-static char *graphv_tkr[] = { "éì", "TKR", NULL, };	// éì
-// ‘å«Šû‘°
-static char *graphv_dhr[] = { "’C", "DHR", NULL, };	// ”ò—´ -> ‹à«i¬‹àj
-static char *graphv_dmg[] = { "‰N", "DMG", NULL, };	// –Ò‹ -> ‹à«i¬‹àj
-static char *graphv_dsc[] = { "ˆå", "DSC", NULL, };	// šp’– -> ‹à«i¬‹àj
-static char *graphv_dmj[] = { "”L", "DMJ", NULL, };	// ”Ln -> ‹à«i¬‹àj
-static char *graphv_dnk[] = { "¬", "DNK", NULL, };	// ‹à«i¬‹àj <- ”ò—´A–Ò‹Ašp’–A”Ln
-// –€æd‘å‘å«Šû‘°
-static char *graphv_dbj[] = { "ŽÖ", "DBJ", NULL, };	// å´ŽÖiƒoƒ“ƒWƒƒj
-// Šg’£ƒtƒFƒAƒŠ[‹î
-static char *graphv_f1[] = { "‡@", "F1", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚P
-static char *graphv_f2[] = { "‡A", "F2", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚Q
-static char *graphv_f3[] = { "‡B", "F3", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚R
-static char *graphv_f4[] = { "‡C", "F4", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚S
-static char *graphv_f5[] = { "‡D", "F5", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚T
-static char *graphv_f6[] = { "‡E", "F6", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚U
-static char *graphv_f7[] = { "‡F", "F7", NULL, };	// Šg’£ƒtƒFƒAƒŠ[‹î‚V
-// Pao, Vao, Leo ‚ÌƒfƒtƒH[ƒ‹ƒg•\‹L‚ðu•ïv‚Æ‚·‚éB
-// Šg’£•\‹L‚Æ‚µ‚ÄAu–Cvuà{v‚ð—pˆÓ‚·‚éB
-// Pao, Vao, Leo ‚ª“¯Žž‚É‚Q‚ÂˆÈãŽw’è‚³‚ê‚é‚ÆA‡ŽŸu–Cvuà{v‚ðŠ„‚è“–‚Ä‚éB
-char graph_pa1[] = "•ï";
-char graph_pa2[] = "–C";
-char graph_pa3[] = "à{";
-char hi_b_graph_pa2[] = " –C";
-char yo_b_graph_pa2[] = "v–C";
-char hi_b_graph_pa3[] = " à{";
-char yo_b_graph_pa3[] = "và{";
+// å°†æ£‹æ—
+static char *graphv_fu[] = { "æ­©", "FU", NULL, };
+static char *graphv_ky[] = { "é¦™", "KY", NULL, };
+static char *graphv_ke[] = { "æ¡‚", "KE", NULL, };
+static char *graphv_gi[] = { "éŠ€", "GI", NULL, };
+static char *graphv_ki[] = { "é‡‘", "KI", NULL, };
+static char *graphv_ka[] = { "è§’", "KA", NULL, };
+static char *graphv_hi[] = { "é£›", "HI", NULL, };
+static char *graphv_ou[] = { "çŽ‹", "OU", "çŽ‰", "GY", NULL, };
+static char *graphv_to[] = { "ã¨", "TO", NULL, };
+static char *graphv_ny[] = { "æ", "NY", NULL, };
+static char *graphv_nk[] = { "åœ­", "NK", NULL, };
+static char *graphv_ng[] = { "å…¨", "NG", NULL, };
+static char *graphv_um[] = { "é¦¬", "UM", NULL, };
+static char *graphv_ry[] = { "é¾", "RY", NULL, };
+// ç‰¹æ®Š
+static char *graphv_room[] = { "ãƒ»", "  ", "ã€€", NULL, };
+static char *graphv_rock[] = { "â—", "IS", "çŸ³", NULL, };
+static char *graphv_pit[] = { "â—†", "PT", "ç©½", NULL, };
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - ãƒªãƒ¼ãƒ‘ãƒ¼æ—
+static char *graphv_ze[] = { "é›¶", "ZE", NULL, };	// (0, 0)-Leaper Zero
+static char *graphv_wa[] = { "è‡£", "WA", NULL, };	// (0, 1)-Leaper Wazir
+static char *graphv_da[] = { "æˆ¦", "DA", NULL, };	// (0, 2)-Leaper Dabbaba
+static char *graphv_tl[] = { "å‚", "TL", NULL, };	// (0, 3)-Leaper Threeleaper
+static char *graphv_fe[] = { "è³¢", "FE", NULL, };	// (1, 1)-Leaper Fers
+static char *graphv_kn[] = { "é¨Ž", "KN", NULL, };	// (1, 2)-Leaper Knight
+static char *graphv_cm[] = { "é§±", "CM", NULL, };	// (1, 3)-Leaper Camel
+static char *graphv_gr[] = { "ã", "GR", NULL, };	// (1, 4)-Leaper Giraffe
+static char *graphv_fl[] = { "ç´…", "FL", NULL, };	// (1, 6)-Leaper Flamingo
+static char *graphv_al[] = { "ãž", "AL", NULL, };	// (2, 2)-Leaper Alfil
+static char *graphv_zb[] = { "ç¸ž", "ZB", NULL, };	// (2, 3)-Leaper Zebra
+static char *graphv_tr[] = { "æ¡Ÿ", "TR", NULL, };	// (3, 3)-Leaper Tripper
+static char *graphv_l5[] = { "ä¼", "L5", NULL, };	// (1, 5)+(3, 4)-Leaper 5-Leaper 
+static char *graphv_r4[] = { "æ –", "R4", NULL, };	// (2, 6)-Leaper Root-40-Leaper 
+static char *graphv_r5[] = { "æ¢§", "R5", NULL, };	// (1, 7)+(5, 5)-Leaper Root-50-Leaper
+static char *graphv_r6[] = { "æ¥¼", "R6", NULL, };	// (1, 8)+(4, 7)-Leaper Root-65-Leaper
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - ãƒ©ã‚¤ãƒ€ãƒ¼æ—
+static char *graphv_qu[] = { "ï¼±", "QU", NULL, };	// (0, 1)+(1, 1)-Rider Queen
+static char *graphv_nr[] = { "å¤œ", "NR", NULL, };	// (1, 2)-Rider Nightrider
+static char *graphv_cr[] = { "é§±", "CR", NULL, };	// (1, 3)-Rider Camelrider
+static char *graphv_zr[] = { "ç¸ž", "ZR", NULL, };	// (2, 3)-Rider Zebrarider
+static char *graphv_rs[] = { "è–”", "RS", NULL, };	// (1, 2)-CircleRider Rose
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - è¤‡åˆï¼ˆãƒªãƒ¼ãƒ‘ãƒ¼ã€ãƒ©ã‚¤ãƒ€ãƒ¼ï¼‰æ—
+static char *graphv_em[] = { "åŽ", "EM", NULL, };	// (0, 1)-Rider+(1, 2)-Leaper Empress
+static char *graphv_pr[] = { "å§«", "PR", NULL, };	// (1, 1)-Rider+(1, 2)-Leaper Princess
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - ãƒ›ãƒƒãƒ‘ãƒ¼æ—
+static char *graphv_gh[] = { "ï¼§", "GH", NULL, };	// Grasshopper
+static char *graphv_lo[] = { "è—", "LO", NULL, };	// Locust
+static char *graphv_li[] = { "é¬£", "LI", NULL, };	// Lion
+static char *graphv_ro[] = { "è€ƒ", "RO", NULL, };	// Kangaroo
+static char *graphv_ne[] = { "ï¼¥", "NE", "å‡", NULL, };	// Non-stop equihopper
+static char *graphv_eh[] = { "ï¼¥", "EH", "ç­‰", NULL, };	// Equihopper
+static char *graphv_sp[] = { "é›€", "SP", NULL, };	// Sparrow
+static char *graphv_ea[] = { "é·²", "EA", NULL, };	// Eagle
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - è±¡æ£‹æ—
+static char *graphv_pa[] = { "åŒ…", "PA", NULL, };	// è±¡æ£‹ï¼šåŒ…ãƒ»ç‚®
+static char *graphv_va[] = { "åŒ…", "VA", NULL, };
+static char *graphv_le[] = { "åŒ…", "LE", NULL, };
+static char *graphv_sh[] = { "ç›¸", "SH", NULL, };	// è±¡æ£‹ï¼šç›¸ãƒ»è±¡
+static char *graphv_ma[] = { "ãƒž", "MA", NULL, };	// è±¡æ£‹ï¼šé¦¬
+static char *graphv_mo[] = { "ãƒ¢", "MO", NULL, };	// è±¡æ£‹ï¼šé¦¬ã‚’45åº¦å›žè»¢
+// ä¸­å°†æ£‹æ—
+static char *graphv_ss[] = { "ç…", "SS", NULL, };
+static char *graphv_sz[] = { "è±¡", "SZ", NULL, };	// ->å¤ª
+static char *graphv_kr[] = { "éº’", "KR", NULL, };	// ->å¸«ï¼ˆç…ï¼‰
+static char *graphv_ho[] = { "é³³", "HO", NULL, };	// ->æœ¬ï¼ˆå¥”ï¼‰
+static char *graphv_mk[] = { "è™Ž", "MK", NULL, };	// ->é¹¿
+static char *graphv_do[] = { "éŠ…", "DO", NULL, };	// ->é»„ï¼ˆæ¨ªï¼‰
+static char *graphv_mh[] = { "è±¹", "MH", NULL, };	// ->ã‚¯ï¼ˆè§’ï¼‰
+static char *graphv_cn[] = { "ä»²", "CN", NULL, };	// ->è±•ï¼ˆè±¡ï¼‰
+static char *graphv_hn[] = { "å¥”", "HN", NULL, };
+static char *graphv_jg[] = { "ç«ª", "JG", NULL, };	// ->ç‰›
+static char *graphv_og[] = { "æ¨ª", "OG", NULL, };	// ->çŒª
+static char *graphv_he[] = { "å", "HE", NULL, };	// ->é¯¨
+static char *graphv_ts[] = { "å¤ª", "TS", NULL, };
+static char *graphv_hr[] = { "é¹¿", "HR", NULL, };	// <-è™Ž
+static char *graphv_hj[] = { "é·²", "HJ", NULL, };	// <-ä¸­å°†æ£‹ï¼šé¾
+static char *graphv_tk[] = { "é·¹", "TK", NULL, };	// <-ä¸­å°†æ£‹ï¼šé¦¬
+static char *graphv_hg[] = { "ç‰›", "HG", NULL, };	// <-ç«ª
+static char *graphv_hc[] = { "çŒª", "HC", NULL, };	// <-æ¨ª
+static char *graphv_kg[] = { "é¯¨", "KG", NULL, };	// <-å
+static char *graphv_hk[] = { "é§’", "HK", NULL, };	// <-ä¸­å°†æ£‹ï¼šé¦™
+static char *graphv_chi[] = { "é£›", "CHI", NULL, };	// ->ãƒªï¼ˆé¾ï¼‰
+static char *graphv_cka[] = { "è§’", "CKA", NULL, };	// ->ãƒžï¼ˆé¦¬ï¼‰
+static char *graphv_cki[] = { "é‡‘", "CKI", NULL, };	// ->ãƒ’ï¼ˆé£›ï¼‰
+static char *graphv_cgi[] = { "éŠ€", "CGI", NULL, };	// ->ç«‹ï¼ˆç«ªï¼‰
+static char *graphv_cry[] = { "é¾", "CRY", NULL, };	// ->é·²
+static char *graphv_cum[] = { "é¦¬", "CUM", NULL, };	// ->é·¹
+static char *graphv_cky[] = { "é¦™", "CKY", NULL, };	// ->é§’
+static char *graphv_pss[] = { "å¸«", "PSS", NULL, };	// <-éº’
+static char *graphv_phn[] = { "æœ¬", "PHO", NULL, };	// <-é³³
+static char *graphv_pry[] = { "ãƒª", "PRY", NULL, };	// <-ä¸­å°†æ£‹ï¼šé£›
+static char *graphv_pum[] = { "ãƒž", "PUM", NULL, };	// <-ä¸­å°†æ£‹ï¼šè§’
+static char *graphv_phi[] = { "ãƒ’", "PHI", NULL, };	// <-ä¸­å°†æ£‹ï¼šé‡‘
+static char *graphv_pka[] = { "ã‚¯", "PKA", NULL, };	// <-è±¹
+static char *graphv_pjg[] = { "ç«‹", "PJG", NULL, };	// <-ä¸­å°†æ£‹ï¼šéŠ€
+static char *graphv_pog[] = { "é»„", "POG", NULL, };	// <-éŠ…
+static char *graphv_psz[] = { "è±•", "PSZ", NULL, };	// <-ä»²
+// ç¦½å°†æ£‹æ—
+static char *graphv_tho[] = { "éµ¬", "THO", NULL, };	// éµ¬
+static char *graphv_ttr[] = { "é¶´", "TTR", NULL, };	// é¶´
+static char *graphv_tkj[] = { "é›‰", "TKJ", NULL, };	// é›‰
+static char *graphv_tlu[] = { "äº«", "TLU", NULL, };	// å·¦é¶‰
+static char *graphv_tru[] = { "é³¥", "TRU", NULL, };	// å³é¶‰
+static char *graphv_ttk[] = { "é·¹", "TTK", NULL, };	// é·¹
+static char *graphv_tkt[] = { "éµ°", "TKT", NULL, };	// éµ°
+static char *graphv_ttb[] = { "ç‡•", "TTB", NULL, };	// ç‡•
+static char *graphv_tkr[] = { "é´ˆ", "TKR", NULL, };	// é´ˆ
+// å¤§å°†æ£‹æ—
+static char *graphv_dhr[] = { "è¾°", "DHR", NULL, };	// é£›é¾ -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+static char *graphv_dmg[] = { "ä¸‘", "DMG", NULL, };	// çŒ›ç‰› -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+static char *graphv_dsc[] = { "äº¥", "DSC", NULL, };	// å—”çŒª -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+static char *graphv_dmj[] = { "çŒ«", "DMJ", NULL, };	// çŒ«åˆƒ -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+static char *graphv_dnk[] = { "æˆ", "DNK", NULL, };	// é‡‘å°†ï¼ˆæˆé‡‘ï¼‰ <- é£›é¾ã€çŒ›ç‰›ã€å—”çŒªã€çŒ«åˆƒ
+// æ‘©è¨¶å¤§å¤§å°†æ£‹æ—
+static char *graphv_dbj[] = { "è›‡", "DBJ", NULL, };	// èŸ è›‡ï¼ˆãƒãƒ³ã‚¸ãƒ£ï¼‰
+// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’
+static char *graphv_f1[] = { "â‘ ", "F1", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
+static char *graphv_f2[] = { "â‘¡", "F2", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
+static char *graphv_f3[] = { "â‘¢", "F3", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
+static char *graphv_f4[] = { "â‘£", "F4", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
+static char *graphv_f5[] = { "â‘¤", "F5", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
+static char *graphv_f6[] = { "â‘¥", "F6", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
+static char *graphv_f7[] = { "â‘¦", "F7", NULL, };	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
+// Pao, Vao, Leo ã®ãƒ‡ãƒ•ã‚©ãƒ¼ãƒ«ãƒˆè¡¨è¨˜ã‚’ã€ŒåŒ…ã€ã¨ã™ã‚‹ã€‚
+// æ‹¡å¼µè¡¨è¨˜ã¨ã—ã¦ã€ã€Œç ²ã€ã€Œç‚®ã€ã‚’ç”¨æ„ã™ã‚‹ã€‚
+// Pao, Vao, Leo ãŒåŒæ™‚ã«ï¼’ã¤ä»¥ä¸ŠæŒ‡å®šã•ã‚Œã‚‹ã¨ã€é †æ¬¡ã€Œç ²ã€ã€Œç‚®ã€ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚
+char graph_pa1[] = "åŒ…";
+char graph_pa2[] = "ç ²";
+char graph_pa3[] = "ç‚®";
+char hi_b_graph_pa2[] = " ç ²";
+char yo_b_graph_pa2[] = "vç ²";
+char hi_b_graph_pa3[] = " ç‚®";
+char yo_b_graph_pa3[] = "vç‚®";
 
 // ------------
-//  ŽÀÛ‹îî•ñ
+//  å®Ÿéš›é§’æƒ…å ±
 // ------------
 piece_t piece[PC_END] = {
-	{	// 0x00 ‹ó
+	{	// 0x00 ç©º
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x01 •à•º
+	{	// 0x01 æ­©å…µ
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x02 ŽÔ
+	{	// 0x02 é¦™è»Š
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x03 Œj”n
+	{	// 0x03 æ¡‚é¦¬
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x04 ‹â«
+	{	// 0x04 éŠ€å°†
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x05 ‹à«
+	{	// 0x05 é‡‘å°†
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x06 Šps
+	{	// 0x06 è§’è¡Œ
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x07 ”òŽÔ
+	{	// 0x07 é£›è»Š
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x08 ƒtƒFƒAƒŠ[‹î‚P
+	{	// 0x08 ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x09 ƒtƒFƒAƒŠ[‹î‚Q
+	{	// 0x09 ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x0a ƒtƒFƒAƒŠ[‹î‚R
+	{	// 0x0a ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x0b ƒtƒFƒAƒŠ[‹î‚S
+	{	// 0x0b ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x0c ƒtƒFƒAƒŠ[‹î‚T
+	{	// 0x0c ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x0d ƒtƒFƒAƒŠ[‹î‚U
+	{	// 0x0d ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x0e ƒtƒFƒAƒŠ[‹î‚V
+	{	// 0x0e ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x0f ‰¤«
+	{	// 0x0f çŽ‹å°†
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x10 âv
+	{	// 0x10 ç©½
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x11 ‚Æ‹à
+	{	// 0x11 ã¨é‡‘
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x12 ¬
+	{	// 0x12 æˆé¦™
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x13 ¬Œj
+	{	// 0x13 æˆæ¡‚
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x14 ¬‹â
+	{	// 0x14 æˆéŠ€
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x15 Î
+	{	// 0x15 çŸ³
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x16 —´”n
+	{	// 0x16 é¾é¦¬
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x17 —´‰¤
+	{	// 0x17 é¾çŽ‹
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x18 ¬ƒtƒFƒAƒŠ[‹î‚PiŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x18 æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x19 ¬ƒtƒFƒAƒŠ[‹î‚QiŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x19 æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x1a ¬ƒtƒFƒAƒŠ[‹î‚RiŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x1a æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x1b ¬ƒtƒFƒAƒŠ[‹î‚SiŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x1b æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x1c ¬ƒtƒFƒAƒŠ[‹î‚TiŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x1c æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x1d ¬ƒtƒFƒAƒŠ[‹î‚UiŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x1d æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
 		0x00000000, 0x00000000, 0,
 	},
-	{	// 0x1e ¬ƒtƒFƒAƒŠ[‹î‚ViŒ»Ý–¢ƒTƒ|[ƒgj
+	{	// 0x1e æˆãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—ï¼ˆç¾åœ¨æœªã‚µãƒãƒ¼ãƒˆï¼‰
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL, NULL,
@@ -847,77 +847,77 @@ piece_t piece[PC_END] = {
 };
 
 // ------------
-//  Šî–{‹îî•ñ
+//  åŸºæœ¬é§’æƒ…å ±
 // ------------
 piece_info_t piece_info[FP_EXEND] = {
 	{	// 0
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
 	},
 	{	// 1
-		"•à•º", graphv_fu, hi_vec_fw, yo_vec_fw, vec_nul, vec_nul, 18, 
+		"æ­©å…µ", graphv_fu, hi_vec_fw, yo_vec_fw, vec_nul, vec_nul, 18, 
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE | B_PA_CONSTRAINT_2F | B_PA_CONSTRAINT_PM),
 		B_MS_LEAP,
 	},
 	{	// 2
-		"ŽÔ", graphv_ky, vec_nul, vec_nul, hi_vec_fw, yo_vec_fw, 4,
+		"é¦™è»Š", graphv_ky, vec_nul, vec_nul, hi_vec_fw, yo_vec_fw, 4,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), (B_MS_RUN),
 	},
 	{	// 3
-		"Œj”n", graphv_ke, hi_vec_ke, yo_vec_ke, vec_nul, vec_nul, 4,
+		"æ¡‚é¦¬", graphv_ke, hi_vec_ke, yo_vec_ke, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 4
-		"‹â«", graphv_gi, hi_vec_gi, yo_vec_gi, vec_nul, vec_nul, 4,
+		"éŠ€å°†", graphv_gi, hi_vec_gi, yo_vec_gi, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 5
-		"‹à«", graphv_ki, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
+		"é‡‘å°†", graphv_ki, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 6
-		"Šps", graphv_ka, vec_nul, vec_nul, vec_ka, vec_ka, 2,
+		"è§’è¡Œ", graphv_ka, vec_nul, vec_nul, vec_ka, vec_ka, 2,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_RUN,
 	},
 	{	// 7
-		"”òŽÔ", graphv_hi, vec_nul, vec_nul, vec_hi, vec_hi, 2,
+		"é£›è»Š", graphv_hi, vec_nul, vec_nul, vec_hi, vec_hi, 2,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_RUN,
 	},
 	{	// 8 
-		"‰¤«", graphv_ou, vec_ar, vec_ar, vec_nul, vec_nul, 2,
+		"çŽ‹å°†", graphv_ou, vec_ar, vec_ar, vec_nul, vec_nul, 2,
 		(B_PA_PIECE | B_PA_ROYAL), B_MS_LEAP,
 	},
 	{	// 9
-		"‚Æ‹à", graphv_to, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 18,
+		"ã¨é‡‘", graphv_to, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 18,
 		(B_PA_PIECE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 10
-		"¬", graphv_ny, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
+		"æˆé¦™", graphv_ny, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 11
-		"¬Œj", graphv_nk, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
+		"æˆæ¡‚", graphv_nk, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 12
-		"¬‹â", graphv_ng, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
+		"æˆéŠ€", graphv_ng, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 13
-		"—´”n", graphv_um, vec_hi, vec_hi, vec_ka, vec_ka, 2,
+		"é¾é¦¬", graphv_um, vec_hi, vec_hi, vec_ka, vec_ka, 2,
 		(B_PA_PIECE | B_PA_REUSABLE), (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 14
-		"—´‰¤", graphv_ry, vec_ka, vec_ka, vec_hi, vec_hi, 2,
+		"é¾çŽ‹", graphv_ry, vec_ka, vec_ka, vec_hi, vec_hi, 2,
 		(B_PA_PIECE | B_PA_REUSABLE), (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 15
-		"‹ó", graphv_room, vec_nul, vec_nul, vec_nul, vec_nul, 81, 0x00000000, 0x00000000,
+		"ç©º", graphv_room, vec_nul, vec_nul, vec_nul, vec_nul, 81, 0x00000000, 0x00000000,
 	},
 	{	// 16
-		"Î", graphv_rock, vec_nul, vec_nul, vec_nul, vec_nul, 81, 0x00000000, 0x00000000,
+		"çŸ³", graphv_rock, vec_nul, vec_nul, vec_nul, vec_nul, 81, 0x00000000, 0x00000000,
 	},
 	{	// 17
-		"âv", graphv_pit, vec_nul, vec_nul, vec_nul, vec_nul, 81, 0x00000000, 0x00000000,
+		"ç©½", graphv_pit, vec_nul, vec_nul, vec_nul, vec_nul, 81, 0x00000000, 0x00000000,
 	},
 	{	// 18
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
@@ -1080,27 +1080,27 @@ piece_info_t piece_info[FP_EXEND] = {
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
 	},
 	{	// 61
-		"PaoiÛŠû‚Ì•ïj", graphv_pa, vec_nul, vec_nul, vec_hi, vec_hi, 4,
+		"Paoï¼ˆè±¡æ£‹ã®åŒ…ï¼‰", graphv_pa, vec_nul, vec_nul, vec_hi, vec_hi, 4,
 		B_PA_PIECE, B_MS_PAO_JUMP,
 	},
 	{	// 62
-		"VaoiŠp—˜‚«‚Ì•ïj", graphv_va, vec_nul, vec_nul, vec_ka, vec_ka, 4,
+		"Vaoï¼ˆè§’åˆ©ãã®åŒ…ï¼‰", graphv_va, vec_nul, vec_nul, vec_ka, vec_ka, 4,
 		B_PA_PIECE, B_MS_PAO_JUMP,
 	},
 	{	// 63
-		"Leoi‚p—˜‚«‚Ì•ïj", graphv_le, vec_nul, vec_nul, vec_ar, vec_ar, 2,
+		"Leoï¼ˆï¼±åˆ©ãã®åŒ…ï¼‰", graphv_le, vec_nul, vec_nul, vec_ar, vec_ar, 2,
 		B_PA_PIECE, B_MS_PAO_JUMP,
 	},
 	{	// 64
-		"ShaniÛŠû‚Ì‘Šj", graphv_sh, vec_sh, vec_sh, vec_nul, vec_nul, 4,
+		"Shanï¼ˆè±¡æ£‹ã®ç›¸ï¼‰", graphv_sh, vec_sh, vec_sh, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_STEP,
 	},
 	{	// 65
-		"MaoiÛŠû‚Ì”nj", graphv_ma, vec_ma, vec_ma, vec_nul, vec_nul, 4,
+		"Maoï¼ˆè±¡æ£‹ã®é¦¬ï¼‰", graphv_ma, vec_ma, vec_ma, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_MAO_STEP,
 	},
 	{	// 66
-		"MoaiÛŠû‚Ì”n‚ð45“x‰ñ“]j", graphv_mo, vec_mo, vec_mo, vec_nul, vec_nul, 4,
+		"Moaï¼ˆè±¡æ£‹ã®é¦¬ã‚’45åº¦å›žè»¢ï¼‰", graphv_mo, vec_mo, vec_mo, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_MAO_STEP,
 	},
 	{	// 67
@@ -1116,147 +1116,147 @@ piece_info_t piece_info[FP_EXEND] = {
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
 	},
 	{	// 71
-		"Ž‚Žqi’†«Šûj", graphv_ss, vec_ar2, vec_ar2, vec_nul, vec_nul, 2,
+		"ç…å­ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_ss, vec_ar2, vec_ar2, vec_nul, vec_nul, 2,
 		B_PA_PIECE, B_MS_SHISHI_LEAP,
 	},
 	{	// 72
-		"ŒÛi’†«Šûj", graphv_sz, hi_vec_sz, yo_vec_sz, vec_nul, vec_nul, 2,
+		"é…”è±¡ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_sz, hi_vec_sz, yo_vec_sz, vec_nul, vec_nul, 2,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 73
-		"êi—Ùi’†«Šûj", graphv_kr, vec_kr, vec_kr, vec_nul, vec_nul, 2,
+		"éº’éºŸï¼ˆä¸­å°†æ£‹ï¼‰", graphv_kr, vec_kr, vec_kr, vec_nul, vec_nul, 2,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 74
-		"–P™€i’†«Šûj", graphv_ho, vec_ho, vec_ho, vec_nul, vec_nul, 2,
+		"é³³å‡°ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_ho, vec_ho, vec_ho, vec_nul, vec_nul, 2,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 75
-		"–ÓŒÕi’†«Šûj", graphv_mk, hi_vec_mk, yo_vec_mk, vec_nul, vec_nul, 4,
+		"ç›²è™Žï¼ˆä¸­å°†æ£‹ï¼‰", graphv_mk, hi_vec_mk, yo_vec_mk, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 76
-		"“º«i’†«Šûj", graphv_do, hi_vec_f3b, yo_vec_f3b, vec_nul, vec_nul, 4,
+		"éŠ…å°†ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_do, hi_vec_f3b, yo_vec_f3b, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 77
-		"–Ò•^i’†«Šûj", graphv_mh, vec_f3b3, vec_f3b3, vec_nul, vec_nul, 4,
+		"çŒ›è±¹ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_mh, vec_f3b3, vec_f3b3, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 78
-		"’‡li’†«Šûj", graphv_cn, vec_fb, vec_fb, vec_nul, vec_nul, 4,
+		"ä»²äººï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cn, vec_fb, vec_fb, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 79
-		"–z‰¤i’†«Šûj", graphv_hn, vec_nul, vec_nul, vec_ar, vec_ar, 2,
+		"å¥”çŽ‹ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_hn, vec_nul, vec_nul, vec_ar, vec_ar, 2,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 80
-		"’Gsi’†«Šûj", graphv_jg, vec_lr, vec_lr, vec_fb, vec_fb, 4,
+		"ç«ªè¡Œï¼ˆä¸­å°†æ£‹ï¼‰", graphv_jg, vec_lr, vec_lr, vec_fb, vec_fb, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 81
-		"‰¡si’†«Šûj", graphv_og, vec_fb, vec_fb, vec_lr, vec_lr, 4,
+		"æ¨ªè¡Œï¼ˆä¸­å°†æ£‹ï¼‰", graphv_og, vec_fb, vec_fb, vec_lr, vec_lr, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 82
-		"”½ŽÔi’†«Šûj", graphv_he, vec_nul, vec_nul, vec_fb, vec_fb, 4,
+		"åè»Šï¼ˆä¸­å°†æ£‹ï¼‰", graphv_he, vec_nul, vec_nul, vec_fb, vec_fb, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 83
-		"‘¾Žqi’†«ŠûAŒÛ‚Ì¬‹îj", graphv_ts, vec_ar, vec_ar, vec_nul, vec_nul, 2,
+		"å¤ªå­ï¼ˆä¸­å°†æ£‹ã€é…”è±¡ã®æˆé§’ï¼‰", graphv_ts, vec_ar, vec_ar, vec_nul, vec_nul, 2,
 		(B_PA_PIECE | B_PA_ROYAL), B_MS_LEAP,
 	},
 	{	// 84
-		"”òŽ­i’†«ŠûA–ÓŒÕ‚Ì¬‹îj", graphv_hr, vec_l3r3, vec_l3r3, vec_fb, vec_fb, 4,
+		"é£›é¹¿ï¼ˆä¸­å°†æ£‹ã€ç›²è™Žã®æˆé§’ï¼‰", graphv_hr, vec_l3r3, vec_l3r3, vec_fb, vec_fb, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 85
-		"”ò˜hi’†«ŠûA—´‰¤‚Ì¬‹îj", graphv_hj, hi_leap_vec_hj, yo_leap_vec_hj,
+		"é£›é·²ï¼ˆä¸­å°†æ£‹ã€é¾çŽ‹ã®æˆé§’ï¼‰", graphv_hj, hi_leap_vec_hj, yo_leap_vec_hj,
 		hi_run_vec_hj, yo_run_vec_hj, 4, B_PA_PIECE, (B_MS_SHISHI_LEAP | B_MS_RUN),
 	},
 	{	// 86
-		"Šp‘éi’†«ŠûA—´”n‚Ì¬‹îj", graphv_tk, hi_vec_tk, yo_vec_tk, hi_vec_mk, yo_vec_mk, 4,
+		"è§’é·¹ï¼ˆä¸­å°†æ£‹ã€é¾é¦¬ã®æˆé§’ï¼‰", graphv_tk, hi_vec_tk, yo_vec_tk, hi_vec_mk, yo_vec_mk, 4,
 		B_PA_PIECE, (B_MS_SHISHI_LEAP | B_MS_RUN),
 	},
 	{	// 87
-		"”ò‹i’†«ŠûA’Gs‚Ì¬‹îj", graphv_hg, vec_nul, vec_nul, vec_f3b3, vec_f3b3, 4,
+		"é£›ç‰›ï¼ˆä¸­å°†æ£‹ã€ç«ªè¡Œã®æˆé§’ï¼‰", graphv_hg, vec_nul, vec_nul, vec_f3b3, vec_f3b3, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 88
-		"–z’–i’†«ŠûA‰¡s‚Ì¬‹îj", graphv_hc, vec_nul, vec_nul, vec_l3r3, vec_l3r3, 4,
+		"å¥”çŒªï¼ˆä¸­å°†æ£‹ã€æ¨ªè¡Œã®æˆé§’ï¼‰", graphv_hc, vec_nul, vec_nul, vec_l3r3, vec_l3r3, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 89
-		"Œ~éÇi’†«ŠûA”½ŽÔ‚Ì¬‹îj", graphv_kg, vec_nul, vec_nul, hi_vec_fb3, yo_vec_fb3, 4,
+		"é¯¨é¯¢ï¼ˆä¸­å°†æ£‹ã€åè»Šã®æˆé§’ï¼‰", graphv_kg, vec_nul, vec_nul, hi_vec_fb3, yo_vec_fb3, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 90
-		"”’‹îi’†«ŠûAŽÔ‚Ì¬‹îj", graphv_hk, vec_nul, vec_nul, hi_vec_f3b, yo_vec_f3b, 4,
+		"ç™½é§’ï¼ˆä¸­å°†æ£‹ã€é¦™è»Šã®æˆé§’ï¼‰", graphv_hk, vec_nul, vec_nul, hi_vec_f3b, yo_vec_f3b, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 91
-		"”òŽÔi’†«Šûj", graphv_chi, vec_nul, vec_nul, vec_hi, vec_hi, 4,
+		"é£›è»Šï¼ˆä¸­å°†æ£‹ï¼‰", graphv_chi, vec_nul, vec_nul, vec_hi, vec_hi, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 92
-		"Špsi’†«Šûj", graphv_cka, vec_nul, vec_nul, vec_ka, vec_ka, 4,
+		"è§’è¡Œï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cka, vec_nul, vec_nul, vec_ka, vec_ka, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 93
-		"‹à«i’†«Šûj", graphv_cki, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
+		"é‡‘å°†ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cki, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 94
-		"‹â«i’†«Šûj", graphv_cgi, hi_vec_gi, yo_vec_gi, vec_nul, vec_nul, 4,
+		"éŠ€å°†ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cgi, hi_vec_gi, yo_vec_gi, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 95
-		"—´‰¤i’†«Šûj", graphv_cry, vec_ka, vec_ka, vec_hi, vec_hi, 4,
+		"é¾çŽ‹ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cry, vec_ka, vec_ka, vec_hi, vec_hi, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 96
-		"—´”ni’†«Šûj", graphv_cum, vec_hi, vec_hi, vec_ka, vec_ka, 4,
+		"é¾é¦¬ï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cum, vec_hi, vec_hi, vec_ka, vec_ka, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 97
-		"ŽÔi’†«Šûj", graphv_cky, vec_nul, vec_nul, hi_vec_fw, yo_vec_fw, 4,
+		"é¦™è»Šï¼ˆä¸­å°†æ£‹ï¼‰", graphv_cky, vec_nul, vec_nul, hi_vec_fw, yo_vec_fw, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 98
-		"Ž‚Žqi’†«ŠûAêi—Ù‚Ì¬‹îj", graphv_pss, vec_ar2, vec_ar2, vec_nul, vec_nul, 2,
+		"ç…å­ï¼ˆä¸­å°†æ£‹ã€éº’éºŸã®æˆé§’ï¼‰", graphv_pss, vec_ar2, vec_ar2, vec_nul, vec_nul, 2,
 		B_PA_PIECE, B_MS_SHISHI_LEAP,
 	},
 	{	// 99
-		"–z‰¤i’†«ŠûA–P™€‚Ì¬‹îj", graphv_phn, vec_nul, vec_nul, vec_ar, vec_ar, 2,
+		"å¥”çŽ‹ï¼ˆä¸­å°†æ£‹ã€é³³å‡°ã®æˆé§’ï¼‰", graphv_phn, vec_nul, vec_nul, vec_ar, vec_ar, 2,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 100
-		"—´‰¤i’†«ŠûA”òŽÔ‚Ì¬‹îj", graphv_pry, vec_ka, vec_ka, vec_hi, vec_hi, 4,
+		"é¾çŽ‹ï¼ˆä¸­å°†æ£‹ã€é£›è»Šã®æˆé§’ï¼‰", graphv_pry, vec_ka, vec_ka, vec_hi, vec_hi, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 101
-		"—´”ni’†«ŠûAŠps‚Ì¬‹îj", graphv_pum, vec_hi, vec_hi, vec_ka, vec_ka, 4,
+		"é¾é¦¬ï¼ˆä¸­å°†æ£‹ã€è§’è¡Œã®æˆé§’ï¼‰", graphv_pum, vec_hi, vec_hi, vec_ka, vec_ka, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 102
-		"”òŽÔi’†«ŠûA‹à«‚Ì¬‹îj", graphv_phi, vec_nul, vec_nul, vec_hi, vec_hi, 4,
+		"é£›è»Šï¼ˆä¸­å°†æ£‹ã€é‡‘å°†ã®æˆé§’ï¼‰", graphv_phi, vec_nul, vec_nul, vec_hi, vec_hi, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 103
-		"Špsi’†«ŠûA–Ò•^‚Ì¬‹îj", graphv_pka, vec_nul, vec_nul, vec_ka, vec_ka, 4,
+		"è§’è¡Œï¼ˆä¸­å°†æ£‹ã€çŒ›è±¹ã®æˆé§’ï¼‰", graphv_pka, vec_nul, vec_nul, vec_ka, vec_ka, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 104
-		"’Gsi’†«ŠûA‹â«‚Ì¬‹îj", graphv_pjg, vec_lr, vec_lr, vec_fb, vec_fb, 4,
+		"ç«ªè¡Œï¼ˆä¸­å°†æ£‹ã€éŠ€å°†ã®æˆé§’ï¼‰", graphv_pjg, vec_lr, vec_lr, vec_fb, vec_fb, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 105
-		"‰¡si’†«ŠûA“º«‚Ì¬‹îj", graphv_pog, vec_fb, vec_fb, vec_lr, vec_lr, 4,
+		"æ¨ªè¡Œï¼ˆä¸­å°†æ£‹ã€éŠ…å°†ã®æˆé§’ï¼‰", graphv_pog, vec_fb, vec_fb, vec_lr, vec_lr, 4,
 		B_PA_PIECE, (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 106
-		"ŒÛi’†«ŠûA’‡l‚Ì¬‹îj", graphv_psz, hi_vec_sz, yo_vec_sz, vec_nul, vec_nul, 4,
+		"é…”è±¡ï¼ˆä¸­å°†æ£‹ã€ä»²äººã®æˆé§’ï¼‰", graphv_psz, hi_vec_sz, yo_vec_sz, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 107
@@ -1272,70 +1272,70 @@ piece_info_t piece_info[FP_EXEND] = {
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
 	},
 	{	// 111
-		"–Qi‹×«Šû‚Ì‰¤j", graphv_tho, vec_ar, vec_ar, vec_nul, vec_nul, 2,
+		"éµ¬ï¼ˆç¦½å°†æ£‹ã®çŽ‹ï¼‰", graphv_tho, vec_ar, vec_ar, vec_nul, vec_nul, 2,
 		(B_PA_PIECE | B_PA_ROYAL), B_MS_LEAP,
 	},
 	{	// 112
-		"’ßi‹×«Šûj", graphv_ttr, vec_f3b3, vec_f3b3, vec_nul, vec_nul, 4,
+		"é¶´ï¼ˆç¦½å°†æ£‹ï¼‰", graphv_ttr, vec_f3b3, vec_f3b3, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 113
-		"è³i‹×«Šûj", graphv_tkj, hi_vec_tkj, yo_vec_tkj, vec_nul, vec_nul, 4,
+		"é›‰ï¼ˆç¦½å°†æ£‹ï¼‰", graphv_tkj, hi_vec_tkj, yo_vec_tkj, vec_nul, vec_nul, 4,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 114
-		"‹i‹×«ŠûA¶êGj",
+		"äº«ï¼ˆç¦½å°†æ£‹ã€å·¦é¶‰ï¼‰",
 		graphv_tlu, hi_vec_leap_tlu, yo_vec_leap_tlu, hi_vec_run_tlu, yo_vec_run_tlu, 2,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 115
-		"’¹i‹×«ŠûA‰EêGj",
+		"é³¥ï¼ˆç¦½å°†æ£‹ã€å³é¶‰ï¼‰",
 		graphv_tru, hi_vec_leap_tru, yo_vec_leap_tru, hi_vec_run_tru, yo_vec_run_tru, 2,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 116
-		"‘éi‹×«Šûj", graphv_ttk, hi_vec_sz, yo_vec_sz, vec_nul, vec_nul, 2,
+		"é·¹ï¼ˆç¦½å°†æ£‹ï¼‰", graphv_ttk, hi_vec_sz, yo_vec_sz, vec_nul, vec_nul, 2,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 117
-		"üGi‹×«ŠûA‘é‚Ì¬‹îj",
+		"éµ°ï¼ˆç¦½å°†æ£‹ã€é·¹ã®æˆé§’ï¼‰",
 		graphv_tkt, hi_vec_leap_tkt, yo_vec_leap_tkt, hi_vec_run_tkt, yo_vec_run_tkt, 2,
 		(B_PA_PIECE | B_PA_REUSABLE), (B_MS_LEAP | B_MS_RUN),
 	},
 	{	// 118
-		"‰i‹×«Šûj", graphv_ttb, hi_vec_fw, yo_vec_fw, vec_nul, vec_nul, 16,
+		"ç‡•ï¼ˆç¦½å°†æ£‹ï¼‰", graphv_ttb, hi_vec_fw, yo_vec_fw, vec_nul, vec_nul, 16,
 		(B_PA_PIECE | B_PA_PLACABLE | B_PA_REUSABLE | B_PA_CONSTRAINT_3T | B_PA_CONSTRAINT_PM),
 		B_MS_LEAP,
 	},
 	{	// 119
-		"éìi‹×«ŠûA‰‚Ì¬‹îj", graphv_tkr, hi_vec_tkr, yo_vec_tkr, vec_nul, vec_nul, 16,
+		"é´ˆï¼ˆç¦½å°†æ£‹ã€ç‡•ã®æˆé§’ï¼‰", graphv_tkr, hi_vec_tkr, yo_vec_tkr, vec_nul, vec_nul, 16,
 		(B_PA_PIECE | B_PA_REUSABLE), B_MS_LEAP,
 	},
 	{	// 120
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
 	},
 	{	// 121
-		"”ò—´i‘å«Šûj", graphv_dhr, vec_nul, vec_nul, vec_run_dhr, vec_run_dhr, 4,
+		"é£›é¾ï¼ˆå¤§å°†æ£‹ï¼‰", graphv_dhr, vec_nul, vec_nul, vec_run_dhr, vec_run_dhr, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 122
-		"–Ò‹i‘å«Šûj", graphv_dmg, vec_nul, vec_nul, vec_run_dmg, vec_run_dmg, 4,
+		"çŒ›ç‰›ï¼ˆå¤§å°†æ£‹ï¼‰", graphv_dmg, vec_nul, vec_nul, vec_run_dmg, vec_run_dmg, 4,
 		B_PA_PIECE, B_MS_RUN,
 	},
 	{	// 123
-		"šp’–i‘å«Šûj", graphv_dsc, vec_hi, vec_hi, vec_nul, vec_nul, 4,
+		"å—”çŒªï¼ˆå¤§å°†æ£‹ï¼‰", graphv_dsc, vec_hi, vec_hi, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 124
-		"”Lni‘å«Šûj", graphv_dmj, vec_ka, vec_ka, vec_nul, vec_nul, 4,
+		"çŒ«åˆƒï¼ˆå¤§å°†æ£‹ï¼‰", graphv_dmj, vec_ka, vec_ka, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 125
-		"‹à«i‘å«Šû‚Ì¬‹àj", graphv_dnk, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
+		"é‡‘å°†ï¼ˆå¤§å°†æ£‹ã®æˆé‡‘ï¼‰", graphv_dnk, hi_vec_ki, yo_vec_ki, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 126
-		"å´ŽÖi–€æd‘å‘å«Šûj", graphv_dbj, hi_vec_fb3, yo_vec_fb3, vec_nul, vec_nul, 4,
+		"èŸ è›‡ï¼ˆæ‘©è¨¶å¤§å¤§å°†æ£‹ï¼‰", graphv_dbj, hi_vec_fb3, yo_vec_fb3, vec_nul, vec_nul, 4,
 		B_PA_PIECE, B_MS_LEAP,
 	},
 	{	// 127
@@ -1350,55 +1350,55 @@ piece_info_t piece_info[FP_EXEND] = {
 	{	// 130
 		NULL, NULL, NULL, NULL, NULL, NULL, 0, 0x00000000, 0x00000000,
 	},
-	{	// 131 Šg’£ƒtƒFƒAƒŠ[‹î‚P
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚P", graphv_f1, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 131 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘", graphv_f1, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
-	{	// 132 Šg’£ƒtƒFƒAƒŠ[‹î‚Q
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚Q", graphv_f2, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 132 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’", graphv_f2, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
-	{	// 133 Šg’£ƒtƒFƒAƒŠ[‹î‚R
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚R", graphv_f3, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 133 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“", graphv_f3, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
-	{	// 134 Šg’£ƒtƒFƒAƒŠ[‹î‚S
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚S", graphv_f4, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 134 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”", graphv_f4, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
-	{	// 135 Šg’£ƒtƒFƒAƒŠ[‹î‚T
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚T", graphv_f5, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 135 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•", graphv_f5, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
-	{	// 136 Šg’£ƒtƒFƒAƒŠ[‹î‚U
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚U", graphv_f6, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 136 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–", graphv_f6, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
-	{	// 137 Šg’£ƒtƒFƒAƒŠ[‹î‚V
-		"Šg’£ƒtƒFƒAƒŠ[‹î‚V", graphv_f7, vec_nul, vec_nul, vec_nul, vec_nul, 1,
+	{	// 137 æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
+		"æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—", graphv_f7, vec_nul, vec_nul, vec_nul, vec_nul, 1,
 		B_PA_PIECE, 0x00000000,
 	},
 };
 
 // ----------
-//  ¬‹îî•ñ
+//  æˆé§’æƒ…å ±
 // ----------
 int fp_promoted[FP_EXEND] = {
 	-1,		//  0: -
-	 9,		//  1: •à•º -> ‚Æi‚Æ‹àj
-	10,		//  2: ŽÔ -> ˆÇi¬j
-	11,		//  3: Œj”n -> Œ\i¬Œjj
-	12,		//  4: ‹â« -> ‘Si¬‹âj
-	-1,		//  5: ‹à«
-	13,		//  6: Šps -> ”ni—´”nj
-	14,		//  7: ”òŽÔ -> —´i—´‰¤j
-	-1,		//  8: ‰¤/‹Ê
-	-1,		//  9: ‚Æ‹à
-	-1,		// 10: ¬
-	-1,		// 11: ¬Œj
-	-1,		// 12: ¬‹â
-	-1,		// 13: —´”n
-	-1,		// 14: —´‰¤
+	 9,		//  1: æ­©å…µ -> ã¨ï¼ˆã¨é‡‘ï¼‰
+	10,		//  2: é¦™è»Š -> æï¼ˆæˆé¦™ï¼‰
+	11,		//  3: æ¡‚é¦¬ -> åœ­ï¼ˆæˆæ¡‚ï¼‰
+	12,		//  4: éŠ€å°† -> å…¨ï¼ˆæˆéŠ€ï¼‰
+	-1,		//  5: é‡‘å°†
+	13,		//  6: è§’è¡Œ -> é¦¬ï¼ˆé¾é¦¬ï¼‰
+	14,		//  7: é£›è»Š -> é¾ï¼ˆé¾çŽ‹ï¼‰
+	-1,		//  8: çŽ‹/çŽ‰
+	-1,		//  9: ã¨é‡‘
+	-1,		// 10: æˆé¦™
+	-1,		// 11: æˆæ¡‚
+	-1,		// 12: æˆéŠ€
+	-1,		// 13: é¾é¦¬
+	-1,		// 14: é¾çŽ‹
 	-1,		// 15: -
 	-1,		// 16: -
 	-1,		// 17: -
@@ -1445,83 +1445,83 @@ int fp_promoted[FP_EXEND] = {
 	-1,		// 58: Eagle
 	-1,		// 59: -
 	-1,		// 60: -
-	-1,		// 61: PaoiÛŠûF•ïj
+	-1,		// 61: Paoï¼ˆè±¡æ£‹ï¼šåŒ…ï¼‰
 	-1,		// 62: Vao
 	-1,		// 63: Leo
-	-1,		// 64: ShaniÛŠûF‘Šj
-	-1,		// 65: MaoiÛŠûF”nj
-	-1,		// 66: MoaiÛŠûF”n‚ð45“x‰ñ“]j
+	-1,		// 64: Shanï¼ˆè±¡æ£‹ï¼šç›¸ï¼‰
+	-1,		// 65: Maoï¼ˆè±¡æ£‹ï¼šé¦¬ï¼‰
+	-1,		// 66: Moaï¼ˆè±¡æ£‹ï¼šé¦¬ã‚’45åº¦å›žè»¢ï¼‰
 	-1,		// 67: -
 	-1,		// 68: -
 	-1,		// 69: -
 	-1,		// 70: -
-	-1,		// 71: Ž‚Žq
-	83,		// 72: ŒÛ -> ‘¾Žq
-	98,		// 73: êi—Ù -> Žti¬Ž‚Žqj
-	99,		// 74: –P™€ -> –{i¬–z‰¤j
-	84,		// 75: –ÓŒÕ -> ”òŽ­
-	105,	// 76: “º« -> ‰¡si‰©j
-	103,	// 77: –Ò•^ -> ƒNi¬Špsj
-	106,	// 78: ’‡l -> æ³i¬ŒÛj
-	-1,		// 79: –z‰¤
-	87,		// 80: ’Gs -> ”ò‹
-	88,		// 81: ‰¡s -> –z’–
-	89,		// 82: ”½ŽÔ -> Œ~éÇ
-	-1,		// 83: ‘¾Žq
-	-1,		// 84: ”òŽ­
-	-1,		// 85: ”ò˜h
-	-1,		// 86: Šp‘é
-	-1,		// 87: ”ò‹
-	-1,		// 88: –z’–
-	-1,		// 89: Œ~éÇ
-	-1,		// 90: ”’‹î
-	100,	// 91: ’†«ŠûF”ò -> ƒŠi¬—´‰¤j
-	101,	// 92: ’†«ŠûFŠp -> ƒ}i¬—´”nj
-	102,	// 93: ’†«ŠûF‹à -> ƒqi¬”òŽÔj
-	104,	// 94: ’†«ŠûF‹â -> —§i¬’Gsj
-	85,		// 95: ’†«ŠûF—´ -> ”ò˜h
-	86,		// 96: ’†«ŠûF”n -> Šp‘é
-	90,		// 97: ’†«ŠûF -> ”’‹î
-	-1,		// 98: Žti¬Ž‚Žqj
-	-1,		// 99: –{i¬–z‰¤j
-	-1,		// 100: ƒŠi¬—´‰¤j
-	-1,		// 101: ƒ}i¬—´”nj
-	-1,		// 102: ƒqi¬”òŽÔj
-	-1,		// 103: ƒNi¬Špsj
-	-1,		// 104: —§i¬’Gsj
-	-1,		// 105: ‰©i¬‰¡sj
-	-1,		// 106: æ³i¬ŒÛj
+	-1,		// 71: ç…å­
+	83,		// 72: é…”è±¡ -> å¤ªå­
+	98,		// 73: éº’éºŸ -> å¸«ï¼ˆæˆç…å­ï¼‰
+	99,		// 74: é³³å‡° -> æœ¬ï¼ˆæˆå¥”çŽ‹ï¼‰
+	84,		// 75: ç›²è™Ž -> é£›é¹¿
+	105,	// 76: éŠ…å°† -> æ¨ªè¡Œï¼ˆé»„ï¼‰
+	103,	// 77: çŒ›è±¹ -> ã‚¯ï¼ˆæˆè§’è¡Œï¼‰
+	106,	// 78: ä»²äºº -> è±•ï¼ˆæˆé…”è±¡ï¼‰
+	-1,		// 79: å¥”çŽ‹
+	87,		// 80: ç«ªè¡Œ -> é£›ç‰›
+	88,		// 81: æ¨ªè¡Œ -> å¥”çŒª
+	89,		// 82: åè»Š -> é¯¨é¯¢
+	-1,		// 83: å¤ªå­
+	-1,		// 84: é£›é¹¿
+	-1,		// 85: é£›é·²
+	-1,		// 86: è§’é·¹
+	-1,		// 87: é£›ç‰›
+	-1,		// 88: å¥”çŒª
+	-1,		// 89: é¯¨é¯¢
+	-1,		// 90: ç™½é§’
+	100,	// 91: ä¸­å°†æ£‹ï¼šé£› -> ãƒªï¼ˆæˆé¾çŽ‹ï¼‰
+	101,	// 92: ä¸­å°†æ£‹ï¼šè§’ -> ãƒžï¼ˆæˆé¾é¦¬ï¼‰
+	102,	// 93: ä¸­å°†æ£‹ï¼šé‡‘ -> ãƒ’ï¼ˆæˆé£›è»Šï¼‰
+	104,	// 94: ä¸­å°†æ£‹ï¼šéŠ€ -> ç«‹ï¼ˆæˆç«ªè¡Œï¼‰
+	85,		// 95: ä¸­å°†æ£‹ï¼šé¾ -> é£›é·²
+	86,		// 96: ä¸­å°†æ£‹ï¼šé¦¬ -> è§’é·¹
+	90,		// 97: ä¸­å°†æ£‹ï¼šé¦™ -> ç™½é§’
+	-1,		// 98: å¸«ï¼ˆæˆç…å­ï¼‰
+	-1,		// 99: æœ¬ï¼ˆæˆå¥”çŽ‹ï¼‰
+	-1,		// 100: ãƒªï¼ˆæˆé¾çŽ‹ï¼‰
+	-1,		// 101: ãƒžï¼ˆæˆé¾é¦¬ï¼‰
+	-1,		// 102: ãƒ’ï¼ˆæˆé£›è»Šï¼‰
+	-1,		// 103: ã‚¯ï¼ˆæˆè§’è¡Œï¼‰
+	-1,		// 104: ç«‹ï¼ˆæˆç«ªè¡Œï¼‰
+	-1,		// 105: é»„ï¼ˆæˆæ¨ªè¡Œï¼‰
+	-1,		// 106: è±•ï¼ˆæˆé…”è±¡ï¼‰
 	-1,		// 107: -
 	-1,		// 108: -
 	-1,		// 109: -
 	-1,		// 110: -
-	-1,		// 111: –Q
-	-1,		// 112: ’ß
-	-1,		// 113: è³
-	-1,		// 114: ‹i¶êGj
-	-1,		// 115: ’¹i‰EêGj
-	117,	// 116: ‘é -> üG
-	-1,		// 117: üG
-	119,	// 118: ‰ -> éì
-	-1,		// 119: éì
+	-1,		// 111: éµ¬
+	-1,		// 112: é¶´
+	-1,		// 113: é›‰
+	-1,		// 114: äº«ï¼ˆå·¦é¶‰ï¼‰
+	-1,		// 115: é³¥ï¼ˆå³é¶‰ï¼‰
+	117,	// 116: é·¹ -> éµ°
+	-1,		// 117: éµ°
+	119,	// 118: ç‡• -> é´ˆ
+	-1,		// 119: é´ˆ
 	-1,		// 120: -
-	125,	// 121: ”ò—´ -> ¬i‹à«j
-	125,	// 122: –Ò‹ -> ¬i‹à«j
-	125,	// 123: šp’– -> ¬i‹à«j
-	125,	// 124: ”Ln -> ¬i‹à«j
-	-1,		// 125: ¬i‹à«j
-	-1,		// 126: å´ŽÖi¦–{“–‚Í–zŽÖ‚É¬‚ê‚é‚Ì‚¾‚ªAŒ~éÇ‚Æ“¯‚¶—˜‚«‚Ì‹îj
+	125,	// 121: é£›é¾ -> æˆï¼ˆé‡‘å°†ï¼‰
+	125,	// 122: çŒ›ç‰› -> æˆï¼ˆé‡‘å°†ï¼‰
+	125,	// 123: å—”çŒª -> æˆï¼ˆé‡‘å°†ï¼‰
+	125,	// 124: çŒ«åˆƒ -> æˆï¼ˆé‡‘å°†ï¼‰
+	-1,		// 125: æˆï¼ˆé‡‘å°†ï¼‰
+	-1,		// 126: èŸ è›‡ï¼ˆâ€»æœ¬å½“ã¯å¥”è›‡ã«æˆã‚Œã‚‹ã®ã ãŒã€é¯¨é¯¢ã¨åŒã˜åˆ©ãã®é§’ï¼‰
 	-1,		// 127: -
 	-1,		// 128: -
 	-1,		// 129: -
 	-1,		// 130: -
-	-1,		// 131: Šg’£ƒtƒFƒAƒŠ[‹î‚P
-	-1,		// 132: Šg’£ƒtƒFƒAƒŠ[‹î‚Q
-	-1,		// 133: Šg’£ƒtƒFƒAƒŠ[‹î‚R
-	-1,		// 134: Šg’£ƒtƒFƒAƒŠ[‹î‚S
-	-1,		// 135: Šg’£ƒtƒFƒAƒŠ[‹î‚T
-	-1,		// 136: Šg’£ƒtƒFƒAƒŠ[‹î‚U
-	-1,		// 137: Šg’£ƒtƒFƒAƒŠ[‹î‚V
+	-1,		// 131: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
+	-1,		// 132: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
+	-1,		// 133: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
+	-1,		// 134: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
+	-1,		// 135: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
+	-1,		// 136: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
+	-1,		// 137: æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
 };
 
 char *graph[128];
@@ -1550,87 +1550,87 @@ uchar_t hand_pc[RAW_PC_END] = {
 uchar_t pos_order[81][81];
 uchar_t equi_hop_pc = NUL;
 char hi_reborn_pos[RAW_PC_END][9] = {
-	{ NOP, },						// ”ñ‹î
-	{								// •à
+	{ NOP, },						// éžé§’
+	{								// æ­©
 		POS19(1, 7), POS19(2, 7), POS19(3, 7), POS19(4, 7), POS19(5, 7),
 		POS19(6, 7), POS19(7, 7), POS19(8, 7), POS19(9, 7),
 	},
-	{ POS19(1, 9), POS19(9, 9), },	// 
-	{ POS19(2, 9), POS19(8, 9), },	// Œj
-	{ POS19(3, 9), POS19(7, 9), },	// ‹â
-	{ POS19(4, 9), POS19(6, 9), },	// ‹à
-	{ POS19(8, 8), },				// Šp
-	{ POS19(2, 8), },				// ”ò
-	{								// ƒtƒFƒAƒŠ[‹î‚P
+	{ POS19(1, 9), POS19(9, 9), },	// é¦™
+	{ POS19(2, 9), POS19(8, 9), },	// æ¡‚
+	{ POS19(3, 9), POS19(7, 9), },	// éŠ€
+	{ POS19(4, 9), POS19(6, 9), },	// é‡‘
+	{ POS19(8, 8), },				// è§’
+	{ POS19(2, 8), },				// é£›
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚Q
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚R
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚S
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚T
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚U
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚V
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
 		POS19(1, 8), POS19(2, 8), POS19(3, 8), POS19(4, 8), POS19(5, 8),
 		POS19(6, 8), POS19(7, 8), POS19(8, 8), POS19(9, 8),
 	},
-	{ POS19(5, 9), },				// ‰¤
+	{ POS19(5, 9), },				// çŽ‹
 };
 char yo_reborn_pos[RAW_PC_END][9] = {
-	{ NOP, },						// ”ñ‹î
-	{								// •à
+	{ NOP, },						// éžé§’
+	{								// æ­©
 		POS19(1, 3), POS19(2, 3), POS19(3, 3), POS19(4, 3), POS19(5, 3),
 		POS19(6, 3), POS19(7, 3), POS19(8, 3), POS19(9, 3),
 	},
-	{ POS19(1, 1), POS19(9, 1), },	// 
-	{ POS19(2, 1), POS19(8, 1), },	// Œj
-	{ POS19(3, 1), POS19(7, 1), },	// ‹â
-	{ POS19(4, 1), POS19(6, 1), },	// ‹à
-	{ POS19(2, 2), },				// Šp
-	{ POS19(8, 2), },				// ”ò
-	{								// ƒtƒFƒAƒŠ[‹î‚P
+	{ POS19(1, 1), POS19(9, 1), },	// é¦™
+	{ POS19(2, 1), POS19(8, 1), },	// æ¡‚
+	{ POS19(3, 1), POS19(7, 1), },	// éŠ€
+	{ POS19(4, 1), POS19(6, 1), },	// é‡‘
+	{ POS19(2, 2), },				// è§’
+	{ POS19(8, 2), },				// é£›
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚Q
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚R
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚S
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚T
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚U
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{								// ƒtƒFƒAƒŠ[‹î‚V
+	{								// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
 		POS19(1, 2), POS19(2, 2), POS19(3, 2), POS19(4, 2), POS19(5, 2),
 		POS19(6, 2), POS19(7, 2), POS19(8, 2), POS19(9, 2),
 	},
-	{ POS19(5, 1), },				// ‹Ê
+	{ POS19(5, 1), },				// çŽ‰
 };
 

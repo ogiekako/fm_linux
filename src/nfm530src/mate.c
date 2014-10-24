@@ -15,7 +15,7 @@ fm_make_matemseq(long depth_mate)
 	board_t *sphp_bdp;
 	long depth;
 
-	// �l�ȊO�̔ՖʃZ���̉��
+	// 詰以外の盤面セルの回収
 	for (msp = mseq_head[depth_mate].brop; msp != NULL; msp = msp->brop) {
 		if (!(msp->ps_flag & (B_PS_MATE | B_PS_GIVENMATEPATH | B_PS_SAMEPHASE))
 			&& msp->BDP != NULL)
@@ -23,7 +23,7 @@ fm_make_matemseq(long depth_mate)
 			FREE_BOARD(msp->BDP);
 		}
 	}
-	// ��[�x�̎菇�Z���̏����t�]
+	// 奇数深度の手順セルの順序逆転
 	for (depth = 1; depth <= depth_mate; depth += 2) {
 		for (msp = mseq_head[depth].brop, mseq_head[depth].brop = NULL; msp != NULL;
 			msp = msp_brop)
@@ -33,7 +33,7 @@ fm_make_matemseq(long depth_mate)
 			mseq_head[depth].brop = msp;
 		}
 	}
-	// �l�菇�̈�t���ƔՖʃZ���̕t���Əo��
+	// 詰手順の印付けと盤面セルの付加と出力
 	mate_count = 0;
 	msp_start_last = NULL;
 	flag_loose_mate = OFF;
@@ -50,7 +50,7 @@ fm_make_matemseq(long depth_mate)
 				if (msq->parp != NULL) {
 					msq->parp->mv_flag |= B_MV_MATEPATH;
 					if (msq->parp->BDP == NULL) {
-						// 2008-03-15 0.22 BF �d�|
+						// 2008-03-15 0.22 BF 仕掛
 //						if (msq->BDP == NULL) {
 //						}
 						msq->parp->BDP = fm_get_board(depth_mate);
@@ -68,7 +68,7 @@ fm_make_matemseq(long depth_mate)
 			break;
 		}
 	}
-	// ��]��l�̏ꍇ����ї]�l�̏ꍇ�̋l�菇�̈�t���ƔՖʃZ���̕t���Əo��
+	// 駒余り詰の場合および余詰の場合の詰手順の印付けと盤面セルの付加と出力
 	for (msp = mseq_head[depth_mate].brop; msp != NULL; msp = msp->brop) {
 		if (!(msp->ps_flag & (B_PS_MATE | B_PS_GIVENMATEPATH)) || (msp->mv_flag & B_MV_MATEPATH)) {
 			continue;
@@ -299,16 +299,16 @@ fm_test_yo_matemseq(mseq_t *msp_par)
 	memcpy(&board_tmp.board, &bdp_par->board, OFFSET_OF(board_t, fire, board));
 	ASSERT(bdp_par->yo_gy_pos != 0);
 	if (test_yo_gyescape(&mseq) == RC_ESCAPE) {
-		// �ʂ���������΁A����Ƃ���B
+		// 玉が逃げられれば、逃れとする。
 		return RC_ESCAPE;
 	}
 	if (msp_par->ps_flag & B_PS_HI_DBLCHECK) {
-		// ������ŋʂ��������Ȃ���΁A�l�Ƃ���B
+		// 両王手で玉が逃げられなければ、詰とする。
 		return RC_MATE;
 	}
 	if (bdp_par->fire[bdp_par->hi_ck_pos] & (B_BD_YO_STEPFIRE | B_BD_YO_RUNFIRE)) {
 		if (test_yo_moveto_fromanywhere(&mseq, bdp_par->hi_ck_pos) == RC_ESCAPE) {
-			// ����������΁A����Ƃ���B
+			// 王手駒を取れれば、逃れとする。
 			return RC_ESCAPE;
 		}
 	}
@@ -328,12 +328,12 @@ fm_test_yo_matemseq(mseq_t *msp_par)
 		vec = VEC(v_f, v_r);
 		for (to = bdp_par->yo_gy_pos - vec; to != bdp_par->hi_ck_pos; to -= vec) {
 			if (test_yo_shutto(&mseq, to) == RC_ESCAPE) {
-				// ��������΁A����Ƃ���B
+				// 合駒が利けば、逃れとする。
 				return RC_ESCAPE;
 			}
 		}
 	}
-	// �ʂ�������ꂸ�A��������ꂸ�A��������Ȃ���΁A�l�Ƃ���B
+	// 玉が逃げられず、王手駒を取れず、合駒が利かなければ、詰とする。
 	return RC_MATE;
 }
 
@@ -511,16 +511,16 @@ fm_test_hi_matemseq(mseq_t *msp_par)
 	memcpy(&board_tmp.board, &bdp_par->board, OFFSET_OF(board_t, fire, board));
 	ASSERT(bdp_par->hi_ou_pos != 0);
 	if (test_hi_ouescape(&mseq) == RC_ESCAPE) {
-		// �ʂ���������΁A����Ƃ���B
+		// 玉が逃げられれば、逃れとする。
 		return RC_ESCAPE;
 	}
 	if (msp_par->ps_flag & B_PS_YO_DBLCHECK) {
-		// ������ŋʂ��������Ȃ���΁A�l�Ƃ���B
+		// 両王手で玉が逃げられなければ、詰とする。
 		return RC_MATE;
 	}
 	if (bdp_par->fire[bdp_par->yo_ck_pos] & (B_BD_HI_STEPFIRE | B_BD_HI_RUNFIRE)) {
 		if (test_hi_moveto_fromanywhere(&mseq, bdp_par->yo_ck_pos) == RC_ESCAPE) {
-			// ����������΁A����Ƃ���B
+			// 王手駒を取れれば、逃れとする。
 			return RC_ESCAPE;
 		}
 	}
@@ -540,12 +540,12 @@ fm_test_hi_matemseq(mseq_t *msp_par)
 		vec = VEC(v_f, v_r);
 		for (to = bdp_par->hi_ou_pos - vec; to != bdp_par->yo_ck_pos; to -= vec) {
 			if (test_hi_shutto(&mseq, to) == RC_ESCAPE) {
-				// ��������΁A����Ƃ���B
+				// 合駒が利けば、逃れとする。
 				return RC_ESCAPE;
 			}
 		}
 	}
-	// �ʂ�������ꂸ�A��������ꂸ�A��������Ȃ���΁A�l�Ƃ���B
+	// 玉が逃げられず、王手駒を取れず、合駒が利かなければ、詰とする。
 	return RC_MATE;
 }
 

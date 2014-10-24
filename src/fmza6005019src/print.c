@@ -32,9 +32,9 @@ print_phase(phase_t *php, FILE *Fp)
 	print_hand(Fp, php->yo_hand, (php2 != NULL) ? php2->yo_hand : NULL, OFF);
 
 	// print board
-	fputs("  ‚X ‚W ‚V ‚U ‚T ‚S ‚R ‚Q ‚P", Fp);
+	fputs("  ï¼™ ï¼˜ ï¼— ï¼– ï¼• ï¼” ï¼“ ï¼’ ï¼‘", Fp);
 	if (php2 != NULL) {
-		fputs("             ‚X ‚W ‚V ‚U ‚T ‚S ‚R ‚Q ‚P", Fp);
+		fputs("             ï¼™ ï¼˜ ï¼— ï¼– ï¼• ï¼” ï¼“ ï¼’ ï¼‘", Fp);
 	}
 	fprintf(Fp, "\n");
 	fputs("+---------------------------+", Fp);
@@ -80,7 +80,7 @@ print_mate(phase_t *last_php, FILE *Fp)
 	int i, pc, m, n;
 
 	if (&phase[1] == last_php) {
-		fprintf(Fp, "0è\n");
+		fprintf(Fp, "0æ‰‹\n");
 		if (Fp == stdout) {
 			fprintf(Fp, "\n");
 		} else if (brief_output == 0) {
@@ -94,7 +94,7 @@ print_mate(phase_t *last_php, FILE *Fp)
 		print_2nd_phase = OFF;
 	}
 	if (depth < limit_depth && min_limit_depth != 0xffff) {
-		fprintf(Fp, "‘‹l\n");
+		fprintf(Fp, "æ—©è©°\n");
 	}
 	m = 8;
 	len = make_move(&phase[1], mate_buf);
@@ -117,7 +117,7 @@ print_mate(phase_t *last_php, FILE *Fp)
 		col--;
 	}
 	n = (int)(last_php - &phase[1]);
-	sprintf(mb + 1, "‚Ü‚Å %dè", n);
+	sprintf(mb + 1, "ã¾ã§ %dæ‰‹", n);
 	len = (int)strlen(mb + 1);
 	col -= 1 + len;
 	if (col <= 0) {
@@ -128,7 +128,7 @@ print_mate(phase_t *last_php, FILE *Fp)
 	}
 	mb += 1 + len;
 	if (NEQUALM(php->hi_hand, null_phase.hi_hand, sizeof(null_phase.hi_hand))) {
-		strcpy(mb + 1, "‹î—]‚è ");
+		strcpy(mb + 1, "é§’ä½™ã‚Š ");
 		for (i = 0, n = 0; NOT_NUL(hand_pc_order[i]); i++) {
 			pc = hand_pc_order[i];
 			if ((piece[pc].attr & B_PA_DEFINED) && (piece[pc].attr & B_PA_PLACABLE)
@@ -169,7 +169,7 @@ print_mate(phase_t *last_php, FILE *Fp)
 	}
 
 	if (ferror(Fp)) {
-		fprintf(stderr, "\n\n%s: o—Íƒtƒ@ƒCƒ‹‚Ì‘‚İƒGƒ‰[‚Å‚·...\n\n", cmdname);
+		fprintf(stderr, "\n\n%s: å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›¸è¾¼ã¿ã‚¨ãƒ©ãƒ¼ã§ã™...\n\n", cmdname);
 		fm_exit(2);
 	}
 
@@ -194,17 +194,17 @@ print_last_moves(phase_t *last_php, int mode, FILE *Fp)
 		n = 1;
 		break;
 	case 2:
-		fprintf(Fp, "ÅIŒŸõè‡F\n");
+		fprintf(Fp, "æœ€çµ‚æ¤œç´¢æ‰‹é †ï¼š\n");
 		col = 0;
 		n = 1;
 		break;
 	case 3:
-		fprintf(Fp, "ÅIŒŸõè‡F");
+		fprintf(Fp, "æœ€çµ‚æ¤œç´¢æ‰‹é †ï¼š");
 		col = 14;
 		n = 1 + 2;
 		break;
 	default:
-		fprintf(Fp, "ÅIŒŸõè‡ (%d)F\n", (last_php - phase) - 1);
+		fprintf(Fp, "æœ€çµ‚æ¤œç´¢æ‰‹é † (%d)ï¼š\n", (last_php - phase) - 1);
 		fprintf(Fp, "\n");
 		col = 0;
 		n = 1;
@@ -276,15 +276,15 @@ print_record(FILE *Fp)
 	minutes = (int)((total_elapse / 60) % 60);
 	hours = (int)((total_elapse / 60) / 60);
 
-	fputs("‰ğÍŠÔF", Fp);
+	fputs("è§£ææ™‚é–“ï¼š", Fp);
 	if (hours > 0) {
-		fprintf(Fp, "%dŠÔ %2d•ª %2d•b  ", hours, minutes, seconds);
+		fprintf(Fp, "%dæ™‚é–“ %2dåˆ† %2dç§’  ", hours, minutes, seconds);
 	} else if (minutes > 0) {
-		fprintf(Fp, "%d•ª %2d•b  ", minutes, seconds);
+		fprintf(Fp, "%dåˆ† %2dç§’  ", minutes, seconds);
 	} else {
-		fprintf(Fp, "%d•b  ", seconds);
+		fprintf(Fp, "%dç§’  ", seconds);
 	}
-	fprintf(Fp, "‰ğÍ‹Ç–Ê”F%s  ŒŸo‰ğ”F%ld",
+	fprintf(Fp, "è§£æå±€é¢æ•°ï¼š%s  æ¤œå‡ºè§£æ•°ï¼š%ld",
 			make_num_str(phase_1M, phase_count, work), solution_count);
 
 	return;
@@ -298,15 +298,15 @@ print_rule(FILE *Fp)
 
 	reg_rule(outbuf);
 	fputs(outbuf, Fp);
-	fprintf(Fp, " %sè", make_num_str(0, limit_depth, work));
+	fprintf(Fp, " %sæ‰‹", make_num_str(0, limit_depth, work));
 	if (max_limit_depth > 0) {
-		fputs("i‡ŸŒŸõF", Fp);
+		fputs("ï¼ˆé †æ¬¡æ¤œç´¢ï¼š", Fp);
 		if (min_limit_depth > 0) {
 			fprintf(Fp, "%s", make_num_str(0, min_limit_depth, work));
 		} else {
 			fprintf(Fp, "%s", make_num_str(0, ((max_limit_depth & 0x1) ? 1 : 2), work));
 		}
-		fprintf(Fp, "-%sj", make_num_str(0, max_limit_depth, work));
+		fprintf(Fp, "-%sï¼‰", make_num_str(0, max_limit_depth, work));
 	}
 	fprintf(Fp, "\n");
 
@@ -314,24 +314,24 @@ print_rule(FILE *Fp)
 		if (piece[pc].attr & B_PA_DEFINED) {
 			outbuf[0] = '\0';
 			if (piece[pc].attr & B_PA_ROYAL) {
-				sprintf(outbuf, "%s: %s‰¤", graph[pc], piece[pc].name);
+				sprintf(outbuf, "%s: %sç‹", graph[pc], piece[pc].name);
 			} else {
 				sprintf(outbuf, "%s: %s", graph[pc], piece[pc].name);
 			}
 			if (piece[pc].attr & B_PA_PROMOTABLE) {
 				ppc = pc | B_PC_PROMOTED;
 				x = (int)strlen(outbuf) - 1;
-				if (outbuf[x] != ' ' && NEQUALZ(outbuf + x - 1, "j")) {
+				if (outbuf[x] != ' ' && NEQUALZ(outbuf + x - 1, "ï¼‰")) {
 					strcat(outbuf, " ");
 				}
 				strcat(outbuf, ">> ");
 				sprintf(outbuf + strlen(outbuf), "%s: %s", graph[ppc], piece[ppc].name);
 				if (piece[ppc].attr & B_PA_ROYAL) {
-					strcat(outbuf, "‰¤");
+					strcat(outbuf, "ç‹");
 				}
 			}
 			x = (int)strlen(outbuf) - 1;
-			if (outbuf[x] != ' ' && NEQUALZ(outbuf + x - 1, "j")) {
+			if (outbuf[x] != ' ' && NEQUALZ(outbuf + x - 1, "ï¼‰")) {
 				strcat(outbuf, " ");
 			}
 			sprintf(outbuf + strlen(outbuf), "[%d+%d]",
@@ -343,9 +343,9 @@ print_rule(FILE *Fp)
 				} else if (outbuf[x] == ']') {
 					strcat(outbuf + x, ", ");
 				} else {
-					strcat(outbuf, "A");
+					strcat(outbuf, "ã€");
 				}
-				strcat(outbuf, "æÌ‚Ä");
+				strcat(outbuf, "å–æ¨ã¦");
 			}
 			fprintf(Fp, "%s\n", outbuf);
 		}
@@ -364,7 +364,7 @@ print_hand(FILE *Fp, short *hand, short *hand2, int hi_side)
 	uchar_t pc;
 	uchar_t buf[64], buf21[64], buf22[64];
 
-	strcpy(buf, "‹îF");
+	strcpy(buf, "æŒé§’ï¼š");
 	buf21[0] = '\0';
 	for (i = 0, n = 0; NOT_NUL(hand_pc_order[i]); i++) {
 		pc = hand_pc_order[i];
@@ -378,7 +378,7 @@ print_hand(FILE *Fp, short *hand, short *hand2, int hi_side)
 		}
 	}
 	if (n == 0) {
-		strcat(buf, "‚È‚µ");
+		strcat(buf, "ãªã—");
 	}
 	len = (int)strlen(buf);
 	if (len >= 40 && hand2 != NULL) {
@@ -398,7 +398,7 @@ print_hand(FILE *Fp, short *hand, short *hand2, int hi_side)
 	fprintf(Fp, "%s", buf);
 	if (hand2 != NULL) {
 		fprintf(Fp, "%*c", (39 - len), ' ');
-		strcpy(buf, "‹îF");
+		strcpy(buf, "æŒé§’ï¼š");
 		buf22[0] = '\0';
 		for (i = 0, n = 0; NOT_NUL(hand_pc_order[i]); i++) {
 			pc = hand_pc_order[i];
@@ -412,7 +412,7 @@ print_hand(FILE *Fp, short *hand, short *hand2, int hi_side)
 			}
 		}
 		if (n == 0) {
-			strcat(buf, "‚È‚µ");
+			strcat(buf, "ãªã—");
 		}
 		len2 = (int)strlen(buf);
 		if (len2 >= 40) {
@@ -455,26 +455,26 @@ print_record4(void)
 	if (fileFp != NULL) {
 		if (brief_output == 0) {
 			if (solution_count == 0) {
-				fputs("•s‹l\n\n", fileFp);
+				fputs("ä¸è©°\n\n", fileFp);
 			}
 			if (limit_depth > 0) {
 				print_record(fileFp);
 				fputs("  ", fileFp);
 				if (solution_limit == -1) {
-					fputs("‹î—]‘ÅØ\n", fileFp);
+					fputs("é§’ä½™æ‰“åˆ‡\n", fileFp);
 				} else if (solution_limit == -2) {
-					fputs("‘‹l‘ÅØ\n", fileFp);
+					fputs("æ—©è©°æ‰“åˆ‡\n", fileFp);
 				} else if (solution_limit == -3) {
-					fputs("•Ê‹l‘ÅØ\n", fileFp);
+					fputs("åˆ¥è©°æ‰“åˆ‡\n", fileFp);
 				} else if (solution_limit == -4) {
-					fputs("§ŒÀŠÔ‘ÅØ\n", fileFp);
+					fputs("åˆ¶é™æ™‚é–“æ‰“åˆ‡\n", fileFp);
 				} else if (solution_count < solution_limit) {
-					fputs("‘SŒŸŠ®—¹\n", fileFp);
+					fputs("å…¨æ¤œå®Œäº†\n", fileFp);
 				} else {
-					fputs("‘SŒŸ–¢—¹\n", fileFp);
+					fputs("å…¨æ¤œæœªäº†\n", fileFp);
 				}
 				if (verbose == ON) {
-					fprintf(fileFp, "  ¶¬è” ß{—tF%s+%s=%s(%4.1f%%)\n",
+					fprintf(fileFp, "  ç”Ÿæˆæ‰‹æ•° ç¯€ï¼‹è‘‰ï¼š%s+%s=%s(%4.1f%%)\n",
 							make_num_str((long)(call_move_count / 1000000),
 								(long)(call_move_count % 1000000), work),
 							make_num_str((long)(call_move_leaf_count / 1000000),
@@ -483,7 +483,7 @@ print_record4(void)
 								(long)((call_move_count + call_move_leaf_count) % 1000000), work3),
 							(double)total_phase_count / (call_move_count + call_move_leaf_count) *
 								100);
-					fprintf(fileFp, "¶¬‹Ç–Ê” ß{—tF%s+%s=%s(%4.1f%%)\n",
+					fprintf(fileFp, "ç”Ÿæˆå±€é¢æ•° ç¯€ï¼‹è‘‰ï¼š%s+%s=%s(%4.1f%%)\n",
 							make_num_str((long)(call_analyze_count / 1000000),
 								(long)(call_analyze_count % 1000000), work),
 							make_num_str((long)(call_analyze_leaf_count / 1000000),
@@ -501,26 +501,26 @@ print_record4(void)
 	}
 	ERASE_EOS();
 	if (solution_count == 0) {
-		printf("•s‹l\n\n");
+		printf("ä¸è©°\n\n");
 	}
 	if (limit_depth > 0) {
 		print_record(stdout);
 		printf("  ");
 		if (solution_limit == -1) {
-			printf("‹î—]‘ÅØ\n");
+			printf("é§’ä½™æ‰“åˆ‡\n");
 		} else if (solution_limit == -2) {
-			printf("‘‹l‘ÅØ\n");
+			printf("æ—©è©°æ‰“åˆ‡\n");
 		} else if (solution_limit == -3) {
-			printf("•Ê‹l‘ÅØ\n");
+			printf("åˆ¥è©°æ‰“åˆ‡\n");
 		} else if (solution_limit == -4) {
-			printf("§ŒÀŠÔ‘ÅØ\n");
+			printf("åˆ¶é™æ™‚é–“æ‰“åˆ‡\n");
 		} else if (solution_count < solution_limit) {
-			printf("‘SŒŸŠ®—¹\n");
+			printf("å…¨æ¤œå®Œäº†\n");
 		} else {
-			printf("‘SŒŸ–¢—¹\n");
+			printf("å…¨æ¤œæœªäº†\n");
 		}
 		if (verbose == ON) {
-			printf("  ¶¬è” ß{—tF%s+%s=%s(%4.1f%%)\n",
+			printf("  ç”Ÿæˆæ‰‹æ•° ç¯€ï¼‹è‘‰ï¼š%s+%s=%s(%4.1f%%)\n",
 					make_num_str((long)(call_move_count / 1000000),
 						(long)(call_move_count % 1000000), work),
 					make_num_str((long)(call_move_leaf_count / 1000000),
@@ -528,7 +528,7 @@ print_record4(void)
 					make_num_str((long)((call_move_count + call_move_leaf_count) / 1000000),
 						(long)((call_move_count + call_move_leaf_count) % 1000000), work3),
 					(double)total_phase_count / (call_move_count + call_move_leaf_count) * 100);
-			printf("¶¬‹Ç–Ê” ß{—tF%s+%s=%s(%4.1f%%)\n",
+			printf("ç”Ÿæˆå±€é¢æ•° ç¯€ï¼‹è‘‰ï¼š%s+%s=%s(%4.1f%%)\n",
 					make_num_str((long)(call_analyze_count / 1000000),
 						(long)(call_analyze_count % 1000000), work),
 					make_num_str((long)(call_analyze_leaf_count / 1000000),
@@ -622,7 +622,7 @@ print_start(FILE *Fp, int restart)
 		fprintf(Fp, "%s %s - %s\n", cmdname, release, ctime(&t));
 	}
 	if (restart == ON) {
-		fprintf(Fp, "ÄŠJi%sj\n\n", restart_file);
+		fprintf(Fp, "å†é–‹ï¼ˆ%sï¼‰\n\n", restart_file);
 	}
 	rc = print_search_options(Fp, 0);
 	if (rc >= 1 && (brief_output == 0 || Fp == stdout)) {
@@ -632,7 +632,7 @@ print_start(FILE *Fp, int restart)
 		fprintf(Fp, "%s\n\n", title);
 	}
 	print_rule(Fp);
-	print_phase(&phase[1], Fp);	// ‰}–Ê•\¦
+	print_phase(&phase[1], Fp);	// åˆå›³é¢è¡¨ç¤º
 
 	return;
 }
@@ -754,9 +754,9 @@ print_direct_mate(void)
 	return;
 }
 
-// ‹lè‡–Ø™’’è
-//   mmp:  ˆ—‘ÎÛ‹lè
-//   mmq:  •ªŠò‹lèiNULL‚Ìê‡‚ÍAmmp‚ª‰è‚ÌÅ‰‚Å‚ ‚é‚±‚Æ‚ğ¦‚·j
+// è©°æ‰‹é †æœ¨å‰ªå®š
+//   mmp:  å‡¦ç†å¯¾è±¡è©°æ‰‹
+//   mmq:  åˆ†å²è©°æ‰‹ï¼ˆNULLã®å ´åˆã¯ã€mmpãŒåˆæ‰‹ã®æœ€åˆã§ã‚ã‚‹ã“ã¨ã‚’ç¤ºã™ï¼‰
 static int
 prune_mate_move_tree(mate_move_t *mmp, mate_move_t *mmq)
 {
@@ -765,27 +765,27 @@ prune_mate_move_tree(mate_move_t *mmp, mate_move_t *mmq)
 
 	fmmt_cc++;
 	if (mmp->next == NULL) {
-		// ––’[‚Ìê‡AÅ‘å‹lè”‚ğİ’è
+		// æœ«ç«¯ã®å ´åˆã€æœ€å¤§è©°æ‰‹æ•°ã‚’è¨­å®š
 		mmp->max_mate_depth = mmp->depth;
 	} else {
-		// ––’[‚Å‚È‚¯‚ê‚ÎA‚P’iæ‚Ì—v‘f‚ğˆ—
+		// æœ«ç«¯ã§ãªã‘ã‚Œã°ã€ï¼‘æ®µå…ˆã®è¦ç´ ã‚’å‡¦ç†
 		(void)prune_mate_move_tree(mmp->next, mmq);
 	}
 	if (mmp->side != NULL) {
-		// “¯ƒŒƒxƒ‹—v‘f‚ª‚ ‚ê‚ÎA‚»‚ê‚ğˆ—
+		// åŒãƒ¬ãƒ™ãƒ«è¦ç´ ãŒã‚ã‚Œã°ã€ãã‚Œã‚’å‡¦ç†
 		(void)prune_mate_move_tree(mmp->side, mmp->side);
 	} else {
-		// “¯ƒŒƒxƒ‹—v‘f‚ğ‚·‚×‚Äˆ—‚µ‚½ŒãA‚Ü‚½‚ÍA“¯ƒŒƒxƒ‹—v‘f‚ª‚È‚©‚Á‚½ê‡
+		// åŒãƒ¬ãƒ™ãƒ«è¦ç´ ã‚’ã™ã¹ã¦å‡¦ç†ã—ãŸå¾Œã€ã¾ãŸã¯ã€åŒãƒ¬ãƒ™ãƒ«è¦ç´ ãŒãªã‹ã£ãŸå ´åˆ
 		if (mmq != mmp) {
-			// “¯ƒŒƒxƒ‹—v‘f‚ª‚È‚©‚Á‚½ê‡
+			// åŒãƒ¬ãƒ™ãƒ«è¦ç´ ãŒãªã‹ã£ãŸå ´åˆ
 			if (mmp->prev != NULL) {
 				mmp->prev->max_mate_depth = mmp->max_mate_depth;
 				mmp->prev->flag |= mmp->flag & B_MM_EXCESS_MATE;
 			}
 		} else {
-			// “¯ƒŒƒxƒ‹—v‘f‚ğ‚·‚×‚Äˆ—‚µ‚½Œã
+			// åŒãƒ¬ãƒ™ãƒ«è¦ç´ ã‚’ã™ã¹ã¦å‡¦ç†ã—ãŸå¾Œ
 			if (mmp->flag & B_MM_HITHER_TURN) {
-				// U•û”Ô‚Ìê‡AÅ’Zè”‚Ì‚İ‚ğc‚·B
+				// æ”»æ–¹ç•ªã®å ´åˆã€æœ€çŸ­æ‰‹æ•°ã®ã¿ã‚’æ®‹ã™ã€‚
 				mmd = 0;
 				mmr = mmp->prev == NULL ? mm_root : mmp->prev->next;
 				for ( ; mmr != NULL; mmr = mmr->side) {
@@ -812,7 +812,7 @@ prune_mate_move_tree(mate_move_t *mmp, mate_move_t *mmq)
 					}
 				}
 			} else {
-				// ó•û”Ô‚Ìê‡AÅ’·è”‚Ì‚İ‚ğc‚·B
+				// å—æ–¹ç•ªã®å ´åˆã€æœ€é•·æ‰‹æ•°ã®ã¿ã‚’æ®‹ã™ã€‚
 				mmd = 0;
 				mmr = mmp->prev == NULL ? mm_root : mmp->prev->next;
 				for ( ; mmr != NULL; mmr = mmr->side) {
@@ -964,8 +964,8 @@ print_direct_mate_sub(phase_t *php)
 	print_mate(php, stdout);
 #if 0
 	if (solution_count >= solution_limit) {
-		// ‰ğ”ãŒÀ
-		fprintf(stderr, "‰ğ”‚ªw’è‚³‚ê‚½ãŒÀ‚É’B‚µ‚Ü‚µ‚½...\n\n");
+		// è§£æ•°ä¸Šé™
+		fprintf(stderr, "è§£æ•°ãŒæŒ‡å®šã•ã‚ŒãŸä¸Šé™ã«é”ã—ã¾ã—ãŸ...\n\n");
 	}
 #endif
 
@@ -973,8 +973,8 @@ print_direct_mate_sub(phase_t *php)
 }
 
 //int count = 0;
-// mmp:  ˆ—‘ÎÛ‹lè
-// mmq:  •ªŠò‹lè
+// mmp:  å‡¦ç†å¯¾è±¡è©°æ‰‹
+// mmq:  åˆ†å²è©°æ‰‹
 int
 walk_mate_move_tree(mate_move_t *mmp, mate_move_t *mmq)
 {

@@ -1,22 +1,22 @@
 # Microsoft Developer Studio Generated NMAKE File, Based on jkmisc.dsp
 !IF "$(CFG)" == ""
 CFG=jkmisc - Win32 Debug
-!MESSAGE �\�����w�肳��Ă��܂���B��̫�Ă� jkmisc - Win32 Debug ��ݒ肵�܂��B
+!MESSAGE 構成が指定されていません。デフォルトの jkmisc - Win32 Debug を設定します。
 !ENDIF 
 
 !IF "$(CFG)" != "jkmisc - Win32 Release" && "$(CFG)" != "jkmisc - Win32 Debug"
-!MESSAGE �w�肳�ꂽ ����� Ӱ�� "$(CFG)" �͐���������܂���B
-!MESSAGE NMAKE �̎��s���ɍ\�����w��ł��܂�
-!MESSAGE ����� ײݏ��ϸۂ̐ݒ���`���܂��B��:
+!MESSAGE 指定された ビルド モード "$(CFG)" は正しくありません。
+!MESSAGE NMAKE の実行時に構成を指定できます
+!MESSAGE コマンド ライン上でマクロの設定を定義します。例:
 !MESSAGE 
 !MESSAGE NMAKE /f "jkmisc.mak" CFG="jkmisc - Win32 Debug"
 !MESSAGE 
-!MESSAGE �I���\������� Ӱ��:
+!MESSAGE 選択可能なビルド モード:
 !MESSAGE 
-!MESSAGE "jkmisc - Win32 Release" ("Win32 (x86) Static Library" �p)
-!MESSAGE "jkmisc - Win32 Debug" ("Win32 (x86) Static Library" �p)
+!MESSAGE "jkmisc - Win32 Release" ("Win32 (x86) Static Library" 用)
+!MESSAGE "jkmisc - Win32 Debug" ("Win32 (x86) Static Library" 用)
 !MESSAGE 
-!ERROR �����ȍ\�����w�肳��Ă��܂��B
+!ERROR 無効な構成が指定されています。
 !ENDIF 
 
 !IF "$(OS)" == "Windows_NT"

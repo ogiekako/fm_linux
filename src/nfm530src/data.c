@@ -11,7 +11,7 @@
 FILE *inFp;
 FILE *fileFp;
 
-// ƒ|ƒCƒ“ƒ^ƒf[ƒ^
+// ãƒã‚¤ãƒ³ã‚¿ãƒ‡ãƒ¼ã‚¿
 mseqhead_t *mseq_head;
 mseq_t **hashhead_check;
 mseq_t **hashhead_escape;
@@ -21,7 +21,7 @@ mseq_t *msp_givenmate;
 board_t *bdp_free = NULL;
 void (* fm_attach_mseq)(mseq_t *);
 
-// ”’lƒf[ƒ^
+// æ•°å€¤ãƒ‡ãƒ¼ã‚¿
 double comp_hash_check_found = 0;
 double comp_hash_check_notfound = 0;
 double comp_hash_escape_found = 0;
@@ -94,7 +94,7 @@ int retry;
 ushort_t rule;
 ushort_t cond;
 
-// •¶š—ñƒf[ƒ^
+// æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
 char in_file[PATHMAX];
 char out_file[PATHMAX];
 char title[256];
@@ -102,33 +102,33 @@ char inbuf[BUFSIZE];
 char outbuf[BUFSIZE];
 char editbuf[EWASIZE];
 
-// \‘¢‘Ìƒf[ƒ^
+// æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿
 mseq_t mseq_prob;
 board_t board_prob;
 mseq_t mseq_target;
 board_t board_target;
 
-// ’è”ƒf[ƒ^
+// å®šæ•°ãƒ‡ãƒ¼ã‚¿
 const uchar_t board_void[BOARD_SIZE] = {
-//           ˆê       “ñ       O       l       ŒÜ       ˜Z       µ       ”ª       ‹ã
+//           ä¸€       äºŒ       ä¸‰       å››       äº”       å…­       ä¸ƒ       å…«       ä¹
 	SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB,
-// ‚P
+// ï¼‘
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚Q
+// ï¼’
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚R
+// ï¼“
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚S
+// ï¼”
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚T
+// ï¼•
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚U
+// ï¼–
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚V
+// ï¼—
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚W
+// ï¼˜
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
-// ‚X
+// ï¼™
 	SQ_OofB, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM, SQ_ROOM,
 // 10
 	SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB, SQ_OofB,
@@ -175,94 +175,94 @@ const int yo_step_vec[11] = {
 const int run_vec[9] = {
 	-1, -11, 9, -10, 10, -9, 11, 1, 0,
 };
-static const int pc_set_step_79[PC_END] = {	// ‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,—´
+static const int pc_set_step_79[PC_END] = {	// éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¾
 	0, 0, 0, 0, 1, 1, 0, 0,
 	0, 1, 1, 1, 1, 1, 0, 1,
 };
-static const int pc_set_step_46[PC_END] = {	// ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
+static const int pc_set_step_46[PC_END] = {	// é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
 	0, 0, 0, 0, 0, 1, 0, 0,
 	0, 1, 1, 1, 1, 1, 1, 0,
 };
-static const int pc_set_step_13[PC_END] = {	// ‹â,‰¤,—´
+static const int pc_set_step_13[PC_END] = {	// éŠ€,ç‹,é¾
 	0, 0, 0, 0, 1, 0, 0, 0,
 	0, 0, 0, 0, 0, 1, 0, 1,
 };
-static const int pc_set_step_8[PC_END] = {	// •à,‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
+static const int pc_set_step_8[PC_END] = {	// æ­©,éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
 	0, 1, 0, 0, 1, 1, 0, 0,
 	0, 1, 1, 1, 1, 1, 1, 0,
 };
-static const int pc_set_step_2[PC_END] = {	// ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
+static const int pc_set_step_2[PC_END] = {	// é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
 	0, 0, 0, 0, 0, 1, 0, 0,
 	0, 1, 1, 1, 1, 1, 1, 0,
 };
-static const int pc_set_step_ke[PC_END] = {	// Œj
+static const int pc_set_step_ke[PC_END] = {	// æ¡‚
 	0, 0, 0, 1, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0,
 };
 const int *hi_step_pc[10] = {
-	pc_set_step_8,		//  -1 •à,‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
-	pc_set_step_ke,		// -12 Œj
-	pc_set_step_ke,		//   8 Œj
-	pc_set_step_79,		// -11 ‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,—´
-	pc_set_step_79,		//   9 ‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,—´
-	pc_set_step_46,		// -10 ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
-	pc_set_step_46,		//  10 ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
-	pc_set_step_13,		//  -9 ‹â,‰¤,—´
-	pc_set_step_13,		//  11 ‹â,‰¤,—´
-	pc_set_step_2,		//   1 ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
+	pc_set_step_8,		//  -1 æ­©,éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
+	pc_set_step_ke,		// -12 æ¡‚
+	pc_set_step_ke,		//   8 æ¡‚
+	pc_set_step_79,		// -11 éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¾
+	pc_set_step_79,		//   9 éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¾
+	pc_set_step_46,		// -10 é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
+	pc_set_step_46,		//  10 é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
+	pc_set_step_13,		//  -9 éŠ€,ç‹,é¾
+	pc_set_step_13,		//  11 éŠ€,ç‹,é¾
+	pc_set_step_2,		//   1 é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
 };
 const int *yo_step_pc[10] = {
-	pc_set_step_8,		//   1 •à,‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
-	pc_set_step_ke,		//  -8 Œj
-	pc_set_step_ke,		//  12 Œj
-	pc_set_step_79,		//  -9 ‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,—´
-	pc_set_step_79,		//  11 ‹â,‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,—´
-	pc_set_step_46,		// -10 ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
-	pc_set_step_46,		//  10 ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
-	pc_set_step_13,		// -11 ‹â,‰¤,—´
-	pc_set_step_13,		//   9 ‹â,‰¤,—´
-	pc_set_step_2,		//  -1 ‹à,‰¤,‚Æ,ˆÇ,Œ\,‘S,”n
+	pc_set_step_8,		//   1 æ­©,éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
+	pc_set_step_ke,		//  -8 æ¡‚
+	pc_set_step_ke,		//  12 æ¡‚
+	pc_set_step_79,		//  -9 éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¾
+	pc_set_step_79,		//  11 éŠ€,é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¾
+	pc_set_step_46,		// -10 é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
+	pc_set_step_46,		//  10 é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
+	pc_set_step_13,		// -11 éŠ€,ç‹,é¾
+	pc_set_step_13,		//   9 éŠ€,ç‹,é¾
+	pc_set_step_2,		//  -1 é‡‘,ç‹,ã¨,æ,åœ­,å…¨,é¦¬
 };
-static const int pc_set_run_79[PC_END] = {	// Šp,”n
+static const int pc_set_run_79[PC_END] = {	// è§’,é¦¬
 	0, 0, 0, 0, 0, 0, 1, 0,
 	0, 0, 0, 0, 0, 0, 1, 0,
 };
-static const int pc_set_run_246[PC_END] = {	// ”ò,—´
+static const int pc_set_run_246[PC_END] = {	// é£›,é¾
 	0, 0, 0, 0, 0, 0, 0, 1,
 	0, 0, 0, 0, 0, 0, 0, 1,
 };
-static const int pc_set_run_13[PC_END] = {	// Šp,”n
+static const int pc_set_run_13[PC_END] = {	// è§’,é¦¬
 	0, 0, 0, 0, 0, 0, 1, 0,
 	0, 0, 0, 0, 0, 0, 1, 0,
 };
-static const int pc_set_run_8[PC_END] = {	// ,”ò,—´
+static const int pc_set_run_8[PC_END] = {	// é¦™,é£›,é¾
 	0, 0, 1, 0, 0, 0, 0, 1,
 	0, 0, 0, 0, 0, 0, 0, 1,
 };
 const int *hi_run_pc[8] = {
-	pc_set_run_8,		//  -1 ,”ò,—´
-	pc_set_run_79,		// -11 Šp,”n
-	pc_set_run_79,		//   9 Šp,”n
-	pc_set_run_246,		// -10 ”ò,—´
-	pc_set_run_246,		//  10 ”ò,—´
-	pc_set_run_13,		//  -9 Šp,”n
-	pc_set_run_13,		//  11 Šp,”n
-	pc_set_run_246,		//   1 ”ò,—´
+	pc_set_run_8,		//  -1 é¦™,é£›,é¾
+	pc_set_run_79,		// -11 è§’,é¦¬
+	pc_set_run_79,		//   9 è§’,é¦¬
+	pc_set_run_246,		// -10 é£›,é¾
+	pc_set_run_246,		//  10 é£›,é¾
+	pc_set_run_13,		//  -9 è§’,é¦¬
+	pc_set_run_13,		//  11 è§’,é¦¬
+	pc_set_run_246,		//   1 é£›,é¾
 };
 const int *yo_run_pc[8] = {
-	pc_set_run_246,		//  -1 ”ò,—´
-	pc_set_run_13,		// -11 Šp,”n
-	pc_set_run_13,		//   9 Šp,”n
-	pc_set_run_246,		// -10 ”ò,—´
-	pc_set_run_246,		//  10 ”ò,—´
-	pc_set_run_79,		//  -9 Šp,”n
-	pc_set_run_79,		//  11 Šp,”n
-	pc_set_run_8,		//   1 ,”ò,—´
+	pc_set_run_246,		//  -1 é£›,é¾
+	pc_set_run_13,		// -11 è§’,é¦¬
+	pc_set_run_13,		//   9 è§’,é¦¬
+	pc_set_run_246,		// -10 é£›,é¾
+	pc_set_run_246,		//  10 é£›,é¾
+	pc_set_run_79,		//  -9 è§’,é¦¬
+	pc_set_run_79,		//  11 è§’,é¦¬
+	pc_set_run_8,		//   1 é¦™,é£›,é¾
 };
 const int *hi_runv_pc[23] = {
-	pc_set_run_79,		// -11 Šp,”n
-	pc_set_run_246,		// -10 ”ò,—´
-	pc_set_run_13,		//  -9 Šp,”n
+	pc_set_run_79,		// -11 è§’,é¦¬
+	pc_set_run_246,		// -10 é£›,é¾
+	pc_set_run_13,		//  -9 è§’,é¦¬
 	NULL,				//  -8
 	NULL,				//  -7
 	NULL,				//  -6
@@ -270,9 +270,9 @@ const int *hi_runv_pc[23] = {
 	NULL,				//  -4
 	NULL,				//  -3
 	NULL,				//  -2
-	pc_set_run_8,		//  -1 ,”ò,—´
+	pc_set_run_8,		//  -1 é¦™,é£›,é¾
 	NULL,				//   0
-	pc_set_run_246,		//   1 ”ò,—´
+	pc_set_run_246,		//   1 é£›,é¾
 	NULL,				//   2
 	NULL,				//   3
 	NULL,				//   4
@@ -280,14 +280,14 @@ const int *hi_runv_pc[23] = {
 	NULL,				//   6
 	NULL,				//   7
 	NULL,				//   8
-	pc_set_run_79,		//   9 Šp,”n
-	pc_set_run_246,		//  10 ”ò,—´
-	pc_set_run_13,		//  11 Šp,”n
+	pc_set_run_79,		//   9 è§’,é¦¬
+	pc_set_run_246,		//  10 é£›,é¾
+	pc_set_run_13,		//  11 è§’,é¦¬
 };
 const int *yo_runv_pc[23] = {
-	pc_set_run_13,		// -11 Šp,”n
-	pc_set_run_246,		// -10 ”ò,—´
-	pc_set_run_79,		//  -9 Šp,”n
+	pc_set_run_13,		// -11 è§’,é¦¬
+	pc_set_run_246,		// -10 é£›,é¾
+	pc_set_run_79,		//  -9 è§’,é¦¬
 	NULL,				//  -8
 	NULL,				//  -7
 	NULL,				//  -6
@@ -295,9 +295,9 @@ const int *yo_runv_pc[23] = {
 	NULL,				//  -4
 	NULL,				//  -3
 	NULL,				//  -2
-	pc_set_run_246,		//  -1 ”ò,—´
+	pc_set_run_246,		//  -1 é£›,é¾
 	NULL,				//   0
-	pc_set_run_8,		//   1 ,”ò,—´
+	pc_set_run_8,		//   1 é¦™,é£›,é¾
 	NULL,				//   2
 	NULL,				//   3
 	NULL,				//   4
@@ -305,9 +305,9 @@ const int *yo_runv_pc[23] = {
 	NULL,				//   6
 	NULL,				//   7
 	NULL,				//   8
-	pc_set_run_13,		//   9 Šp,”n
-	pc_set_run_246,		//  10 ”ò,—´
-	pc_set_run_79,		//  11 Šp,”n
+	pc_set_run_13,		//   9 è§’,é¦¬
+	pc_set_run_246,		//  10 é£›,é¾
+	pc_set_run_79,		//  11 è§’,é¦¬
 };
 
 static const ulong_t bphh_fu[] = {

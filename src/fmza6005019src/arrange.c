@@ -13,7 +13,7 @@ static int check_constraint_sq(phase_t *php);
 static int check_constraint_2f(phase_t *php);
 static int check_constraint_3t(phase_t *php);
 
-// –â‘èİ’è
+// å•é¡Œè¨­å®š
 int
 arrange(FILE *Fp)
 {
@@ -34,7 +34,7 @@ arrange(FILE *Fp)
 	LOOP {
 		ib = fgets(inbuf, sizeof(inbuf), Fp);
 		if (ib == NULL) {
-			error_message("“ü—Íƒf[ƒ^‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñi––”ö‚Éu.v‚Æu#è”v‚Ì‚Ç‚¿‚ç‚à‚È‚¢j",
+			error_message("å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ï¼ˆæœ«å°¾ã«ã€Œ.ã€ã¨ã€Œ#æ‰‹æ•°ã€ã®ã©ã¡ã‚‰ã‚‚ãªã„ï¼‰",
 					NULL);
 			return -1;
 		}
@@ -44,15 +44,15 @@ arrange(FILE *Fp)
 		}
 		ib = skip_space(ib);
 		if (ib[0] == '\n' || ib[0] == '\0') {
-			// ‹ós
+			// ç©ºè¡Œ
 			continue;
 		}
 		if (ib[0] == ';') {
-			// ƒRƒƒ“ƒg
+			// ã‚³ãƒ¡ãƒ³ãƒˆ
 			continue;
 		}
 		if (ib[0] == '/') {
-			// ƒIƒvƒVƒ‡ƒ“
+			// ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 			ib++;
 			toasciiuc(ib);
 			switch (ib[0]) {
@@ -61,7 +61,7 @@ arrange(FILE *Fp)
 				strcpy(out_file, ib);
 				fileFp = fopen(out_file, "a");
 				if (fileFp == NULL) {
-					fprintf(stderr, "%s: o—Íƒtƒ@ƒCƒ‹ %s ‚ªƒI[ƒvƒ“‚Å‚«‚Ü‚¹‚ñ...\n\n",
+					fprintf(stderr, "%s: å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ« %s ãŒã‚ªãƒ¼ãƒ—ãƒ³ã§ãã¾ã›ã‚“...\n\n",
 							cmdname, out_file);
 				}
 				break;
@@ -100,13 +100,13 @@ arrange(FILE *Fp)
 			}
 			continue;
 		}
-		// ì•i–¼
+		// ä½œå“å
 		ib = get_title(ib);
 		ib = skip_space(ib);
 		if (ib[0] == '\n' || ib[0] == '\0') {
 			continue;
 		}
-		// ƒ‹[ƒ‹EğŒ
+		// ãƒ«ãƒ¼ãƒ«ãƒ»æ¡ä»¶
 		toasciiuc(ib);
 		ib = get_rule(ib);
 		if (ib == NULL) {
@@ -116,7 +116,7 @@ arrange(FILE *Fp)
 		if (ib[0] == '\n' || ib[0] == '\0') {
 			continue;
 		}
-		// –â‘è
+		// å•é¡Œ
 		while (ib != NULL && ib[0]) {
 			if (ib - inbuf >= 512) {
 				break;
@@ -167,7 +167,7 @@ arrange(FILE *Fp)
 				n = strtol(ib, &s, 10);
 				ib = s;
 				if (n > LIMIT_DEPTH) {
-					error_message("‹lè”‚ª‘å‚«‰ß‚¬‚Ü‚·", NULL);
+					error_message("è©°æ‰‹æ•°ãŒå¤§ãéãã¾ã™", NULL);
 					return -1;
 				}
 				limit_depth = n;
@@ -178,12 +178,12 @@ arrange(FILE *Fp)
 						n = strtol(ib, &s, 10);
 						ib = s;
 						if (n > LIMIT_DEPTH) {
-							error_message("‹lè”‚ª‘å‚«‰ß‚¬‚Ü‚·", NULL);
+							error_message("è©°æ‰‹æ•°ãŒå¤§ãéãã¾ã™", NULL);
 							return -1;
 						}
 						limit_depth = n;
 						if (limit_depth <= min_limit_depth) {
-							error_message("‡ŸŒŸõw’è‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·", NULL);
+							error_message("é †æ¬¡æ¤œç´¢æŒ‡å®šãŒé–“é•ã£ã¦ã„ã¾ã™", NULL);
 							return -1;
 						}
 					} else {
@@ -194,7 +194,7 @@ arrange(FILE *Fp)
 				goto problem_test;
 			case '.':
 				if (limit_depth == 0) {
-					error_message("‹lè”‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ", NULL);
+					error_message("è©°æ‰‹æ•°ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“", NULL);
 					return -1;
 				}
 				goto problem_test;
@@ -206,21 +206,21 @@ arrange(FILE *Fp)
 				save_ib = ib;
 				pos = get_pos(&ib);
 				if (pos < 0 || pos >= 81) {
-					error_message("‹îˆÊ’uw’è‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·", save_ib);
+					error_message("é§’ä½ç½®æŒ‡å®šãŒé–“é•ã£ã¦ã„ã¾ã™", save_ib);
 					return -1;
 				}
 				if (NOT_ROOM(php->board[pos])) {
-					error_message("‹îˆÊ’u‚ªd•¡‚µ‚Ä‚¢‚Ü‚·", save_ib);
+					error_message("é§’ä½ç½®ãŒé‡è¤‡ã—ã¦ã„ã¾ã™", save_ib);
 					return -1;
 				}
 				save_ib = ib;
 				pc = get_pc_code(&ib);
 				if (IS_NUL(pc) || IS_ROOM(pc)) {
-					error_message("”Õ‹î‚Ì‹î•¶š‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·", save_ib);
+					error_message("ç›¤é§’ã®é§’æ–‡å­—ãŒé–“é•ã£ã¦ã„ã¾ã™", save_ib);
 					return -1;
 				}
 				if (piece[pc].attr & B_PA_ROYAL) {
-					// ‰¤‘®«‹î
+					// ç‹å±æ€§é§’
 					if (mode == HI_PC_ON_BOARD) {
 						php->hi_ou_pos = pos;
 						php->board[pos] = pc | B_PC_HITHER;
@@ -229,10 +229,10 @@ arrange(FILE *Fp)
 						php->board[pos] = pc | B_PC_YONDER;
 					}
 				} else if (pc == PIT) {
-					// âv
+					// ç©½
 					php->board[pos] = SQ_PIT;
 				} else if (pc == ROCK) {
-					// Î
+					// çŸ³
 					php->board[pos] = SQ_ROCK;
 				} else {
 					php->yo_hand[RAW_KIND(pc)]--;
@@ -248,11 +248,11 @@ arrange(FILE *Fp)
 				save_ib = ib;
 				pc = get_pc_code(&ib);
 				if (IS_NUL(pc) || pc == ROOM || pc == ROCK || pc == PIT) {
-					error_message("‹î‚Ì‹î•¶š‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·", save_ib);
+					error_message("æŒé§’ã®é§’æ–‡å­—ãŒé–“é•ã£ã¦ã„ã¾ã™", save_ib);
 					return -1;
 				}
 				if (NOT(piece[pc].attr & B_PA_PLACABLE)) {
-					error_message("‹î‚É‚Å‚«‚È‚¢‹î‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚·", save_ib);
+					error_message("æŒé§’ã«ã§ããªã„é§’ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã™", save_ib);
 					return -1;
 				}
 				save_ib = ib;
@@ -270,7 +270,7 @@ arrange(FILE *Fp)
 				}
 				break;
 			default:
-				error_message("“ü—Íƒf[ƒ^‚ªˆ—‚Å‚«‚Ü‚¹‚ñ", ib);	// ‚±‚ñ‚È‚±‚ÆA‚È‚¢‚Í‚¸
+				error_message("å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ãŒå‡¦ç†ã§ãã¾ã›ã‚“", ib);	// ã“ã‚“ãªã“ã¨ã€ãªã„ã¯ãš
 				return -1;
 			}
 		}
@@ -285,7 +285,7 @@ problem_test:
 		}
 	}
 	if (n == 0) {
-		error_message("ó•û‚É‰¤‘®«‚Ì‹î‚ª‚ ‚è‚Ü‚¹‚ñ", NULL);
+		error_message("å—æ–¹ã«ç‹å±æ€§ã®é§’ãŒã‚ã‚Šã¾ã›ã‚“", NULL);
 		return -1;
 	}
 	if (n >= 2) {
@@ -295,7 +295,7 @@ problem_test:
 		pc = hand_pc_order[i];
 		if ((piece[pc].attr & B_PA_DEFINED) && php->yo_hand[pc] < 0) {
 			if (free_pc_count == OFF) {
-				error_message("‹î”‚ª•W€‚©‚çŠO‚ê‚Ä‚¢‚Ü‚·", NULL);
+				error_message("é§’æ•°ãŒæ¨™æº–ã‹ã‚‰å¤–ã‚Œã¦ã„ã¾ã™", NULL);
 				return -1;
 			}
 			php->yo_hand[pc] = 0;
@@ -305,7 +305,7 @@ problem_test:
 	if (cond_flag & BM_C_CIRCE_FAMILY) {
 		for (pc = PC_FU; pc < PC_END; pc++) {
 			if (piece[pc].move_style & B_MS_SHISHI_LEAP) {
-				error_message("ƒLƒ‹ƒPŒn‚Å‚ÍA‚q’µ‚Ñ‹î‚Í–¢ƒTƒ|[ƒg‚Å‚·", NULL);
+				error_message("ã‚­ãƒ«ã‚±ç³»ã§ã¯ã€ç…å­è·³ã³é§’ã¯æœªã‚µãƒãƒ¼ãƒˆã§ã™", NULL);
 				return -1;
 			}
 		}
@@ -315,27 +315,27 @@ problem_test:
 			if (piece[pc].move_style &
 					(B_MS_SHISHI_LEAP | B_MS_MAO_STEP | B_MS_HOP | B_MS_DECAPT_HOP |
 					 B_MS_JUMP_HOP | B_MS_REFL135 | B_MS_REFL90)) {
-				error_message("Isardam‚Å‚ÍA‚q’µ‚Ñ‹îAMao’µ‚Ñ‹îA‚fŒn‹îAå›Œn‹îAƒJƒ“ƒKƒ‹[Œn‹îA"
-						"A˜h‚Í–¢ƒTƒ|[ƒg‚Å‚·", NULL);
+				error_message("Isardamã§ã¯ã€ç…å­è·³ã³é§’ã€Maoè·³ã³é§’ã€ï¼§ç³»é§’ã€è—ç³»é§’ã€ã‚«ãƒ³ã‚¬ãƒ«ãƒ¼ç³»é§’ã€"
+						"é›€ã€é·²ã¯æœªã‚µãƒãƒ¼ãƒˆã§ã™", NULL);
 				return -1;
 			}
 		}
 	}
 	if (check_constraint_sq(php) != 0) {
-		error_message("s‚«ˆ‚Ì‚È‚¢‹î‚ª‚ ‚è‚Ü‚·", NULL);
+		error_message("è¡Œãå‡¦ã®ãªã„é§’ãŒã‚ã‚Šã¾ã™", NULL);
 		return -1;
 	}
 	if (check_constraint_2f(php) != 0) {
-		error_message("“ñ•à‚ª‚ ‚è‚Ü‚·", NULL);
+		error_message("äºŒæ­©ãŒã‚ã‚Šã¾ã™", NULL);
 		return -1;
 	}
 	if (check_constraint_3t(php) != 0) {
-		error_message("O‰‚ª‚ ‚è‚Ü‚·", NULL);
+		error_message("ä¸‰ç‡•ãŒã‚ã‚Šã¾ã™", NULL);
 		return -1;
 	}
-	// g—p‹îŒv”
+	// ä½¿ç”¨é§’è¨ˆæ•°
 	setup_used_pc_count(&init_phase);
-	// ‹lè”î•ñ‰Šúİ’è
+	// è©°æ‰‹æ•°æƒ…å ±åˆæœŸè¨­å®š
 	work_limit_depth = limit_depth;
 	if (max_limit_depth != 0) {
 		work_limit_depth = max_limit_depth;
@@ -345,10 +345,10 @@ problem_test:
 			limit_depth = max_limit_depth % 2 == 0 ? 2 : 1;
 		}
 	}
-	// ‹Ç–Ê\‘¢‘Ì”z—ñ¶¬
+	// å±€é¢æ§‹é€ ä½“é…åˆ—ç”Ÿæˆ
 	phase = calloc(work_limit_depth + xtra_depth, sizeof(*phase));
 	if (phase == NULL) {
-		fm_exit_mae("‹Ç–Ê\‘¢‘Ì”z—ñ—Ìˆæ");
+		fm_exit_mae("å±€é¢æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 	}
 	phase[0] = null_phase;
 	phase[0].move.from = NOP;
@@ -358,18 +358,18 @@ problem_test:
 		phase[1].state |= init_phase_state;
 	}
 	memcpy(phase[1].fpc_board, phase[1].board, sizeof(phase[1].fpc_board)); 
-	// ‹lè‡•ÒW—Ìˆæ¶¬
+	// è©°æ‰‹é †ç·¨é›†é ˜åŸŸç”Ÿæˆ
 	mate_buf = malloc(15 * work_limit_depth + 128);
 	if (mate_buf == NULL) {
-		fm_exit_mae("‹lè‡•ÒW—Ìˆæ");
+		fm_exit_mae("è©°æ‰‹é †ç·¨é›†é ˜åŸŸ");
 	}
-	// ÅIŒŸõè‡—p‹lè\‘¢‘Ì”z—ñ—Ìˆæ¶¬
+	// æœ€çµ‚æ¤œç´¢æ‰‹é †ç”¨è©°æ‰‹æ§‹é€ ä½“é…åˆ—é ˜åŸŸç”Ÿæˆ
 	last_move = calloc(work_limit_depth + xtra_depth, sizeof(last_move[0]));
 	if (last_move == NULL) {
-		fm_exit_mae("ÅIŒŸõè‡—p‹lè\‘¢‘Ì”z—ñ—Ìˆæ");
+		fm_exit_mae("æœ€çµ‚æ¤œç´¢æ‰‹é †ç”¨è©°æ‰‹æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 	}
-	// ‹Ç–Ê‰Šúİ’è
-	phase[2] = phase[1];	// phase[2] ‚ğì‹Æ—p‚Ég—p
+	// å±€é¢åˆæœŸè¨­å®š
+	phase[2] = phase[1];	// phase[2] ã‚’ä½œæ¥­ç”¨ã«ä½¿ç”¨
 	if (rule_flag & B_R_HELP_MATE) {
 		if (limit_depth % 2 == 0) {
 			phase[2].state &= ~B_HITHER_TURN;
@@ -383,7 +383,7 @@ problem_test:
 			phase[2].state &= ~B_HITHER_TURN;
 		}
 	}
-	// U•û“¦‚ê‹Ç–Êƒwƒbƒ_”İ’è
+	// æ”»æ–¹é€ƒã‚Œå±€é¢ãƒ˜ãƒƒãƒ€æ•°è¨­å®š
 	if (strategy & B_HI_ESCAPE) {
 		if (no_hi_eh_head == 0) {
 			no_hi_eh_head = (long)(hi_eh_lim / 10 > 0x40000000 ? 0x40000000 : hi_eh_lim / 10);
@@ -393,7 +393,7 @@ problem_test:
 			no_hi_eh_head = 1 << i;
 		}
 	}
-	// ó•û“¦‚ê‹Ç–Êƒwƒbƒ_”İ’è
+	// å—æ–¹é€ƒã‚Œå±€é¢ãƒ˜ãƒƒãƒ€æ•°è¨­å®š
 	if (strategy & B_YO_ESCAPE) {
 		if (no_yo_eh_head == 0) {
 			no_yo_eh_head = (long)(yo_eh_lim / 10 > 0x40000000 ? 0x40000000 : yo_eh_lim / 10);
@@ -403,48 +403,48 @@ problem_test:
 			no_yo_eh_head = 1 << i;
 		}
 	}
-	// ‰Šú‹Ç–Ê•\¦
+	// åˆæœŸå±€é¢è¡¨ç¤º
 	print_start(stdout, OFF);
-	// ‰Šú‹Ç–ÊŒŸØ
+	// åˆæœŸå±€é¢æ¤œè¨¼
 	set_entry();
 	is_symmetric(&phase[1]);
 	if (analyze_phase(&phase[2]) != 0) {
-		error_message("”Õ–Ê‚ª‰½‚ç‚©‚Ì§–ñ‚ÉŠ|‚©‚Á‚Ä‚¢‚Ü‚·", NULL);
+		error_message("ç›¤é¢ãŒä½•ã‚‰ã‹ã®åˆ¶ç´„ã«æ›ã‹ã£ã¦ã„ã¾ã™", NULL);
 		return -1;
 	}
 	if (((rule_flag & B_R_HELP_MATE) && limit_depth % 2 != 0) ||
 			((rule_flag & (B_R_HELP_SELF_MATE | B_R_HELP_SELF_STALEMATE)) &&
 			 limit_depth % 2 == 0)) {
 		if (phase[2].check_state & B_CS_HITHER_CHECK) {
-			error_message("æè”Ô‚ÅŠù‚ÉŒãè‹Ê‚É‰¤è‚ªŠ|‚©‚Á‚Ä‚¢‚Ü‚·", NULL);
+			error_message("å…ˆæ‰‹ç•ªã§æ—¢ã«å¾Œæ‰‹ç‰ã«ç‹æ‰‹ãŒæ›ã‹ã£ã¦ã„ã¾ã™", NULL);
 			return -1;
 		}
 	} else {
 		if (phase[2].check_state & B_CS_YONDER_CHECK) {
-			error_message("Œãè”Ô‚ÅŠù‚Éæè‰¤‚É‰¤è‚ªŠ|‚©‚Á‚Ä‚¢‚Ü‚·", NULL);
+			error_message("å¾Œæ‰‹ç•ªã§æ—¢ã«å…ˆæ‰‹ç‹ã«ç‹æ‰‹ãŒæ›ã‹ã£ã¦ã„ã¾ã™", NULL);
 			return -1;
 		}
 		if (NOT(phase[2].check_state & B_CS_HITHER_CHECK)) {
 			if (limit_depth <= 0) {
-				error_message("‹lè”‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·", NULL);
+				error_message("è©°æ‰‹æ•°ãŒé–“é•ã£ã¦ã„ã¾ã™", NULL);
 				return -1;
 			}
 		}
 	}
-	// è‡’†“¯ˆê‹Ç–ÊŠm”F—p\‘¢‘Ì”z—ñ—Ìˆæ¶¬
+	// æ‰‹é †ä¸­åŒä¸€å±€é¢ç¢ºèªç”¨æ§‹é€ ä½“é…åˆ—é ˜åŸŸç”Ÿæˆ
 	sph_cell = calloc(work_limit_depth + xtra_depth, sizeof(sph_cell[0]));
 	if (sph_cell == NULL) {
-		fm_exit_mae("è‡’†‹Ç–Ê\‘¢‘Ì”z—ñ—Ìˆæ");
+		fm_exit_mae("æ‰‹é †ä¸­å±€é¢æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 	}
-	// U•û“¦‚ê‹Ç–Ê•Û‘¶—Ìˆæ¶¬
+	// æ”»æ–¹é€ƒã‚Œå±€é¢ä¿å­˜é ˜åŸŸç”Ÿæˆ
 	if (strategy & B_HI_ESCAPE) {
 		hi_eh_head = calloc(no_hi_eh_head, sizeof(hi_eh_head[0]));
 		if (hi_eh_head == NULL) {
-			fm_exit_mae("U•û“¦‚ê‹Ç–Ê\‘¢‘Ì”z—ñ—Ìˆæ");
+			fm_exit_mae("æ”»æ–¹é€ƒã‚Œå±€é¢æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 		}
 		hi_eh_cell = calloc(hi_eh_lim, sizeof(hi_eh_cell[0]));
 		if (hi_eh_cell == NULL) {
-			fm_exit_mae("U•û“¦‚ê‹Ç–Ê\‘¢‘Ì”z—ñ—Ìˆæ");
+			fm_exit_mae("æ”»æ–¹é€ƒã‚Œå±€é¢æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 		}
 		hi_eh_free = NULL;
 		hi_eh_cell[hi_eh_lim - 1].next = hi_eh_free;
@@ -453,15 +453,15 @@ problem_test:
 			hi_eh_cell[i].next = &hi_eh_cell[i + 1];
 		}
 	}
-	// ó•û“¦‚ê‹Ç–Ê•Û‘¶—Ìˆæ¶¬
+	// å—æ–¹é€ƒã‚Œå±€é¢ä¿å­˜é ˜åŸŸç”Ÿæˆ
 	if (strategy & B_YO_ESCAPE) {
 		yo_eh_head = calloc(no_yo_eh_head, sizeof(yo_eh_head[0]));
 		if (yo_eh_head == NULL) {
-			fm_exit_mae("ó•û“¦‚ê‹Ç–Ê\‘¢‘Ì”z—ñ—Ìˆæ");
+			fm_exit_mae("å—æ–¹é€ƒã‚Œå±€é¢æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 		}
 		yo_eh_cell = calloc(yo_eh_lim, sizeof(yo_eh_cell[0]));
 		if (yo_eh_cell == NULL) {
-			fm_exit_mae("ó•û“¦‚ê‹Ç–Ê\‘¢‘Ì”z—ñ—Ìˆæ");
+			fm_exit_mae("å—æ–¹é€ƒã‚Œå±€é¢æ§‹é€ ä½“é…åˆ—é ˜åŸŸ");
 		}
 		yo_eh_free = NULL;
 		yo_eh_cell[yo_eh_lim - 1].next = yo_eh_free;
@@ -496,7 +496,7 @@ check_constraint_sq(phase_t *php)
 		bpc = php->board[pos];
 		pc = KIND(bpc);
 		if ((piece[pc].attr & B_PA_PIECE) && (piece[pc].attr & B_PA_CONSTRAINT_SQ)) {
-			// s‚«ˆ‚Ì‚È‚¢‹î
+			// è¡Œãå‡¦ã®ãªã„é§’
 			if (IS_HI_PC(bpc)) {
 				if (hi_valid_sq[pc][pos] == OFF) {
 					return -1;	// invalid sq
@@ -523,7 +523,7 @@ check_constraint_2f(phase_t *php)
 		bpc = php->board[pos];
 		pc = KIND(bpc);
 		if ((piece[pc].attr & B_PA_PIECE) && (piece[pc].attr & B_PA_CONSTRAINT_2F)) {
-			// “ñ•àƒ`ƒFƒbƒN
+			// äºŒæ­©ãƒã‚§ãƒƒã‚¯
 			pf = POS_FILE(pos);
 			for (pr = 0; pr <= 8; pr++) {
 				fpos = POS(pf, pr);
@@ -548,7 +548,7 @@ check_constraint_3t(phase_t *php)
 		bpc = php->board[pos];
 		pc = KIND(bpc);
 		if ((piece[pc].attr & B_PA_PIECE) && (piece[pc].attr & B_PA_CONSTRAINT_3T)) {
-			// O‰ƒ`ƒFƒbƒN
+			// ä¸‰ç‡•ãƒã‚§ãƒƒã‚¯
 			pf = POS_FILE(pos);
 			n = 0;
 			for (pr = 0; pr <= 8; pr++) {

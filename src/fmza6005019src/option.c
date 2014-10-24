@@ -34,7 +34,7 @@ option_E(char *optarg)
 
 	argstr = _strdup(optarg);
 	if (argstr == NULL) {
-		fm_exit_mae("/EƒIƒvƒVƒ‡ƒ“—Ìˆæ");
+		fm_exit_mae("/Eã‚ªãƒ—ã‚·ãƒ§ãƒ³é ˜åŸŸ");
 	}
 	s = _mbsstr(argstr, "FP=");
 	if (s != NULL) {
@@ -224,7 +224,7 @@ option_X(char *optarg)
 
 	arg_x = _strdup(optarg);
 	if (arg_x == NULL) {
-		fm_exit_mae("/XƒIƒvƒVƒ‡ƒ“—Ìˆæ");
+		fm_exit_mae("/Xã‚ªãƒ—ã‚·ãƒ§ãƒ³é ˜åŸŸ");
 	}
 	strncpy(work, arg_x, sizeof(work));
 	toasciiuc(work);
@@ -247,9 +247,9 @@ option_X(char *optarg)
 	if (s == NULL) {
 		return;
 	}
-	// šfor test...
+	// â˜…for test...
 	if (NOT(isxdigit((uchar_t)s[0])) || NOT(isxdigit((uchar_t)s[1]))) {
-		fprintf(stderr, "%s: /XƒIƒvƒVƒ‡ƒ“‚Ì’l‚ªŒë‚Á‚Ä‚¢‚Ü‚·...\n", cmdname);
+		fprintf(stderr, "%s: /Xã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å€¤ãŒèª¤ã£ã¦ã„ã¾ã™...\n", cmdname);
 		fm_exit(1);
 	}
 	s[2] = '\0';

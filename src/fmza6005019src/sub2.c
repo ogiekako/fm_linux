@@ -37,7 +37,7 @@ signal_exit(int sig)
 	}
 
 	if (phase_1M == 0 && phase_count <= 0) {
-		fprintf(stderr, "%s: ƒVƒOƒiƒ‹óM - %d\n", cmdname, sig);
+		fprintf(stderr, "%s: ã‚·ã‚°ãƒŠãƒ«å—ä¿¡ - %d\n", cmdname, sig);
 		fm_exit(9);
 	}
 
@@ -50,13 +50,13 @@ signal_exit(int sig)
 	ERASE_EOS();
 
 	if (fileFp != NULL && brief_output == 0) {
-		fputs("’†’f\n\n", fileFp);
+		fputs("ä¸­æ–­\n\n", fileFp);
 		print_last_moves(&phase[depth], 0, fileFp);
 		putc('\n', fileFp);
 		print_record(fileFp);
 		fputs("\n\n", fileFp);
 	}
-	printf("’†’f\n\n");
+	printf("ä¸­æ–­\n\n");
 	print_last_moves(&phase[depth], 0, stdout);
 	printf("\n");
 	print_record(stdout);
@@ -66,7 +66,7 @@ signal_exit(int sig)
 		sig = 9;
 	}
 
-	fprintf(stderr, "%s: ƒVƒOƒiƒ‹óM - %d\n", cmdname, sig);
+	fprintf(stderr, "%s: ã‚·ã‚°ãƒŠãƒ«å—ä¿¡ - %d\n", cmdname, sig);
 	fm_exit(9);
 }
 
@@ -81,14 +81,14 @@ save_phase(int prompt)
 
 	total_elapse = now_time - start_time;
 
-	printf("‘Ò”ğƒtƒ@ƒCƒ‹F%s\n\n", restart_file);
+	printf("å¾…é¿ãƒ•ã‚¡ã‚¤ãƒ«ï¼š%s\n\n", restart_file);
 	if (fileFp != NULL && brief_output == 0) {
-		fprintf(fileFp, "‘Ò”ğƒtƒ@ƒCƒ‹F%s\n\n", restart_file);
+		fprintf(fileFp, "å¾…é¿ãƒ•ã‚¡ã‚¤ãƒ«ï¼š%s\n\n", restart_file);
 	}
 
 	saveFp = fopen(restart_file, "w");
 	if (saveFp == NULL) {
-		fprintf(stderr, "\n\n%s: ‘Ò”ğƒtƒ@ƒCƒ‹ %s ‚ªƒI[ƒvƒ“‚Å‚«‚Ü‚¹‚ñ...\n\n",
+		fprintf(stderr, "\n\n%s: å¾…é¿ãƒ•ã‚¡ã‚¤ãƒ« %s ãŒã‚ªãƒ¼ãƒ—ãƒ³ã§ãã¾ã›ã‚“...\n\n",
 				cmdname, restart_file);
 		fm_exit(2);
 	}
@@ -108,7 +108,7 @@ save_phase(int prompt)
 		fprintf(saveFp, "%s\n", inbuf);
 	}
 	if (title[0] != '\0') {
-		fprintf(saveFp, "w%sx\n", title);
+		fprintf(saveFp, "ã€%sã€\n", title);
 	}
 	s = inbuf;
 	reg_prob(&phase[1], &phase[0], s, -1);
@@ -116,10 +116,10 @@ save_phase(int prompt)
 	print_record(saveFp);
 	fputc('\n', saveFp);
 	print_last_moves(&phase[depth], 2, saveFp);
-	// ˆÈ‰ºAƒoƒCƒiƒŠƒf[ƒ^‘Ş”ğ
+	// ä»¥ä¸‹ã€ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿é€€é¿
 	freopen(restart_file, "ab", saveFp);
 	fputc('\x1a', saveFp);
-	// ÅIŒŸõè‡‘Ş”ğ
+	// æœ€çµ‚æ¤œç´¢æ‰‹é †é€€é¿
 	fwrite("#MV#", 1, STR_SIZE_OF("#MV#"), saveFp);
 	fwrite(&depth, 1, sizeof(ushort_t), saveFp);
 	for (php = &phase[1]; php < &phase[depth]; php++) {
@@ -127,7 +127,7 @@ save_phase(int prompt)
 	}
 	fwrite("#MV#", 1, STR_SIZE_OF("#MV#"), saveFp);
 	if (strategy & B_HI_ESCAPE) {
-		// U•û“¦‚ê‹Ç–Ê‘Ş”ğ
+		// æ”»æ–¹é€ƒã‚Œå±€é¢é€€é¿
 		escape_hash_t *ent;
 		long i;
 		ushort_t eoq = 0;
@@ -150,7 +150,7 @@ save_phase(int prompt)
 		fwrite("#HE#", 1, STR_SIZE_OF("#HE#"), saveFp);
 	}
 	if (strategy & B_YO_ESCAPE) {
-		// ó•û“¦‚ê‹Ç–Ê‘Ş”ğ
+		// å—æ–¹é€ƒã‚Œå±€é¢é€€é¿
 		escape_hash_t *ent;
 		long i;
 		ushort_t eoq = 0;
@@ -257,7 +257,7 @@ help_mate_rule_check(phase_t *php)
 			NOT((cond_flag & B_C_UCHIFU) &&
 				((mvp_1->from == NOP && (piece[mvp_1->pc].attr & B_PA_CONSTRAINT_PM)) ||
 				 limit_depth == 0))) {
-		mvp_1->flag |= B_MV_MATESEQ;	// “¯ˆê‹Ç–Êƒ`ƒFƒbƒN—p‚É•Û‘¶‚µ‚È‚¢‚æ‚¤‚É
+		mvp_1->flag |= B_MV_MATESEQ;	// åŒä¸€å±€é¢ãƒã‚§ãƒƒã‚¯ç”¨ã«ä¿å­˜ã—ãªã„ã‚ˆã†ã«
 		return RC_ESCAPE;
 	}
 
@@ -268,18 +268,18 @@ help_mate_rule_check(phase_t *php)
 		int e = (depth - 1) % 10 + 1;
 		if (fileFp != NULL) {
 			if (e == 1) {
-				fprintf(fileFp, "%2d: *** ‹l ***\n", depth);
+				fprintf(fileFp, "%2d: *** è©° ***\n", depth);
 				fflush(fileFp);
 			} else {
-				fprintf(fileFp, "%*c%2d: *** ‹l ***\n", ((e - 1) * 6), ' ', depth);
+				fprintf(fileFp, "%*c%2d: *** è©° ***\n", ((e - 1) * 6), ' ', depth);
 				fflush(fileFp);
 			  }
 		} else {
 			CLEAR_LINE();
 			if (e == 1) {
-				printf("%2d: *** ‹l ***\n", depth);
+				printf("%2d: *** è©° ***\n", depth);
 			} else {
-				printf("%*c%2d: *** ‹l ***\n", ((e - 1) * 6), ' ', depth);
+				printf("%*c%2d: *** è©° ***\n", ((e - 1) * 6), ' ', depth);
 			}
 		}
 	} else {
@@ -312,8 +312,8 @@ help_mate_rule_check(phase_t *php)
 		}
 		print_mate(php, stdout);
 		if (solution_count >= solution_limit) {
-			// ‰ğ”ãŒÀ
-			fprintf(stderr, "‰ğ”‚ªw’è‚³‚ê‚½ãŒÀ‚É’B‚µ‚Ü‚µ‚½...\n\n");
+			// è§£æ•°ä¸Šé™
+			fprintf(stderr, "è§£æ•°ãŒæŒ‡å®šã•ã‚ŒãŸä¸Šé™ã«é”ã—ã¾ã—ãŸ...\n\n");
 		} else {
 			if (mate_print == ON && brief_output == 0) {
 				print_record(stdout);
@@ -367,7 +367,7 @@ direct_mate_rule_check(phase_t *php)
 				(cond_flag & B_C_UCHIFU_OK))) &&
 			NOT((cond_flag & B_C_UCHIFU) && (mvp_1->pc == PC_FU && mvp_1->from == NOP) ||
 				limit_depth == 0)) {
-		mvp_1->flag |= B_MV_MATESEQ;	// “¯ˆê‹Ç–Êƒ`ƒFƒbƒN—p‚É•Û‘¶‚µ‚È‚¢‚æ‚¤‚É
+		mvp_1->flag |= B_MV_MATESEQ;	// åŒä¸€å±€é¢ãƒã‚§ãƒƒã‚¯ç”¨ã«ä¿å­˜ã—ãªã„ã‚ˆã†ã«
 		return RC_ESCAPE;
 	}
 
@@ -377,18 +377,18 @@ direct_mate_rule_check(phase_t *php)
 		int e = (depth - 1) % 10 + 1;
 		if (fileFp != NULL) {
 			if (e == 1) {
-				fprintf(fileFp, "%2d: *** ‹l ***\n", depth);
+				fprintf(fileFp, "%2d: *** è©° ***\n", depth);
 				fflush(fileFp);
 			} else {
-				fprintf(fileFp, "%*c%2d: *** ‹l ***\n", ((e - 1) * 6), ' ', depth);
+				fprintf(fileFp, "%*c%2d: *** è©° ***\n", ((e - 1) * 6), ' ', depth);
 				fflush(fileFp);
 			  }
 		} else {
 			CLEAR_LINE();
 			if (e == 1) {
-				printf("%2d: *** ‹l ***\n", depth);
+				printf("%2d: *** è©° ***\n", depth);
 			} else {
-				printf("%*c%2d: *** ‹l ***\n", ((e - 1) * 6), ' ', depth);
+				printf("%*c%2d: *** è©° ***\n", ((e - 1) * 6), ' ', depth);
 			}
 		}
 	} else {
@@ -509,7 +509,7 @@ save_direct_mate(void)
 	int d;
 
 	if (mm_root == NULL) {
-		// ªŒ³‚©‚ç‹lè‡‚ğİ’è
+		// æ ¹å…ƒã‹ã‚‰è©°æ‰‹é †ã‚’è¨­å®š
 		mmq = (mate_move_t *)&mm_root;
 		for (d = 1; d <= depth - 1 && d <= limit_depth; d++) {
 			mmp = get_mate_move();
@@ -523,7 +523,7 @@ save_direct_mate(void)
 		mmq = (mate_move_t *)&mm_root;
 		for (d = 1; d <= depth - 1 && d <= limit_depth; d++) {
 			if (mmq->next == NULL) {
-				// “r’†–˜‚Ì}‚É‹lè‡‚ğÚ‘±
+				// é€”ä¸­è¿„ã®æã«è©°æ‰‹é †ã‚’æ¥ç¶š
 				for ( ; d <= depth - 1 && d <= limit_depth; d++) {
 					mmp = get_mate_move();
 					mmp->prev = d == 1 ? NULL : mmq;
@@ -545,11 +545,11 @@ save_direct_mate(void)
 				}
 			}
 			if (mmp == NULL) {
-				// ‹lè‡‚Ì“r’†‚Å•ªŠò
+				// è©°æ‰‹é †ã®é€”ä¸­ã§åˆ†å²
 				mmp = get_mate_move();
-				mmp->prev = d == 1 ? NULL : mmq->prev;	// š
+				mmp->prev = d == 1 ? NULL : mmq->prev;	// â˜…
 				copy_move_2_mate_move(&phase[d].move, d, mmp);
-				mmq->side = mmp;						// š
+				mmq->side = mmp;						// â˜…
 				mmq = mmp;
 				for (d++; d <= depth - 1 && d <= limit_depth; d++) {
 					mmp = get_mate_move();
@@ -576,7 +576,7 @@ get_mate_move(void)
 	if (mm_free == NULL) {
 		mmp = calloc(NOMATEMOVE, sizeof(*mm_free));
 		if (mmp == NULL) {
-			fm_exit_mae("‹lè‡—pè\‘¢‘Ì");
+			fm_exit_mae("è©°æ‰‹é †ç”¨æ‰‹æ§‹é€ ä½“");
 		}
 		mm_free = &mmp[0];
 		for (i = 0; i < NOMATEMOVE - 1; i++) {

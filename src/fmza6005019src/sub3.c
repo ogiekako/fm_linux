@@ -11,16 +11,16 @@ set_entry(void)
 {
 	int pc, exist_ts = FALSE;
 
-	// �����ې��̓�ʋl�Ɠ����ƍ��o�B��ʋl�͂ǂ��炩���l��Ηǂ����A���q�͗����l�߂�K�v���������B
+	// ★酔象成の二玉詰と同じと錯覚。二玉詰はどちらかを獲れば良いが、太子は両方詰める必要があった。
 //	for (pc = PC_F1; pc <= PC_F7; pc++) {
 //		if (piece[pc].pc_no == FP_SZ && (piece[pc].attr & B_PA_DEFINED) &&
 //				(piece[pc].attr & BM_PA_PROMOTABLE)) {
 //			exist_ts = TRUE;
 //		}
 //	}
-	// �l���[���Ή�
+	// 詰ルール対応
 	if (rule_flag & B_R_DIRECT_MATE) {
-		// �������l
+		// かしこ詰
 		if (cond_flag & BM_C_MESSIGNY_FAMILY) {
 			check = direct_check_messigny;
 			escape = direct_escape_messigny;
@@ -43,7 +43,7 @@ set_entry(void)
 			is_yonder_mate = is_yonder_mate_normal;
 		}
 		if (loose == ON || (cond_flag & B_C_W_GY) || exist_ts == TRUE) {
-			// /XA�w��܂��͓�ʋl�܂��͑��q�ɐ���鐌�ۓ���
+			// /XA指定または二玉詰または太子に成れる酔象入り
 			direct_check_place = direct_check_place_loose;
 			direct_check_place_sub = direct_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -61,7 +61,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else if (fairy_move_style & (BM_MS_HOP_FAMILY | B_MS_MAO_STEP)) {
-			// �f�n�t�F�A���[��
+			// Ｇ系フェアリー駒
 			direct_check_place = direct_check_place_loose;
 			direct_check_place_sub = direct_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -79,7 +79,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else if (cond_flag & BM_C_MADRASI_FAMILY) {
-			// �}�h���V�n
+			// マドラシ系
 			direct_check_place = direct_check_place_loose;
 			if (cond_flag & BM_C_CHANGE_FAMILY) {
 				direct_check_place_sub = direct_check_place_sub_loose;
@@ -110,7 +110,7 @@ set_entry(void)
 				test_yonder_mate_place = test_yonder_mate_place_taihaink2mad;
 			}
 		} else if (cond_flag & BM_C_CHANGE_FAMILY) {
-			// ����A���k�A�ΖʁA�w�ʁA�l�R�N�A�l�R�l�R�N
+			// 安南、安北、対面、背面、ネコ鮮、ネコネコ鮮
 			direct_check_place = direct_check_place_loose;
 			if (cond_flag & (B_C_ANNAN | B_C_ANHOKU)) {
 				direct_check_place_sub = direct_check_place_sub_annanhoku;
@@ -134,7 +134,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_taihaink2mad;
 			test_yonder_mate_place = test_yonder_mate_place_taihaink2mad;
 		} else if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
-			// �ǖʐ���n
+			// 局面制約系
 			direct_check_place = direct_check_place_loose;
 			direct_check_place_sub = direct_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -152,7 +152,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else {
-			// ���n
+			// 純系
 			direct_check_place = direct_check_place_normal;
 			direct_check_place_sub = direct_check_place_sub_normal;
 			if (cond_flag & B_C_CIRCE) {
@@ -173,7 +173,7 @@ set_entry(void)
 			test_yonder_mate_place = test_yonder_mate_place_normal;
 		}
 	} else if (rule_flag & (B_R_HELP_SELF_MATE | B_R_HELP_SELF_STALEMATE)) {
-		// ���͎��ʋl�A���͎��ʃX�e�C�����C�g
+		// 協力自玉詰、協力自玉ステイルメイト
 		if (cond_flag & BM_C_MESSIGNY_FAMILY) {
 			check = help_self_check_messigny;
 			escape = help_self_escape_messigny;
@@ -196,7 +196,7 @@ set_entry(void)
 			is_yonder_mate = is_yonder_mate_normal;
 		}
 		if (loose == ON || (cond_flag & B_C_W_GY) || exist_ts == TRUE) {
-			// /XA�w��܂��͓�ʋl�܂��͑��q�ɐ���鐌�ۓ���
+			// /XA指定または二玉詰または太子に成れる酔象入り
 			help_check_place = help_check_place_loose;
 			help_check_place_sub = help_self_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -221,7 +221,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else if (fairy_move_style & (BM_MS_HOP_FAMILY | B_MS_MAO_STEP)) {
-			// �f�n�t�F�A���[��
+			// Ｇ系フェアリー駒
 			help_check_place = help_check_place_loose;
 			help_check_place_sub = help_self_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -246,7 +246,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else if (cond_flag & BM_C_MADRASI_FAMILY) {
-			// �}�h���V�n
+			// マドラシ系
 			help_check_place = help_check_place_loose;
 			if (cond_flag & BM_C_CHANGE_FAMILY) {
 				help_check_place_sub = help_self_check_place_sub_loose;
@@ -289,7 +289,7 @@ set_entry(void)
 				test_yonder_mate_place = test_yonder_mate_place_taihaink2mad;
 			}
 		} else if (cond_flag & BM_C_CHANGE_FAMILY) {
-			// ����A���k�A�ΖʁA�w�ʁA�l�R�N�A�l�R�l�R�N
+			// 安南、安北、対面、背面、ネコ鮮、ネコネコ鮮
 			help_check_place = help_check_place_loose;
 			if (cond_flag & (B_C_ANNAN | B_C_ANHOKU)) {
 				help_check_place_sub = help_self_check_place_sub_annanhoku;
@@ -326,7 +326,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_taihaink2mad;
 			test_yonder_mate_place = test_yonder_mate_place_taihaink2mad;
 		} else if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
-			// �ǖʐ���n
+			// 局面制約系
 			help_check_place = help_check_place_loose;
 			help_check_place_sub = help_self_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -351,7 +351,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else {
-			// ���n
+			// 純系
 			help_check_place = help_check_place_normal;
 			help_check_place_sub = help_self_check_place_sub_normal;
 			if (cond_flag & B_C_CIRCE) {
@@ -381,7 +381,7 @@ set_entry(void)
 			test_yonder_mate_place = test_yonder_mate_place_normal;
 		}
 	} else {
-		// ���͋l
+		// 協力詰
 		if (cond_flag & BM_C_MESSIGNY_FAMILY) {
 			check = help_check_messigny;
 			escape = help_escape_messigny;
@@ -404,7 +404,7 @@ set_entry(void)
 			is_yonder_mate = is_yonder_mate_normal;
 		}
 		if (loose == ON || (cond_flag & B_C_W_GY) || exist_ts == TRUE) {
-			// /XA�w��܂��͓�ʋl�܂��͑��q�ɐ���鐌�ۓ���
+			// /XA指定または二玉詰または太子に成れる酔象入り
 			help_check_place = help_check_place_loose;
 			help_check_place_sub = help_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -422,7 +422,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else if (fairy_move_style & (BM_MS_HOP_FAMILY | B_MS_MAO_STEP)) {
-			// �f�n�t�F�A���[��
+			// Ｇ系フェアリー駒
 			help_check_place = help_check_place_loose;
 			help_check_place_sub = help_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -440,7 +440,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else if (cond_flag & BM_C_MADRASI_FAMILY) {
-			// �}�h���V�n
+			// マドラシ系
 			help_check_place = help_check_place_loose;
 			if (cond_flag & BM_C_CHANGE_FAMILY) {
 				help_check_place_sub = help_check_place_sub_loose;
@@ -471,7 +471,7 @@ set_entry(void)
 				test_yonder_mate_place = test_yonder_mate_place_taihaink2mad;
 			}
 		} else if (cond_flag & BM_C_CHANGE_FAMILY) {
-			// ����A���k�A�ΖʁA�w�ʁA�l�R�N�A�l�R�l�R�N
+			// 安南、安北、対面、背面、ネコ鮮、ネコネコ鮮
 			help_check_place = help_check_place_loose;
 			if (cond_flag & (B_C_ANNAN | B_C_ANHOKU)) {
 				help_check_place_sub = help_check_place_sub_annanhoku;
@@ -495,7 +495,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_taihaink2mad;
 			test_yonder_mate_place = test_yonder_mate_place_taihaink2mad;
 		} else if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
-			// �ǖʐ���n
+			// 局面制約系
 			help_check_place = help_check_place_loose;
 			help_check_place_sub = help_check_place_sub_loose;
 			if (cond_flag & (B_C_CIRCE | B_C_ANTICIRCE)) {
@@ -513,7 +513,7 @@ set_entry(void)
 			test_hither_mate_place = test_hither_mate_place_loose;
 			test_yonder_mate_place = test_yonder_mate_place_loose;
 		} else {
-			// ���n
+			// 純系
 			help_check_place = help_check_place_normal;
 			help_check_place_sub = help_check_place_sub_normal;
 			if (cond_flag & B_C_CIRCE) {
@@ -534,9 +534,9 @@ set_entry(void)
 			test_yonder_mate_place = test_yonder_mate_place_normal;
 		}
 	}
-	// �ŕ��l�Ή�
+	// 打歩詰対応
 	if (cond_flag & B_C_UCHIFU) {
-		// �ŕ��l
+		// 打歩詰
 		if (cond_flag & BM_C_MESSIGNY_FAMILY) {
 			test_hither_mate_sub = test_hither_mate_sub_mf;
 			test_yonder_mate_sub = test_yonder_mate_sub_mf;
@@ -545,7 +545,7 @@ set_entry(void)
 			test_yonder_mate_sub = test_yonder_mate_sub_f;
 		}
 	} else {
-		// �ŕ��l�ȊO
+		// 打歩詰以外
 		if ((cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) &&
 				(cond_flag & (B_C_CIRCE | B_C_ANTICIRCE))) {
 			test_hither_mate_sub = test_hither_mate_sub_c;
@@ -555,52 +555,52 @@ set_entry(void)
 			test_yonder_mate_sub = test_yonder_mate_sub_n;
 		}
 	}
-	// �}�h���V�EIsardam�E�ϐg�Ή�
+	// マドラシ・Isardam・変身対応
 	if ((cond_flag & BM_C_MADRASI_FAMILY) && NOT(cond_flag & BM_C_CHANGE_FAMILY)) {
-		// �}�h���V�E��ϐg
+		// マドラシ・非変身
 		analyze_phase = analyze_phase_madrasi;
 		analyze_leaf_phase = analyze_leaf_phase_madrasi;
 	} else if ((cond_flag & BM_C_ISARDAM_FAMILY) && NOT(cond_flag & BM_C_CHANGE_FAMILY)) {
-		// Isardam�E��ϐg
+		// Isardam・非変身
 		analyze_phase = analyze_phase_isardam;
 		analyze_leaf_phase = analyze_leaf_phase_isardam;
 	} else if ((cond_flag & BM_C_MADRASI_FAMILY) && (cond_flag & BM_C_CHANGE_FAMILY)) {
-		// �}�h���V�E�ϐg
+		// マドラシ・変身
 		analyze_phase = analyze_phase_change_madrasi;
 		analyze_leaf_phase = analyze_leaf_phase_change_madrasi;
 	} else if (NOT(cond_flag & BM_C_MADRASI_FAMILY) && (cond_flag & BM_C_CHANGE_FAMILY)) {
-		// ��}�h���V�E��Isardam�E�ϐg
+		// 非マドラシ・非Isardam・変身
 		analyze_phase = analyze_phase_change;
 		analyze_leaf_phase = analyze_leaf_phase_change;
 	} else {
-		// ��}�h���V�E��Isardam�E��ϐg
+		// 非マドラシ・非Isardam・非変身
 		analyze_phase = analyze_phase_normal;
 		analyze_leaf_phase = analyze_leaf_phase_normal;
 	}
-	// �ϐg�Ή�
+	// 変身対応
 	if (cond_flag & B_C_ANNAN) {
-		// ����
+		// 安南
 		setup_fpc_board = setup_fpc_board_annan;
 	} else if (cond_flag & B_C_ANHOKU) {
-		// ���k
+		// 安北
 		setup_fpc_board = setup_fpc_board_anhoku;
 	} else if (cond_flag & B_C_TAIMEN) {
-		// �Ζ�
+		// 対面
 		setup_fpc_board = setup_fpc_board_taimen;
 	} else if (cond_flag & B_C_HAIMEN) {
-		// �w��
+		// 背面
 		setup_fpc_board = setup_fpc_board_haimen;
 	} else if (cond_flag & B_C_NEKOSEN) {
-		// �l�R�N
+		// ネコ鮮
 		setup_fpc_board = setup_fpc_board_nekosen;
 	} else if (cond_flag & B_C_NEKO2SEN) {
-		// �l�R�l�R�N
+		// ネコネコ鮮
 		setup_fpc_board = setup_fpc_board_neko2;
 	} else {
-		// ��ϐg
+		// 非変身
 		setup_fpc_board = setup_fpc_board_normal;
 	}
-	// �L���P�n�Ή��i��Andernach, AntiAndernach, Messigny�j
+	// キルケ系対応（含Andernach, AntiAndernach, Messigny）
 	if (cond_flag & B_C_PWC) {
 		hi_move_sub = hi_move_sub_pwc;
 		yo_move_sub = yo_move_sub_pwc;
@@ -703,7 +703,7 @@ set_entry(void)
 			yo_move_leaf = yo_move_leaf_normal;
 			hi_trial_move = hi_trial_move_isardam;
 			yo_trial_move = yo_trial_move_isardam;
-			// Isardam�ł́A���ړ�����T�|�[�g���Ă��Ȃ��B
+			// Isardamでは、二手移動駒をサポートしていない。
 			break;
 		case B_C_INVALID_CAPT_OU_2F:
 			hi_move = hi_move_normal;
@@ -721,14 +721,14 @@ set_entry(void)
 		yo_move = yo_move_normal;
 		hi_move_leaf = hi_move_leaf_normal;
 		yo_move_leaf = yo_move_leaf_normal;
-		// �ǖʐ���n�łȂ���΁Axx_trial_move*�͌Ă΂�Ȃ��B
+		// 局面制約系でなければ、xx_trial_move*は呼ばれない。
 	}
-	// ������Ή�
+	// 駒毎利き対応
 	for (pc = PC_FU; pc < PC_END; pc++) {
 		piece_t *pap = &piece[pc];
 		if ((pap->attr & B_PA_DEFINED) && ((pap->attr & B_PA_PIECE) || pc == ROCK)) {
 			if (pap->move_style & B_MS_LEAP) {
-				// ���ы�
+				// 跳び駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_leap = analyze_hi_leap_phase_constraint;
 					pap->analyze_yo_leap = analyze_yo_leap_phase_constraint;
@@ -752,8 +752,8 @@ set_entry(void)
 				pap->test_hither_mate_leap = test_hither_mate_leap;
 				pap->test_yonder_mate_leap = test_yonder_mate_leap;
 			} else if (pap->move_style & B_MS_SHISHI_LEAP) {
-				// ���q���ы�
-				// �P���ȓ�����ɂ��ẮAleap�Ɠ���
+				// 獅子跳び駒
+				// 単純な当たりについては、leapと同じ
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_leap = analyze_hi_leap_phase_constraint;
 					pap->analyze_yo_leap = analyze_yo_leap_phase_constraint;
@@ -777,7 +777,7 @@ set_entry(void)
 				pap->test_hither_mate_leap = test_hither_mate_shishi_leap;
 				pap->test_yonder_mate_leap = test_yonder_mate_shishi_leap;
 			} else if (pap->move_style & B_MS_STEP) {
-				// ���X��
+				// 跳々駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_leap = analyze_hi_step_phase_constraint;
 					pap->analyze_yo_leap = analyze_yo_step_phase_constraint;
@@ -801,7 +801,7 @@ set_entry(void)
 				pap->test_hither_mate_leap = test_hither_mate_step;
 				pap->test_yonder_mate_leap = test_yonder_mate_step;
 			} else if (pap->move_style & B_MS_MAO_STEP) {
-				// Mao���ы�
+				// Mao跳び駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_leap = analyze_hi_mao_step_phase_constraint;
 					pap->analyze_yo_leap = analyze_yo_mao_step_phase_constraint;
@@ -825,7 +825,7 @@ set_entry(void)
 				pap->test_hither_mate_leap = test_hither_mate_mao_step;
 				pap->test_yonder_mate_leap = test_yonder_mate_mao_step;
 			} else {
-				// �����ȊO
+				// それら以外
 				pap->analyze_hi_leap = analyze_null;
 				pap->analyze_yo_leap = analyze_null;
 				pap->analyze_hi_leap_madrasi = analyze_null_madrasi;
@@ -840,7 +840,7 @@ set_entry(void)
 				pap->test_yonder_mate_leap = test_mate_null;
 			}
 			if (pap->move_style & B_MS_RUN) {
-				// �����
+				// 走り駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_run_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_run_phase_constraint;
@@ -864,7 +864,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_run;
 				pap->test_yonder_mate_run = test_yonder_mate_run;
 			} else if (pap->move_style & B_MS_HOP) {
-				// �f�z�b�v��
+				// Ｇホップ駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_hop_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_hop_phase_constraint;
@@ -888,7 +888,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_hop;
 				pap->test_yonder_mate_run = test_yonder_mate_hop;
 			} else if (pap->move_style & B_MS_DECAPT_HOP) {
-				// 囃z�b�v��
+				// 蝗ホップ駒
 				pap->analyze_hi_run = analyze_hi_decapt_hop;
 				pap->analyze_yo_run = analyze_yo_decapt_hop;
 				pap->analyze_hi_run_madrasi = analyze_hi_decapt_hop_madrasi;
@@ -902,7 +902,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_decapt_hop;
 				pap->test_yonder_mate_run = test_yonder_mate_decapt_hop;
 			} else if (pap->move_style & B_MS_PAO_JUMP) {
-				// ��W�����v��
+				// 包ジャンプ駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_jump_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_jump_phase_constraint;
@@ -926,8 +926,8 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_pao_jump;
 				pap->test_yonder_mate_run = test_yonder_mate_pao_jump;
 			} else if (pap->move_style & B_MS_JUMP) {
-				// 饃W�����v��
-				// ������ɂ��ẮApao_jump�Ɠ���
+				// 鬣ジャンプ駒
+				// 当たりについては、pao_jumpと同じ
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_jump_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_jump_phase_constraint;
@@ -951,7 +951,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_jump;
 				pap->test_yonder_mate_run = test_yonder_mate_jump;
 			} else if (pap->move_style & B_MS_JUMP_HOP) {
-				// �l�z�b�v��
+				// 考ホップ駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_jump_hop_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_jump_hop_phase_constraint;
@@ -975,7 +975,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_jump_hop;
 				pap->test_yonder_mate_run = test_yonder_mate_jump_hop;
 			} else if (pap->move_style & (B_MS_REFL135 | B_MS_REFL90)) {
-				// ���z�b�v��A�h�z�b�v��
+				// 雀ホップ駒、鷲ホップ駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_refl_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_refl_phase_constraint;
@@ -999,7 +999,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_refl;
 				pap->test_yonder_mate_run = test_yonder_mate_refl;
 			} else if (pap->move_style & (B_MS_EQUI_JUMP | B_MS_NS_EQUI_JUMP)) {
-				// �ϓ��W�����v��
+				// 均等ジャンプ駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_equi_hop_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_equi_hop_phase_constraint;
@@ -1023,7 +1023,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_equi_hop;
 				pap->test_yonder_mate_run = test_yonder_mate_equi_hop;
 			} else if (pap->move_style & B_MS_CIRCLE_RUN) {
-				// ��]�����
+				// 回転走り駒
 				if (cond_flag & BM_C_PHASE_CONSTRAINT_FAMILY) {
 					pap->analyze_hi_run = analyze_hi_run_phase_constraint;
 					pap->analyze_yo_run = analyze_yo_run_phase_constraint;
@@ -1047,7 +1047,7 @@ set_entry(void)
 				pap->test_hither_mate_run = test_hither_mate_run;
 				pap->test_yonder_mate_run = test_yonder_mate_run;
 			} else {
-				// �����ȊO
+				// それら以外
 				pap->analyze_hi_run = analyze_null;
 				pap->analyze_yo_run = analyze_null;
 				pap->analyze_hi_run_madrasi = analyze_null_madrasi;

@@ -2,31 +2,31 @@
 // Copyright (c) KAMINA, Jiro 2013-2014.  All rights reserved.
 // $Header: C:/project/fm/src/6xx/za/RCS/h_check.c 1.35 2014/08/18 12:54:30 budai10 Exp budai10 $
 
-// ���сA���X�A����A�f���сA囒��сA��сA饒��сA�l���сA�����сA�h���сA�d����
-// ����A���k�A�ΖʁA�w�ʁA�l�R�N�A�l�R�l�R�N�A�}�h���V�APWC
+// 跳び、跳々、走り、Ｇ跳び、蝗跳び、包跳び、鬣跳び、考跳び、雀跳び、鷲跳び、Ｅ跳び
+// 安南、安北、対面、背面、ネコ鮮、ネコネコ鮮、マドラシ、PWC
 
-// ����F
-//   �ł��F
-//     1)  �ŋ�̗����i���g�ړ���B�ϐg��̈ړ���j�ŉ���ɂȂ�B
-//         ����O�FSparrow, Equihopper�n�i�U���A����̃f�[�^�\������Ώ́j
-//     2)  ����A���k�A�l�R�N�A�l�R�l�R�N�̂Ƃ��A��łɂ��U��̕ϐg�ŉ���ɂȂ�B
-//     3)  �ŋ�A�f���сA��сA饒��сA�l���сA�����сA�h���сA�d���т̑��ɂȂ�A����ɂȂ�B
-//           �f���сF�ʂ̎���
-//           ��сA饒��сF�ʂ���̕���Hor饗����H
-//           �l���сF�ʂ̎��͂��A���ɖ��܂��Ă���΍l�����H
-//           �����сF�ʂ̗����̐������H
-//           �h���сF�ʂ̗����̘h�����H
-//           �d���сF��`�����...
-//     4)  �ŋ�A����̃}�h���VჂ���������A����ɂȂ�B
-//   �ړ��F
+// 王手：
+//   打ち：
+//     1)  打駒の利き（自身移動先。変身後の移動先）で王手になる。
+//         ※例外：Sparrow, Equihopper系（攻方、受方のデータ構造が非対称）
+//     2)  安南、安北、ネコ鮮、ネコネコ鮮のとき、駒打による攻駒の変身で王手になる。
+//     3)  打駒が、Ｇ跳び、包跳び、鬣跳び、考跳び、雀跳び、鷲跳び、Ｅ跳びの台駒になり、王手になる。
+//           Ｇ跳び：玉の周囲
+//           包跳び、鬣跳び：玉からの包利き路or鬣利き路
+//           考跳び：玉の周囲か、既に埋まっていれば考利き路
+//           雀跳び：玉の両側の雀利き路
+//           鷲跳び：玉の両側の鷲利き路
+//           Ｅ跳び：定義が難しい...
+//     4)  打駒が、走駒のマドラシ痺れを解除し、王手になる。
+//   移動：
 //     1)  
-// ��������F
-//   �ł��F
-//     1)  �ŋ�A���X�A����A�����т̗����H���ǂ��B�i饒��т̒��ѐ���܂ށj
-//         ����O�FSparrow, Equihopper�n�i�U���A����̃f�[�^�\������Ώ́j
-//     2)  �ΖʁA�w�ʁA�l�R�l�R�N�̂Ƃ��A��łɂ�鉤���̕ϐg�ŉ��肪��������B
-//     3)  �ŋ�A�������}�h���VჂ�ɂ���B
-//   �ړ��F
+// 王手回避手：
+//   打ち：
+//     1)  打駒が、跳々、走り、＊跳びの利き路を塞ぐ。（鬣跳びの跳び先を含む）
+//         ※例外：Sparrow, Equihopper系（攻方、受方のデータ構造が非対称）
+//     2)  対面、背面、ネコネコ鮮のとき、駒打による王手駒の変身で王手が回避される。
+//     3)  打駒が、王手駒をマドラシ痺れにする。
+//   移動：
 //     1)  
 
 #include	<stdlib.h>
@@ -36,43 +36,43 @@
 
 // ----------------------------------------------------------------------------- 
 #define	HELP_CHECK_PART_1 \
-	/* �����̏I������ */ \
+	/* ｆｍの終了条件 */ \
 	if (solution_count >= solution_limit || depth >= limit_depth) { \
 		return 0; \
 	} \
 	depth++; \
  \
-	/* �U���ǖʂ���� */ \
+	/* 攻方局面を解析 */ \
 	if (analyze_phase(php) != 0) { \
 		goto return_1; \
 	} \
  \
-	/* ���[����̌����Ő؂�����i�������`�F�b�N�j */ \
+	/* ルール上の検索打切り条件（王手回避チェック） */ \
 	if (php->check_state & B_CS_HITHER_CHECK) { \
 		goto return_1; \
 	} \
  \
-	/* ��͏󋵂��`�F�b�N�i��͏󋵕\���j */ \
+	/* 解析状況をチェック（解析状況表示） */ \
 	if (++phase_count >= check_point) { \
 		mile_stone(); \
 	} \
  \
-	/* �����ǖʍ팸�F�ǖʂ̑Ώ̐��`�F�b�N */ \
+	/* 検索局面削減：局面の対称性チェック */ \
 	if (((php - 1)->state & B_SYMMETRIC) && depth >= 2 && test_symmetric(php) == 0) { \
 		goto return_0; \
 	} \
  \
-	/* �g���[�X����̌����Ő؂���� */ \
+	/* トレース上限の検索打切り条件 */ \
 	if (trace_limit >= 1 && ((depth >= 2 && trace_move(php) != 0) || depth > trace_limit)) { \
 		goto return_0; \
 	} \
  \
-	/* �����ǖʍ팸�F����̓���ǖʂ��`�F�b�N�A�o�^ */ \
+	/* 検索局面削減：受方の同一局面をチェック、登録 */ \
 	if (depth < limit_depth && (strategy & (B_HI_DENY_SAME | B_YO_DENY_SAME))) { \
 		yo_hash_diff(php); \
 		if (strategy & B_YO_DENY_SAME) { \
-			/* �菇������ǖʂ��`�F�b�N�A����̕s�l����ǖʂ��`�F�b�N */ \
-			/* ����ǖʂłȂ������ꍇ�ɁA�菇������ǖʂ�o�^ */ \
+			/* 手順中同一局面をチェック、受方の不詰同一局面をチェック */ \
+			/* 同一局面でなかった場合に、手順中同一局面を登録 */ \
 			int is_same = is_yo_same_phase(php); \
 			if (is_same != 0) { \
 				goto return_0; \
@@ -81,16 +81,16 @@
 	}
 // ----------------------------------------------------------------------------- 
 #define	HELP_CHECK_PART_2 \
-	/* �����ǖʍ팸�F����̓���ǖʂ�o�^�A���� */ \
+	/* 検索局面削減：受方の同一局面を登録、解除 */ \
 	if ((strategy & B_YO_DENY_SAME) && depth < limit_depth) { \
 		ulong_t index; \
  \
-		/* �菇������ǖʃ`�F�b�N�p�n�b�V���l������ */ \
+		/* 手順中同一局面チェック用ハッシュ値を解除 */ \
 		index = php->hash_hi_pieces ^ php->hash_yo_pieces ^ php->hash_hi_hands; \
 		index &= NOSPHHEAD - 1; \
 		yo_sph_head[index] = yo_sph_head[index]->next; \
-		/* �l�菇���̋ǖʂłȂ���΁A����̕s�l����ǖʂ�o�^ */ \
-		/* �i�𐔏�������̏ꍇ�������j */ \
+		/* 詰手順中の局面でなければ、受方の不詰同一局面を登録 */ \
+		/* （解数上限超えの場合を除く） */ \
 		if ((strategy & B_YO_ESCAPE) && NOT((php - 1)->move.flag & B_MV_MATESEQ) && \
 				solution_count < solution_limit) { \
 			set_yo_eh_cell(php); \
@@ -114,12 +114,12 @@ help_check_normal(phase_t *php)
 {
 	HELP_CHECK_PART_1
 
-	// �U�����
+	// 攻方取禁
 	if (cond_flag & B_C_HITHER_NOCAPT) {
 		php->state |= B_MODE_ASCETIC;
 	}
 
-	// ���茟��
+	// 王手検索
 	if (depth >= limit_depth) {
 		if (rule_flag & B_R_HELP_MATE) {
 			if (cond_flag & B_C_UCHIFU) {
@@ -154,12 +154,12 @@ help_check_messigny(phase_t *php)
 {
 	HELP_CHECK_PART_1
 
-	// �U�����
+	// 攻方取禁
 	if (cond_flag & B_C_HITHER_NOCAPT) {
 		php->state |= B_MODE_ASCETIC;
 	}
 
-	// ���茟��
+	// 王手検索
 	if (depth >= limit_depth) {
 		if (rule_flag & B_R_HELP_MATE) {
 			if (cond_flag & B_C_UCHIFU) {
@@ -194,7 +194,7 @@ help_check_greed(phase_t *php)
 {
 	HELP_CHECK_PART_1
 
-	// ���茟��
+	// 王手検索
 	if (depth >= limit_depth) {
 		if (rule_flag & B_R_HELP_MATE) {
 			help_check_all_greed(php);
@@ -238,7 +238,7 @@ help_check_ascetic(phase_t *php)
 {
 	HELP_CHECK_PART_1
 
-	// ���茟��
+	// 王手検索
 	if (depth >= limit_depth) {
 		if (rule_flag & B_R_HELP_MATE) {
 			if (cond_flag & B_C_UCHIFU) {
@@ -408,8 +408,8 @@ help_check_place_loose(phase_t *php)
 	return;
 }
 
-// �z�b�p��W�����p�Ȃǂ̃t�F�A���[����炸�A
-// �ϐg�n�������Ȃ��A�}�h���V���Ȃ��ꍇ
+// ホッパやジャンパなどのフェアリー駒がおらず、
+// 変身系条件がなく、マドラシもない場合
 void
 help_check_place_normal(phase_t *php)
 {
@@ -419,7 +419,7 @@ help_check_place_normal(phase_t *php)
 
 	if (hi_close_check_board[php->yo_gy_pos][mvp->to] == ON ||
 			hi_remote_check_board[php->yo_gy_pos][mvp->to] == ON) {
-		// ���ы�̋t�����ʒu�A���X��A�����̋t���蓹�̏ꍇ
+		// 跳び駒の逆利き位置、跳々駒、走り駒の逆走り道の場合
 		for (i = 0; NOT_NUL(hand_pc[i]); i++) {
 			pc = hand_pc[i];
 			if (php->hi_hand[pc] >= 1) {
@@ -524,7 +524,7 @@ help_check_shishi_leap(phase_t *php)
 					if (to2 == EOP) {
 						break;
 					}
-					if (_mbsstr(piece[mvp->pc].name, "���q") == NULL) {
+					if (_mbsstr(piece[mvp->pc].name, "獅子") == NULL) {
 						for(k = 0; ; k++) {
 							to3 = hi_leap_to_pos[mvp->fpc][mvp->from][k];
 							if (to3 == EOP) {
@@ -585,8 +585,8 @@ help_check_step(phase_t *php)
 }
 
 // Mao, Mor:
-// hi_run_to_posv[��][�ʒu][�x�N�g���C���f�N�X]: ����_�ʒu���X�g�i�U���A������p�j
-// yo_run_to_posv[��][�ʒu][����_�ʒu]: �����ʒu���X�g�i�U���A������p�j
+// hi_run_to_posv[駒][位置][ベクトルインデクス]: 合駒点位置リスト（攻方、受方共用）
+// yo_run_to_posv[駒][位置][合駒点位置]: 利き位置リスト（攻方、受方共用）
 void
 help_check_mao_step(phase_t *php)
 {
@@ -859,9 +859,9 @@ help_check_jump_hop(phase_t *php)
 }
 
 // Sparrow, Eagle:
-//   hi_run_to_posv[��][�ʒu][�x�N�g��][�����ʒu���X�g]: ���ˋ���ʒu���X�g�i�U���A������p�j
-//   yo_run_to_posv[��][�ʒu][���ˋ�ʒu][�����ʒu���X�g]: �����ʒu���X�g�i�U���A������p�j
-//   hi_to_board: ���ˋ���ʒu�Ֆʃ}�b�v�i�U���A������p�j
+//   hi_run_to_posv[駒][位置][ベクトル][利き位置リスト]: 反射駒利き位置リスト（攻方、受方共用）
+//   yo_run_to_posv[駒][位置][反射駒位置][利き位置リスト]: 利き位置リスト（攻方、受方共用）
+//   hi_to_board: 反射駒利き位置盤面マップ（攻方、受方共用）
 void
 help_check_refl(phase_t *php)
 {
@@ -922,8 +922,8 @@ help_check_refl(phase_t *php)
 }
 
 // Equihopper:
-//   hi_run_to_posv[0]: �����ʒu���X�g
-//   yo_run_to_posv[0]: �Ώ̓_���X�g
+//   hi_run_to_posv[0]: 利き位置リスト
+//   yo_run_to_posv[0]: 対称点リスト
 void
 help_check_equi_hop(phase_t *php)
 {
@@ -1192,7 +1192,7 @@ help_check_place_sub_nekosen(phase_t *php)
 	return;
 }
 
-// �S���@�萶��
+// 全合法手生成
 void
 help_check_move_sub_loose(phase_t *php)
 {
@@ -1214,7 +1214,7 @@ help_check_move_sub_loose(phase_t *php)
 	return;
 }
 
-// �L���P�Ή�
+// キルケ対応
 void
 help_check_move_sub_circe(phase_t *php)
 {
@@ -1250,7 +1250,7 @@ help_check_move_sub_circe(phase_t *php)
 	return;
 }
 
-// �ʏ�Ή��i����̊|����ʒu�A�󂫉���ɂȂ蓾��ʒu�j
+// 通常対応（王手の掛かる位置、空き王手になり得る位置）
 void
 help_check_move_sub_normal(phase_t *php)
 {
@@ -1285,7 +1285,7 @@ help_check_move_sub_normal(phase_t *php)
 	return;
 }
 
-// �ʏ�Ή��̃L���P�Ή�
+// 通常対応のキルケ対応
 void
 help_check_move_sub_normal_circe(phase_t *php)
 {

@@ -734,7 +734,7 @@ after_solve(void)
 		}
 		mseq_head[depth].brop = NULL;
 	}
-	// g—pƒZƒ‹”‚ÌŒŸØ
+	// ä½¿ç”¨ã‚»ãƒ«æ•°ã®æ¤œè¨¼
 //	if (sc_print_verbose == ON) {
 //		dbg_check_mseq();
 //		dbg_check_board();

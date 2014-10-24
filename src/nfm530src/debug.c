@@ -17,46 +17,46 @@ dbg_ps_flag(mseq_t *msp)
 
 	buf[0] = '\0';
 	if (msp->ps_flag & B_PS_HI_CHECK) {
-		strcat(buf, "U•û‰¤è ");
+		strcat(buf, "æ”»æ–¹ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_HI_STEPCHECK) {
-		strcat(buf, "U•û‹ßÚ‰¤è ");
+		strcat(buf, "æ”»æ–¹è¿‘æ¥ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_HI_RUNCHECK) {
-		strcat(buf, "U•û‰“Šu‰¤è ");
+		strcat(buf, "æ”»æ–¹é éš”ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_HI_DBLCHECK) {
-		strcat(buf, "U•û—¼‰¤è ");
+		strcat(buf, "æ”»æ–¹ä¸¡ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_YO_CHECK) {
-		strcat(buf, "ó•û‰¤è ");
+		strcat(buf, "å—æ–¹ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_YO_STEPCHECK) {
-		strcat(buf, "ó•û‹ßÚ‰¤è ");
+		strcat(buf, "å—æ–¹è¿‘æ¥ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_YO_RUNCHECK) {
-		strcat(buf, "ó•û‰“Šu‰¤è ");
+		strcat(buf, "å—æ–¹é éš”ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_YO_DBLCHECK) {
-		strcat(buf, "ó•û—¼‰¤è ");
+		strcat(buf, "å—æ–¹ä¸¡ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_MATE) {
-		strcat(buf, "‹l ");
+		strcat(buf, "è©° ");
 	}
 	if (msp->ps_flag & B_PS_ESCAPE) {
-		strcat(buf, "“¦‚ê ");
+		strcat(buf, "é€ƒã‚Œ ");
 	}
 	if (msp->ps_flag & B_PS_UFMATE) {
-		strcat(buf, "‘Å•à‹l ");
+		strcat(buf, "æ‰“æ­©è©° ");
 	}
 	if (msp->ps_flag & B_PS_UFCHECK) {
-		strcat(buf, "‘Å•à‰¤è ");
+		strcat(buf, "æ‰“æ­©ç‹æ‰‹ ");
 	}
 	if (msp->ps_flag & B_PS_SAMEPHASE) {
-		strcat(buf, "“¯ˆê‹Ç–Ê ");
+		strcat(buf, "åŒä¸€å±€é¢ ");
 	}
 	if (msp->ps_flag & B_PS_SAMEBOARD) {
-		strcat(buf, "“¯ˆê”Õ–Ê ");
+		strcat(buf, "åŒä¸€ç›¤é¢ ");
 	}
 	return buf;
 }
@@ -260,14 +260,14 @@ dbg_check_board(void)
 	long depth;
 	long n;
 
-	sprintf(outbuf, "  ‡Œv”Õ–ÊƒZƒ‹”: %11s\n",
+	sprintf(outbuf, "  åˆè¨ˆç›¤é¢ã‚»ãƒ«æ•°: %11s\n",
 		fm_format_num(editbuf, board_inc_count * boardpool_count));
 	fm_put_both(MSG_DIRECT, outbuf);
 	n = 0;
 	for (bdp = bdp_free; bdp != NULL; bdp = bdp->next) {
 		n++;
 	}
-	sprintf(outbuf, "–¢g—p”Õ–ÊƒZƒ‹”: %11s\n", fm_format_num(editbuf, n));
+	sprintf(outbuf, "æœªä½¿ç”¨ç›¤é¢ã‚»ãƒ«æ•°: %11s\n", fm_format_num(editbuf, n));
 	fm_put_both(MSG_DIRECT, outbuf);
 	n = 0;
 	for (depth = 0; depth <= depth_limit + 1; depth++) {
@@ -277,7 +277,7 @@ dbg_check_board(void)
 			}
 		}
 	}
-	sprintf(outbuf, "  g—p”Õ–ÊƒZƒ‹”: %11s\n", fm_format_num(editbuf, n));
+	sprintf(outbuf, "  ä½¿ç”¨ç›¤é¢ã‚»ãƒ«æ•°: %11s\n", fm_format_num(editbuf, n));
 	fm_put_both(MSG_DIRECT, outbuf);
 }
 
@@ -288,14 +288,14 @@ dbg_check_mseq(void)
 	long depth;
 	long n;
 
-	sprintf(outbuf, "  ‡Œvè‡ƒZƒ‹”: %11s\n",
+	sprintf(outbuf, "  åˆè¨ˆæ‰‹é †ã‚»ãƒ«æ•°: %11s\n",
 		fm_format_num(editbuf, mseq_inc_count * mseqpool_count));
 	fm_put_both(MSG_DIRECT, outbuf);
 	n = 0;
 	for (msp = msp_free; msp != NULL; msp = msp->brop) {
 		n++;
 	}
-	sprintf(outbuf, "–¢g—pè‡ƒZƒ‹”: %11s\n", fm_format_num(editbuf, n));
+	sprintf(outbuf, "æœªä½¿ç”¨æ‰‹é †ã‚»ãƒ«æ•°: %11s\n", fm_format_num(editbuf, n));
 	fm_put_both(MSG_DIRECT, outbuf);
 	n = 0;
 	for (depth = 0; depth <= depth_limit + 1; depth++) {
@@ -303,7 +303,7 @@ dbg_check_mseq(void)
 			n++;
 		}
 	}
-	sprintf(outbuf, "  g—pè‡ƒZƒ‹”: %11s\n", fm_format_num(editbuf, n));
+	sprintf(outbuf, "  ä½¿ç”¨æ‰‹é †ã‚»ãƒ«æ•°: %11s\n", fm_format_num(editbuf, n));
 	fm_put_both(MSG_DIRECT, outbuf);
 }
 

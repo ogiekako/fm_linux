@@ -13,7 +13,7 @@
 
 static void analyze_last_record(char *buf);
 
-// ÄŠJ—pİ’è & ”z’u
+// å†é–‹ç”¨è¨­å®š & é…ç½®
 
 int
 restore(void)
@@ -22,24 +22,24 @@ restore(void)
 
 	setvbuf(restartFp, NULL, _IOFBF, 0x40000);
 	arrange(restartFp);
-	if (fgets(inbuf, sizeof(inbuf), restartFp) == NULL || NEQUALZ(inbuf, "‰ğÍŠÔF")) {
-		fprintf(stderr, "‘Ş”ğƒtƒ@ƒCƒ‹ˆÙíi‰ğÍŠÔj...\n");
+	if (fgets(inbuf, sizeof(inbuf), restartFp) == NULL || NEQUALZ(inbuf, "è§£ææ™‚é–“ï¼š")) {
+		fprintf(stderr, "é€€é¿ãƒ•ã‚¡ã‚¤ãƒ«ç•°å¸¸ï¼ˆè§£ææ™‚é–“ï¼‰...\n");
 		exit(1);
 	}
 	analyze_last_record(inbuf);
-	if (fgets(inbuf, sizeof(inbuf), restartFp) == NULL || NEQUALZ(inbuf, "ÅIŒŸõè‡F")) {
-		fprintf(stderr, "‘Ş”ğƒtƒ@ƒCƒ‹ˆÙíiÅIŒŸõè‡j...\n");
+	if (fgets(inbuf, sizeof(inbuf), restartFp) == NULL || NEQUALZ(inbuf, "æœ€çµ‚æ¤œç´¢æ‰‹é †ï¼š")) {
+		fprintf(stderr, "é€€é¿ãƒ•ã‚¡ã‚¤ãƒ«ç•°å¸¸ï¼ˆæœ€çµ‚æ¤œç´¢æ‰‹é †ï¼‰...\n");
 printf("%s\n", inbuf);
 		exit(1);
 	}
-	// ˆÈ‰ºAƒoƒCƒiƒŠƒf[ƒ^•œŒ³
+	// ä»¥ä¸‹ã€ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 	freopen(restart_file, "rb", restartFp);
 	while ((c = fgetc(restartFp)) != '\x1a' && c != EOF)
 		;
-	// ÅIŒŸõè‡•œŒ³
+	// æœ€çµ‚æ¤œç´¢æ‰‹é †å¾©å…ƒ
 	fread(inbuf, 1, STR_SIZE_OF("#MV#"), restartFp);
 	if (NEQUALZ(inbuf, "#MV#")) {
-		fprintf(stderr, "‘Ş”ğƒtƒ@ƒCƒ‹ˆÙíiÅIŒŸõè‡•œŒ³‘Oj...\n");
+		fprintf(stderr, "é€€é¿ãƒ•ã‚¡ã‚¤ãƒ«ç•°å¸¸ï¼ˆæœ€çµ‚æ¤œç´¢æ‰‹é †å¾©å…ƒå‰ï¼‰...\n");
 		exit(1);
 	}
 	last_move[0] = null_move; 
@@ -52,12 +52,12 @@ printf("%s\n", inbuf);
 	}
 	fread(inbuf, 1, STR_SIZE_OF("#MV#"), restartFp);
 	if (NEQUALZ(inbuf, "#MV#")) {
-		fprintf(stderr, "‘Ş”ğƒtƒ@ƒCƒ‹ˆÙíiÅIŒŸõè‡•œŒ³Œãj...\n");
+		fprintf(stderr, "é€€é¿ãƒ•ã‚¡ã‚¤ãƒ«ç•°å¸¸ï¼ˆæœ€çµ‚æ¤œç´¢æ‰‹é †å¾©å…ƒå¾Œï¼‰...\n");
 		exit(1);
 	}
 	fread(inbuf, 1, STR_SIZE_OF("#XX#"), restartFp);
 	if (EQUALZ(inbuf, "#HE#")) {
-		// U•û“¦‚ê‹Ç–Ê•œŒ³
+		// æ”»æ–¹é€ƒã‚Œå±€é¢å¾©å…ƒ
 		escape_hash_t *ent, *prev;
 		long i;
 		LOOP {
@@ -90,7 +90,7 @@ printf("%s\n", inbuf);
 		fread(inbuf, 1, STR_SIZE_OF("#XX#"), restartFp);
 	}
 	if (EQUALZ(inbuf, "#YE#")) {
-		// ó•û“¦‚ê‹Ç–Ê•œŒ³
+		// å—æ–¹é€ƒã‚Œå±€é¢å¾©å…ƒ
 		escape_hash_t *ent, *prev;
 		long i;
 		LOOP {
@@ -133,24 +133,24 @@ analyze_last_record(char *buf)
 	char *s, *t;
 	int n;
 
-	s = buf + STR_SIZE_OF("‰ğÍŠÔF");
+	s = buf + STR_SIZE_OF("è§£ææ™‚é–“ï¼š");
 	n = strtol(s, &t, 10);
-	if (EQUALZ(t, "ŠÔ")) {
+	if (EQUALZ(t, "æ™‚é–“")) {
 		total_elapse += n * 60 * 60;
-		s = t + STR_SIZE_OF("ŠÔ ");
+		s = t + STR_SIZE_OF("æ™‚é–“ ");
 		n = strtol(s, &t, 10);
 	}
-	if (EQUALZ(t, "•ª")) {
+	if (EQUALZ(t, "åˆ†")) {
 		total_elapse += n * 60;
-		s = t + STR_SIZE_OF("•ª ");
+		s = t + STR_SIZE_OF("åˆ† ");
 		n = strtol(s, &t, 10);
 	}
-	if (EQUALZ(t, "•b")) {
+	if (EQUALZ(t, "ç§’")) {
 		total_elapse += n;
-		s = t + STR_SIZE_OF("•b ");
+		s = t + STR_SIZE_OF("ç§’ ");
 	}
 	base_elapse = last_elapse = total_elapse;
-	s = skip_space(s) + STR_SIZE_OF("‰ğÍ‹Ç–Ê”F");
+	s = skip_space(s) + STR_SIZE_OF("è§£æå±€é¢æ•°ï¼š");
 	phase_count += strtol(s, &t, 10);
 	while (t[0] == ',') {
 		phase_1M *= 1000;
@@ -160,7 +160,7 @@ analyze_last_record(char *buf)
 		phase_1M += phase_count / (1000 * 1000);
 		phase_count %= 1000 * 1000;
 	}
-	s = skip_space(t) + STR_SIZE_OF("ŒŸo‰ğ”F");
+	s = skip_space(t) + STR_SIZE_OF("æ¤œå‡ºè§£æ•°ï¼š");
 	solution_count += strtol(s, &t, 10);
 
 	return;

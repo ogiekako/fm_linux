@@ -14,7 +14,7 @@ static ulong_t *hand_hash[RAW_PC_END];
 
 static ulong_t get_rand_num(void);
 
-// ŒŸõ‹Ç–ÊíŒ¸FiŽãj“¯ˆê‹Ç–Êƒ`ƒFƒbƒNiU•ûŽè”Ôj
+// æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šï¼ˆå¼±ï¼‰åŒä¸€å±€é¢ãƒã‚§ãƒƒã‚¯ï¼ˆæ”»æ–¹æ‰‹ç•ªï¼‰
 int
 is_hi_same_phase(phase_t *php)
 {
@@ -55,7 +55,7 @@ is_hi_same_phase(phase_t *php)
 	return 0;
 }
 
-// ŒŸõ‹Ç–ÊíŒ¸FiŽãj“¯ˆê‹Ç–Êƒ`ƒFƒbƒNiŽó•ûŽè”Ôj
+// æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šï¼ˆå¼±ï¼‰åŒä¸€å±€é¢ãƒã‚§ãƒƒã‚¯ï¼ˆå—æ–¹æ‰‹ç•ªï¼‰
 int
 is_yo_same_phase(phase_t *php)
 {
@@ -141,7 +141,7 @@ set_hi_eh_cell(phase_t *php)
 			goto retry;
 		}
 		ERASE_EOS();
-		printf("*** %sŒÂ‚Ì MHE ƒe[ƒuƒ‹iŽQÆ‰ñ” %dˆÈ‰ºj‚ðÄŽg—p‚µ‚Ü‚·...\n\n",
+		printf("*** %så€‹ã® MHE ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆå‚ç…§å›žæ•° %dä»¥ä¸‹ï¼‰ã‚’å†ä½¿ç”¨ã—ã¾ã™...\n\n",
 				make_num_str(0, n, work), j);
 		total_elapse = time((time_t *)NULL) - start_time;
 		while (phase_count >= 1000000) {
@@ -208,7 +208,7 @@ set_yo_eh_cell(phase_t *php)
 			goto retry;
 		}
 		ERASE_EOS();
-		printf("*** %sŒÂ‚Ì MYE ƒe[ƒuƒ‹iŽQÆ‰ñ” %dˆÈ‰ºj‚ðÄŽg—p‚µ‚Ü‚·...\n\n",
+		printf("*** %så€‹ã® MYE ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆå‚ç…§å›žæ•° %dä»¥ä¸‹ï¼‰ã‚’å†ä½¿ç”¨ã—ã¾ã™...\n\n",
 				make_num_str(0, n, work), j);
 		total_elapse = time((time_t *)NULL) - start_time;
 		while (phase_count >= 1000000) {
@@ -277,13 +277,13 @@ hi_hash_diff(phase_t *php)
 	from = php_1->move.from;
 	to = php_1->move.to;
 	if (from == NOP) {
-		// ‹î‘Å‚¿
+		// é§’æ‰“ã¡
 		pc = php_1->move.pc;
 		php->hash_hi_pieces ^= board_hash[to][pc];
 		n = php->hi_hand[pc];
 		php->hash_hi_hands ^= hand_hash[pc][n + 1] ^ hand_hash[pc][n];
 	} else {
-		// ‹îˆÚ“®
+		// é§’ç§»å‹•
 		hi_hash_diff_sub(php, php_1, from, to);
 	}
 
@@ -303,11 +303,11 @@ yo_hash_diff(phase_t *php)
 	from = php_1->move.from;
 	to = php_1->move.to;
 	if (from == NOP) {
-		// ‹î‘Å‚¿
+		// é§’æ‰“ã¡
 		pc = php_1->move.pc;
 		php->hash_yo_pieces ^= board_hash[to][pc];
 	} else {
-		// ‹îˆÚ“®
+		// é§’ç§»å‹•
 		yo_hash_diff_sub(php, php_1, from, to);
 	}
 
@@ -328,7 +328,7 @@ make_hash_tab(void)
 	bhx += PC_END * 81;
 	hasha = calloc(bhx, sizeof(board_hash[0][0]));
 	if (hasha == NULL) {
-		fm_exit_mae("ƒnƒbƒVƒ…”Õ–Ê—Ìˆæ");
+		fm_exit_mae("ãƒãƒƒã‚·ãƒ¥ç›¤é¢é ˜åŸŸ");
 	}
 	board_hash[0] = hasha;
 	hasha++;
@@ -381,10 +381,10 @@ hi_hash_diff_sub_normal(phase_t *php, phase_t *php_1, int from, int to)
 	php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// Ž‚ŽqAå›“™‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// ç…å­ã€è—ç­‰ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			php->hash_yo_pieces ^= board_hash[to1][capt];
 			capt = RAW_KIND(capt);
 			if (piece[capt].attr & B_PA_REUSABLE) {
@@ -395,7 +395,7 @@ hi_hash_diff_sub_normal(phase_t *php, phase_t *php_1, int from, int to)
 	}
 	capt = KIND(php_1->board[to]);
 	if (NOT_ROOM(capt)) {
-		// ‹î•ßŠl‚ ‚è
+		// é§’æ•ç²ã‚ã‚Š
 		php->hash_yo_pieces ^= board_hash[to][capt];
 		capt = RAW_KIND(capt);
 		if (piece[capt].attr & B_PA_REUSABLE) {
@@ -418,7 +418,7 @@ yo_hash_diff_sub_normal(phase_t *php, phase_t *php_1, int from, int to)
 	php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// Ž‚ŽqAå›“™‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// ç…å­ã€è—ç­‰ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
 			php->hash_hi_pieces ^= board_hash[to1][capt];
@@ -426,7 +426,7 @@ yo_hash_diff_sub_normal(phase_t *php, phase_t *php_1, int from, int to)
 	}
 	capt = KIND(php_1->board[to]);
 	if (NOT_ROOM(capt)) {
-		// ‹î•ßŠl‚ ‚è
+		// é§’æ•ç²ã‚ã‚Š
 		php->hash_hi_pieces ^= board_hash[to][capt];
 	}
 
@@ -443,15 +443,15 @@ hi_hash_diff_sub_pwc(phase_t *php, phase_t *php_1, int from, int to)
 	if (to1 != NOP) { 
 		pc = KIND(php_1->board[from]);
 		php->hash_hi_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
-		// Ž‚ŽqAå›“™‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// ç…å­ã€è—ç­‰ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN_1ST) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				php->hash_yo_pieces ^= board_hash[to1][capt] ^ board_hash[from][capt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_yo_pieces ^= board_hash[to1][capt];
 				capt = RAW_KIND(capt);
 				if (piece[capt].attr & B_PA_REUSABLE) {
@@ -462,12 +462,12 @@ hi_hash_diff_sub_pwc(phase_t *php, phase_t *php_1, int from, int to)
 		}
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				php->hash_yo_pieces ^= board_hash[to][capt] ^ board_hash[to1][capt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_yo_pieces ^= board_hash[to][capt];
 				capt = RAW_KIND(capt);
 				if (piece[capt].attr & B_PA_REUSABLE) {
@@ -482,12 +482,12 @@ hi_hash_diff_sub_pwc(phase_t *php, phase_t *php_1, int from, int to)
 		php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				php->hash_yo_pieces ^= board_hash[to][capt] ^ board_hash[from][capt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_yo_pieces ^= board_hash[to][capt];
 				capt = RAW_KIND(capt);
 				if (piece[capt].attr & B_PA_REUSABLE) {
@@ -511,26 +511,26 @@ yo_hash_diff_sub_pwc(phase_t *php, phase_t *php_1, int from, int to)
 	if (to1 != NOP) { 
 		pc = KIND(php_1->board[from]);
 		php->hash_yo_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
-		// Ž‚ŽqAå›“™‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// ç…å­ã€è—ç­‰ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN_1ST) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				php->hash_hi_pieces ^= board_hash[to1][capt] ^ board_hash[from][capt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_hi_pieces ^= board_hash[to1][capt];
 			}
 		}
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				php->hash_hi_pieces ^= board_hash[to][capt] ^ board_hash[to1][capt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_hi_pieces ^= board_hash[to][capt];
 			}
 		}
@@ -540,12 +540,12 @@ yo_hash_diff_sub_pwc(phase_t *php, phase_t *php_1, int from, int to)
 		php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				php->hash_hi_pieces ^= board_hash[to][capt] ^ board_hash[from][capt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_hi_pieces ^= board_hash[to][capt];
 			}
 		}
@@ -564,17 +564,17 @@ hi_hash_diff_sub_circe(phase_t *php, phase_t *php_1, int from, int to)
 	if (to1 != NOP) { 
 		pc = KIND(php_1->board[from]);
 		php->hash_hi_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
-		// å›‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// è—ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			rcapt = RAW_KIND(capt);
 			if (php_1->move.flag2 & B_MV2_REBORN_1ST) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn_1st;
 				php->hash_yo_pieces ^= board_hash[to1][capt] ^ board_hash[rbn][rcapt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_yo_pieces ^= board_hash[to1][capt];
 				if (piece[rcapt].attr & B_PA_REUSABLE) {
 					n = php->hi_hand[rcapt];
@@ -588,14 +588,14 @@ hi_hash_diff_sub_circe(phase_t *php, phase_t *php_1, int from, int to)
 		php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			rcapt = RAW_KIND(capt);
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn;
 				php->hash_yo_pieces ^= board_hash[to][capt] ^ board_hash[rbn][rcapt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_yo_pieces ^= board_hash[to][capt];
 				if (piece[rcapt].attr & B_PA_REUSABLE) {
 					n = php->hi_hand[rcapt];
@@ -618,17 +618,17 @@ yo_hash_diff_sub_circe(phase_t *php, phase_t *php_1, int from, int to)
 	if (to1 != NOP) { 
 		pc = KIND(php_1->board[from]);
 		php->hash_yo_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
-		// å›‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// è—ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN_1ST) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn_1st;
 				rcapt = RAW_KIND(capt);
 				php->hash_hi_pieces ^= board_hash[to1][capt] ^ board_hash[rbn][rcapt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_hi_pieces ^= board_hash[to1][capt];
 			}
 		}
@@ -638,14 +638,14 @@ yo_hash_diff_sub_circe(phase_t *php, phase_t *php_1, int from, int to)
 		php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn;
 				rcapt = RAW_KIND(capt);
 				php->hash_hi_pieces ^= board_hash[to][capt] ^ board_hash[rbn][rcapt];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_hi_pieces ^= board_hash[to][capt];
 			}
 		}
@@ -662,17 +662,17 @@ hi_hash_diff_sub_anticirce(phase_t *php, phase_t *php_1, int from, int to)
 
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// å›‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// è—ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		pc = KIND(php_1->board[from]);
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN_1ST) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn_1st;
 				php->hash_hi_pieces ^= board_hash[from][pc] ^ board_hash[rbn][pc];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_hi_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
 			}
 			php->hash_yo_pieces ^= board_hash[to1][capt];
@@ -682,21 +682,21 @@ hi_hash_diff_sub_anticirce(phase_t *php, phase_t *php_1, int from, int to)
 				php->hash_hi_hands ^= hand_hash[rcapt][n - 1] ^ hand_hash[rcapt][n];
 			}
 		} else {
-			// ‹î•ßŠl‚È‚µ
+			// é§’æ•ç²ãªã—
 			php->hash_hi_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
 		}
 	} else {
 		pc0 = KIND(php_1->board[from]);
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn;
 				pc = KIND(php->board[rbn]);
 				php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[rbn][pc];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				pc = KIND(php->board[to]);
 				php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 			}
@@ -707,7 +707,7 @@ hi_hash_diff_sub_anticirce(phase_t *php, phase_t *php_1, int from, int to)
 				php->hash_hi_hands ^= hand_hash[rcapt][n - 1] ^ hand_hash[rcapt][n];
 			}
 		} else {
-			// ‹î•ßŠl‚È‚µ
+			// é§’æ•ç²ãªã—
 			pc = KIND(php->board[to]);
 			php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		}
@@ -724,42 +724,42 @@ yo_hash_diff_sub_anticirce(phase_t *php, phase_t *php_1, int from, int to)
 
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// å›‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// è—ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		pc = KIND(php_1->board[from]);
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN_1ST) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn_1st;
 				php->hash_yo_pieces ^= board_hash[from][pc] ^ board_hash[rbn][pc];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				php->hash_yo_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
 			}
 			php->hash_hi_pieces ^= board_hash[to1][capt];
 		} else {
-			// ‹î•ßŠl‚È‚µ
+			// é§’æ•ç²ãªã—
 			php->hash_yo_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
 		}
 	} else {
 		pc0 = KIND(php_1->board[from]);
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			if (php_1->move.flag2 & B_MV2_REBORN) {
-				// Ä¶‚ ‚è
+				// å†ç”Ÿã‚ã‚Š
 				rbn = php_1->move.reborn;
 				pc = KIND(php->board[rbn]);
 				php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[rbn][pc];
 			} else {
-				// Ä¶‚È‚µ
+				// å†ç”Ÿãªã—
 				pc = KIND(php->board[to]);
 				php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 			}
 			php->hash_hi_pieces ^= board_hash[to][capt];
 		} else {
-			// ‹î•ßŠl‚È‚µ
+			// é§’æ•ç²ãªã—
 			pc = KIND(php->board[to]);
 			php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		}
@@ -776,15 +776,15 @@ hi_hash_diff_sub_andernach(phase_t *php, phase_t *php_1, int from, int to)
 
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// å›‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// è—ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		pc = KIND(php_1->board[from]);
-		// ‹î•ßŠl‚ ‚è
+		// é§’æ•ç²ã‚ã‚Š
 		if (php_1->move.flag2 & B_MV2_TURN) {
-			// ”½“]‚ ‚è
+			// åè»¢ã‚ã‚Š
 			php->hash_hi_pieces ^= board_hash[from][pc];
 			php->hash_yo_pieces ^= board_hash[to][pc];
 		} else {
-			// ”½“]‚È‚µ
+			// åè»¢ãªã—
 			php->hash_hi_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
 		}
 		capt = KIND(php_1->board[to1]);
@@ -800,16 +800,16 @@ hi_hash_diff_sub_andernach(phase_t *php, phase_t *php_1, int from, int to)
 		pc0 = KIND(php_1->board[from]);
 		pc = KIND(php->board[to]);
 		if (php_1->move.flag2 & B_MV2_TURN) {
-			// ”½“]‚ ‚è
+			// åè»¢ã‚ã‚Š
 			php->hash_hi_pieces ^= board_hash[from][pc0];
 			php->hash_yo_pieces ^= board_hash[to][pc];
 		} else {
-			// ”½“]‚È‚µ
+			// åè»¢ãªã—
 			php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		}
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			php->hash_yo_pieces ^= board_hash[to][capt];
 			rcapt = RAW_KIND(capt);
 			if (piece[rcapt].attr & B_PA_REUSABLE) {
@@ -830,15 +830,15 @@ yo_hash_diff_sub_andernach(phase_t *php, phase_t *php_1, int from, int to)
 
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// å›‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// è—ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		pc = KIND(php_1->board[from]);
-		// ‹î•ßŠl‚ ‚è
+		// é§’æ•ç²ã‚ã‚Š
 		if (php_1->move.flag2 & B_MV2_TURN) {
-			// ”½“]‚ ‚è
+			// åè»¢ã‚ã‚Š
 			php->hash_yo_pieces ^= board_hash[from][pc];
 			php->hash_hi_pieces ^= board_hash[to][pc];
 		} else {
-			// ”½“]‚È‚µ
+			// åè»¢ãªã—
 			php->hash_yo_pieces ^= board_hash[from][pc] ^ board_hash[to][pc];
 		}
 		capt = KIND(php_1->board[to1]);
@@ -849,16 +849,16 @@ yo_hash_diff_sub_andernach(phase_t *php, phase_t *php_1, int from, int to)
 		pc0 = KIND(php_1->board[from]);
 		pc = KIND(php->board[to]);
 		if (php_1->move.flag2 & B_MV2_TURN) {
-			// ”½“]‚ ‚è
+			// åè»¢ã‚ã‚Š
 			php->hash_yo_pieces ^= board_hash[from][pc0];
 			php->hash_hi_pieces ^= board_hash[to][pc];
 		} else {
-			// ”½“]‚È‚µ
+			// åè»¢ãªã—
 			php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 		}
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			php->hash_hi_pieces ^= board_hash[to][capt];
 		}
 	}
@@ -877,10 +877,10 @@ hi_hash_diff_sub_exchange(phase_t *php, phase_t *php_1, int from, int to)
 	php->hash_hi_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// Ž‚ŽqAå›“™‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// ç…å­ã€è—ç­‰ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			php->hash_yo_pieces ^= board_hash[to1][capt];
 			capt = RAW_KIND(capt);
 			if (piece[capt].attr & B_PA_REUSABLE) {
@@ -894,7 +894,7 @@ hi_hash_diff_sub_exchange(phase_t *php, phase_t *php_1, int from, int to)
 	} else {
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			php->hash_yo_pieces ^= board_hash[to][capt];
 			capt = RAW_KIND(capt);
 			if (piece[capt].attr & B_PA_REUSABLE) {
@@ -918,7 +918,7 @@ yo_hash_diff_sub_exchange(phase_t *php, phase_t *php_1, int from, int to)
 	php->hash_yo_pieces ^= board_hash[from][pc0] ^ board_hash[to][pc];
 	to1 = php_1->move.to_1st;
 	if (to1 != NOP) { 
-		// Ž‚ŽqAå›“™‚É‚æ‚é‹î•ßŠl‚ ‚è
+		// ç…å­ã€è—ç­‰ã«ã‚ˆã‚‹é§’æ•ç²ã‚ã‚Š
 		capt = KIND(php_1->board[to1]);
 		if (NOT_ROOM(capt)) {
 			php->hash_hi_pieces ^= board_hash[to1][capt];
@@ -929,7 +929,7 @@ yo_hash_diff_sub_exchange(phase_t *php, phase_t *php_1, int from, int to)
 	} else {
 		capt = KIND(php_1->board[to]);
 		if (NOT_ROOM(capt)) {
-			// ‹î•ßŠl‚ ‚è
+			// é§’æ•ç²ã‚ã‚Š
 			php->hash_hi_pieces ^= board_hash[to][capt];
 		}
 	}

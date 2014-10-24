@@ -9,39 +9,39 @@
 
 // ----------------------------------------------------------------------------- 
 #define	HELP_SELF_CHECK_PART_1 \
-	/* ‚†‚‚ÌI—¹ğŒ */ \
+	/* ï½†ï½ã®çµ‚äº†æ¡ä»¶ */ \
 	if (solution_count >= solution_limit || depth > limit_depth) { \
 		return 0; \
 	} \
 	depth++; \
  \
-	/* U•û‹Ç–Ê‚ğ‰ğÍ */ \
+	/* æ”»æ–¹å±€é¢ã‚’è§£æ */ \
 	if (analyze_phase(php) != 0) { \
 		goto return_1; \
 	} \
  \
-	/* ƒ‹[ƒ‹ã‚ÌŒŸõ‘ÅØ‚èğŒi‰¤è‰ñ”ğƒ`ƒFƒbƒNj */ \
+	/* ãƒ«ãƒ¼ãƒ«ä¸Šã®æ¤œç´¢æ‰“åˆ‡ã‚Šæ¡ä»¶ï¼ˆç‹æ‰‹å›é¿ãƒã‚§ãƒƒã‚¯ï¼‰ */ \
 	if (php->check_state & B_CS_HITHER_CHECK) { \
 		goto return_1; \
 	} \
  \
-	/* ‰ğÍó‹µ‚ğƒ`ƒFƒbƒNi‰ğÍó‹µ•\¦j */ \
+	/* è§£æçŠ¶æ³ã‚’ãƒã‚§ãƒƒã‚¯ï¼ˆè§£æçŠ¶æ³è¡¨ç¤ºï¼‰ */ \
 	if (++phase_count >= check_point) { \
 		mile_stone(); \
 	} \
  \
-	/* ŒŸõ‹Ç–ÊíŒ¸F‹Ç–Ê‚Ì‘ÎÌ«ƒ`ƒFƒbƒN */ \
+	/* æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šå±€é¢ã®å¯¾ç§°æ€§ãƒã‚§ãƒƒã‚¯ */ \
 	if (((php - 1)->state & B_SYMMETRIC) && depth >= 2 && test_symmetric(php) == 0) { \
 		goto return_0; \
 	} \
  \
-	/* ƒgƒŒ[ƒXãŒÀ‚ÌŒŸõ‘ÅØ‚èğŒ */ \
+	/* ãƒˆãƒ¬ãƒ¼ã‚¹ä¸Šé™ã®æ¤œç´¢æ‰“åˆ‡ã‚Šæ¡ä»¶ */ \
 	if (trace_limit >= 1 && depth >= 2 && trace_move(php) != 0) { \
 		goto return_0; \
 	} \
  \
-	/* ‘Å•à‹l‚Ì‚Æ‚«Aw’è‹lè”‚Ì‚Pè‘O‚Å•àƒ[ƒ‚©ƒ`ƒFƒbƒN */ \
-	/* š‘Å•à‹l‚Ìê‡A‰‚àl—¶‚·‚é•K—v‚ª‚ ‚éB */ \
+	/* æ‰“æ­©è©°ã®ã¨ãã€æŒ‡å®šè©°æ‰‹æ•°ã®ï¼‘æ‰‹å‰ã§æŒæ­©ã‚¼ãƒ­ã‹ãƒã‚§ãƒƒã‚¯ */ \
+	/* â˜…æ‰“æ­©è©°ã®å ´åˆã€ç‡•ã‚‚è€ƒæ…®ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚ */ \
 	if (depth == limit_depth - 1 && (cond_flag & B_C_UCHIFU) && php->yo_hand[PC_FU] == 0) { \
 		if ((php - 1)->move.pc == PC_FU && (php - 1)->move.from == NOP && is_hither_mate(php)) { \
 			(void)help_mate_rule_check(php); \
@@ -49,12 +49,12 @@
 		goto return_0; \
 	} \
  \
-	/* ŒŸõ‹Ç–ÊíŒ¸Fó•û‚Ì“¯ˆê‹Ç–Ê‚ğƒ`ƒFƒbƒNA“o˜^ */ \
+	/* æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šå—æ–¹ã®åŒä¸€å±€é¢ã‚’ãƒã‚§ãƒƒã‚¯ã€ç™»éŒ² */ \
 	if (depth < limit_depth && (strategy & (B_HI_DENY_SAME | B_YO_DENY_SAME))) { \
 		yo_hash_diff(php); \
 		if (strategy & B_YO_DENY_SAME) { \
-			/* è‡’†“¯ˆê‹Ç–Ê‚ğƒ`ƒFƒbƒNAó•û‚Ì•s‹l“¯ˆê‹Ç–Ê‚ğƒ`ƒFƒbƒN */ \
-			/* “¯ˆê‹Ç–Ê‚Å‚È‚©‚Á‚½ê‡‚ÉAè‡’†“¯ˆê‹Ç–Ê‚ğ“o˜^ */ \
+			/* æ‰‹é †ä¸­åŒä¸€å±€é¢ã‚’ãƒã‚§ãƒƒã‚¯ã€å—æ–¹ã®ä¸è©°åŒä¸€å±€é¢ã‚’ãƒã‚§ãƒƒã‚¯ */ \
+			/* åŒä¸€å±€é¢ã§ãªã‹ã£ãŸå ´åˆã«ã€æ‰‹é †ä¸­åŒä¸€å±€é¢ã‚’ç™»éŒ² */ \
 			int is_same = is_yo_same_phase(php); \
 			if (is_same != 0) { \
 				goto return_0; \
@@ -62,20 +62,20 @@
 		} \
 	} \
  \
-	/* ‹lè”‚ğ’´‚¦‚Ä‚¢‚ê‚ÎA‹l/ƒXƒeƒCƒ‹ƒƒCƒg‚ğƒ`ƒFƒbƒN */ \
+	/* è©°æ‰‹æ•°ã‚’è¶…ãˆã¦ã„ã‚Œã°ã€è©°/ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ */ \
 	if (depth > limit_depth) { \
 		switch (rule_flag) { \
 		case B_R_HELP_SELF_MATE: \
 			if ((php->check_state & B_CS_YONDER_CHECK) && is_hither_mate(php) && \
 					help_mate_rule_check(php) == RC_MATE) { \
-				/* ‰¤è‚ªŠ|‚©‚Á‚Ä‚¢‚ê‚ÎA‹l‚ğƒ`ƒFƒbƒN */ \
+				/* ç‹æ‰‹ãŒæ›ã‹ã£ã¦ã„ã‚Œã°ã€è©°ã‚’ãƒã‚§ãƒƒã‚¯ */ \
 				goto return_0; \
 			} \
 			break; \
 		case B_R_HELP_SELF_STALEMATE: \
 			if (NOT(php->check_state & B_CS_YONDER_CHECK) && is_hither_stalemate(php) && \
 					help_mate_rule_check(php) == RC_MATE) { \
-				/* ‰¤è‚ªŠ|‚©‚Á‚Ä‚¢‚È‚¯‚ê‚ÎAƒXƒeƒCƒ‹ƒƒCƒg‚ğƒ`ƒFƒbƒN */ \
+				/* ç‹æ‰‹ãŒæ›ã‹ã£ã¦ã„ãªã‘ã‚Œã°ã€ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ */ \
 				goto return_0; \
 			} \
 			break; \
@@ -85,35 +85,35 @@
 // ----------------------------------------------------------------------------- 
 #define	HELP_SELF_CHECK_PART_2 \
 	if (NOT(php->state & B_CHECK_MOVE_FOUND)) { \
-		/* ‰¤è‚ªŒŸo‚Å‚«‚È‚©‚Á‚½ê‡ */ \
+		/* ç‹æ‰‹ãŒæ¤œå‡ºã§ããªã‹ã£ãŸå ´åˆ */ \
 		switch (rule_flag) { \
 		case B_R_HELP_SELF_MATE: \
-			/* ‹¦—Í©‹Ê‹l‚Ìê‡ */ \
+			/* å”åŠ›è‡ªç‰è©°ã®å ´åˆ */ \
 			if ((php->check_state & B_CS_YONDER_CHECK) && is_hither_mate(php)) { \
-				/* ‰¤è‚ªŠ|‚©‚Á‚Ä‚¢‚ê‚ÎA‹l‚ğƒ`ƒFƒbƒN */ \
+				/* ç‹æ‰‹ãŒæ›ã‹ã£ã¦ã„ã‚Œã°ã€è©°ã‚’ãƒã‚§ãƒƒã‚¯ */ \
 				(void)help_mate_rule_check(php); \
 			} \
 			break; \
 		case B_R_HELP_SELF_STALEMATE: \
-			/* ‹¦—Í©‹ÊƒXƒeƒCƒ‹ƒƒCƒg‚Ìê‡ */ \
+			/* å”åŠ›è‡ªç‰ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆã®å ´åˆ */ \
 			if (NOT(php->check_state & B_CS_YONDER_CHECK) && is_hither_stalemate(php)) { \
-				/* ‰¤è‚ªŠ|‚©‚Á‚Ä‚¢‚È‚¯‚ê‚ÎAƒXƒeƒCƒ‹ƒƒCƒg‚ğƒ`ƒFƒbƒN */ \
+				/* ç‹æ‰‹ãŒæ›ã‹ã£ã¦ã„ãªã‘ã‚Œã°ã€ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ */ \
 				(void)help_mate_rule_check(php); \
 			} \
 			break; \
 		} \
 	} \
  \
-	/* ŒŸõ‹Ç–ÊíŒ¸Fó•û‚Ì“¯ˆê‹Ç–Ê‚ğ“o˜^A‰ğœ */ \
+	/* æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šå—æ–¹ã®åŒä¸€å±€é¢ã‚’ç™»éŒ²ã€è§£é™¤ */ \
 	if ((strategy & B_YO_DENY_SAME) && depth < limit_depth) { \
 		ulong_t index; \
  \
-		/* è‡’†“¯ˆê‹Ç–Êƒ`ƒFƒbƒN—pƒnƒbƒVƒ…’l‚ğ‰ğœ */ \
+		/* æ‰‹é †ä¸­åŒä¸€å±€é¢ãƒã‚§ãƒƒã‚¯ç”¨ãƒãƒƒã‚·ãƒ¥å€¤ã‚’è§£é™¤ */ \
 		index = php->hash_hi_pieces ^ php->hash_yo_pieces ^ php->hash_hi_hands; \
 		index &= NOSPHHEAD - 1; \
 		yo_sph_head[index] = yo_sph_head[index]->next; \
-		/* ‹lè‡’†‚Ì‹Ç–Ê‚Å‚È‚¯‚ê‚ÎAó•û‚Ì•s‹l“¯ˆê‹Ç–Ê‚ğ“o˜^ */ \
-		/* i‰ğ”ãŒÀ’´‚¦‚Ìê‡‚ğœ‚­j */ \
+		/* è©°æ‰‹é †ä¸­ã®å±€é¢ã§ãªã‘ã‚Œã°ã€å—æ–¹ã®ä¸è©°åŒä¸€å±€é¢ã‚’ç™»éŒ² */ \
+		/* ï¼ˆè§£æ•°ä¸Šé™è¶…ãˆã®å ´åˆã‚’é™¤ãï¼‰ */ \
 		if ((strategy & B_YO_ESCAPE) && NOT((php - 1)->move.flag & B_MV_MATESEQ) && \
 				solution_count < solution_limit) { \
 			set_yo_eh_cell(php); \
@@ -134,12 +134,12 @@ help_self_check_normal(phase_t *php)
 {
 	HELP_SELF_CHECK_PART_1
 
-	// U•ûæ‹Ö
+	// æ”»æ–¹å–ç¦
 	if (cond_flag & B_C_HITHER_NOCAPT) {
 		php->state |= B_MODE_ASCETIC;
 	}
 
-	// ‰¤èŒŸõ
+	// ç‹æ‰‹æ¤œç´¢
 	help_check_all(php);
 
 	HELP_SELF_CHECK_PART_2
@@ -150,12 +150,12 @@ help_self_check_messigny(phase_t *php)
 {
 	HELP_SELF_CHECK_PART_1
 
-	// U•ûæ‹Ö
+	// æ”»æ–¹å–ç¦
 	if (cond_flag & B_C_HITHER_NOCAPT) {
 		php->state |= B_MODE_ASCETIC;
 	}
 
-	// ‰¤èŒŸõ
+	// ç‹æ‰‹æ¤œç´¢
 	help_check_all_messigny(php);
 
 	HELP_SELF_CHECK_PART_2
@@ -166,7 +166,7 @@ help_self_check_greed(phase_t *php)
 {
 	HELP_SELF_CHECK_PART_1
 
-	// ‰¤èŒŸõ
+	// ç‹æ‰‹æ¤œç´¢
 	help_check_all_greed(php);
 	if (NOT(php->state & B_CHECK_MOVE_FOUND)) {
 		help_check_all_ascetic(php);
@@ -180,7 +180,7 @@ help_self_check_ascetic(phase_t *php)
 {
 	HELP_SELF_CHECK_PART_1
 
-	// ‰¤èŒŸõ
+	// ç‹æ‰‹æ¤œç´¢
 	help_check_all_ascetic(php);
 	if (NOT(php->state & B_CHECK_MOVE_FOUND)) {
 		help_check_all_greed(php);
@@ -406,7 +406,7 @@ help_self_check_move_sub_loose(phase_t *php)
 	return;
 }
 
-// ƒLƒ‹ƒP‘Î‰
+// ã‚­ãƒ«ã‚±å¯¾å¿œ
 void
 help_self_check_move_sub_circe(phase_t *php)
 {

@@ -1216,7 +1216,7 @@ fm_get_rule_data(char *buf, long size, FILE *Fp)
 
 	FOREVER() {
 		*buf = '\0';
-		//!âpè¨ï∂éöÇï€ë∂Ç∑ÇÈÇΩÇﬂÅAfm_fgets()ÇégópÇµÇƒÇ¢Ç»Ç¢ÅB
+		//!Ëã±Â∞èÊñáÂ≠ó„Çí‰øùÂ≠ò„Åô„Çã„Åü„ÇÅ„ÄÅfm_fgets()„Çí‰ΩøÁî®„Åó„Å¶„ÅÑ„Å™„ÅÑ„ÄÇ
 		if (fgets(buf, size, Fp) == NULL) {
 			return 0;
 		}
@@ -1609,7 +1609,7 @@ make_move_nfmstyle(mseq_t *msp, int pos_flag)
 		if (pos_flag == ON) {
 			sprintf(movebuf, "%s%s", file_num[FILE(msp->to)], rank_num[RANK(msp->to)]);
 		}
-		strcat(movebuf, "ìØ");
+		strcat(movebuf, "Âêå");
 	} else {
 		sprintf(movebuf, "%s%s", file_num[FILE(msp->to)], rank_num[RANK(msp->to)]);
 	}
@@ -1829,7 +1829,7 @@ fm_ltrim(char *s)
 	for (t = s; *t != '\0'; t++) {
 		if (isspace((uchar_t)*t)) {
 			;
-		} else if (EQUALZ(t, "Å@")) {
+		} else if (EQUALZ(t, "„ÄÄ")) {
 			t++;
 		} else {
 			break;
@@ -1851,7 +1851,7 @@ fm_rtrim(char *s)
 	for (t = STR_END(s); t >= s; t--) {
 		if (isspace((uchar_t)*t)) {
 			*t = '\0';
-		} else if (EQUAL(t - 1, "Å@")) {
+		} else if (EQUAL(t - 1, "„ÄÄ")) {
 			t--;
 			*t = '\0';
 		} else {

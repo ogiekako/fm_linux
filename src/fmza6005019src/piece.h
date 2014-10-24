@@ -7,53 +7,53 @@
 
 #include	"fm.h"
 
-// ‹î¬ƒrƒbƒg
-#define	B_PC_PROMOTED		(0x10)	// ¬–Ê
+// é§’æˆãƒ“ãƒƒãƒˆ
+#define	B_PC_PROMOTED		(0x10)	// æˆé¢
 
-// ‹îƒR[ƒh
-#define	NUL					(0x00)						// ”ñ‹î
-#define	ROOM				(0x00)						// ‹ó
-#define	PC_FU				(0x01)						// •à
-#define	PC_KY				(0x02)						// 
-#define	PC_KE				(0x03)						// Œj
-#define	PC_GI				(0x04)						// ‹â
-#define	PC_KI				(0x05)						// ‹à
-#define	PC_KA				(0x06)						// Šp
-#define	PC_HI				(0x07)						// ”ò
-#define	PC_F1				(0x08)						// ƒtƒFƒAƒŠ[‹î‚P
-#define	PC_F2				(0x09)						// ƒtƒFƒAƒŠ[‹î‚Q
-#define	PC_F3				(0x0a)						// ƒtƒFƒAƒŠ[‹î‚R
-#define	PC_F4				(0x0b)						// ƒtƒFƒAƒŠ[‹î‚S
-#define	PC_F5				(0x0c)						// ƒtƒFƒAƒŠ[‹î‚T
-#define	PC_F6				(0x0d)						// ƒtƒFƒAƒŠ[‹î‚U
-#define	PC_F7				(0x0e)						// ƒtƒFƒAƒŠ[‹î‚V
-#define	PC_OU				(0x0f)						// ‰¤/‹Ê
-#define	PIT					(ROOM | B_PC_PROMOTED)		// âvie‚ğè—L‚µA“§‰ßj
-#define	PC_TO				(PC_FU | B_PC_PROMOTED)		// ‚Æ
-#define	PC_NY				(PC_KY | B_PC_PROMOTED)		// ˆÇ
-#define	PC_NK				(PC_KE | B_PC_PROMOTED)		// Œ\
-#define	PC_NG				(PC_GI | B_PC_PROMOTED)		// ‘S
-#define	ROCK				(PC_KI | B_PC_PROMOTED)		// Îie‚ğè—L‚µA•s“§‰ßj
-#define	PC_UM				(PC_KA | B_PC_PROMOTED)		// ”n
-#define	PC_RY				(PC_HI | B_PC_PROMOTED)		// —´
-#define	PC_P1				(PC_F1 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚P
-#define	PC_P2				(PC_F2 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚Q
-#define	PC_P3				(PC_F3 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚R
-#define	PC_P4				(PC_F4 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚S
-#define	PC_P5				(PC_F5 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚T
-#define	PC_P6				(PC_F6 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚U
-#define	PC_P7				(PC_F7 | B_PC_PROMOTED)		// ƒtƒFƒAƒŠ[¬‹î‚V
+// é§’ã‚³ãƒ¼ãƒ‰
+#define	NUL					(0x00)						// éé§’
+#define	ROOM				(0x00)						// ç©º
+#define	PC_FU				(0x01)						// æ­©
+#define	PC_KY				(0x02)						// é¦™
+#define	PC_KE				(0x03)						// æ¡‚
+#define	PC_GI				(0x04)						// éŠ€
+#define	PC_KI				(0x05)						// é‡‘
+#define	PC_KA				(0x06)						// è§’
+#define	PC_HI				(0x07)						// é£›
+#define	PC_F1				(0x08)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
+#define	PC_F2				(0x09)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
+#define	PC_F3				(0x0a)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
+#define	PC_F4				(0x0b)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
+#define	PC_F5				(0x0c)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
+#define	PC_F6				(0x0d)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
+#define	PC_F7				(0x0e)						// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
+#define	PC_OU				(0x0f)						// ç‹/ç‰
+#define	PIT					(ROOM | B_PC_PROMOTED)		// ç©½ï¼ˆæ¡ã‚’å æœ‰ã—ã€é€éï¼‰
+#define	PC_TO				(PC_FU | B_PC_PROMOTED)		// ã¨
+#define	PC_NY				(PC_KY | B_PC_PROMOTED)		// æ
+#define	PC_NK				(PC_KE | B_PC_PROMOTED)		// åœ­
+#define	PC_NG				(PC_GI | B_PC_PROMOTED)		// å…¨
+#define	ROCK				(PC_KI | B_PC_PROMOTED)		// çŸ³ï¼ˆæ¡ã‚’å æœ‰ã—ã€ä¸é€éï¼‰
+#define	PC_UM				(PC_KA | B_PC_PROMOTED)		// é¦¬
+#define	PC_RY				(PC_HI | B_PC_PROMOTED)		// é¾
+#define	PC_P1				(PC_F1 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼‘
+#define	PC_P2				(PC_F2 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼’
+#define	PC_P3				(PC_F3 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼“
+#define	PC_P4				(PC_F4 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼”
+#define	PC_P5				(PC_F5 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼•
+#define	PC_P6				(PC_F6 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼–
+#define	PC_P7				(PC_F7 | B_PC_PROMOTED)		// ãƒ•ã‚§ã‚¢ãƒªãƒ¼æˆé§’ï¼—
 #define	RAW_PC_END			(16)
 #define	PC_END				(32)
 #define	PC_F0				(PC_F1 - 1)
 #define	PC_P0				(PC_P1 - 1)
 
-// ‹îUóƒrƒbƒg
-#define	B_PC_HITHER			(0x40)		// ¡‚±‚Ì’l‚ÍA‹îƒf[ƒ^‚Æ˜AŒg‚µ‚Ä‚¢‚é‚Ì‚Å
-#define	B_PC_YONDER			(0x20)		//   •ÏX‚É‚Í“¯‚É‹îƒf[ƒ^‚à‘Î‰‚ª•K—v
+// é§’æ”»å—ãƒ“ãƒƒãƒˆ
+#define	B_PC_HITHER			(0x40)		// â– ã“ã®å€¤ã¯ã€é§’ãƒ‡ãƒ¼ã‚¿ã¨é€£æºã—ã¦ã„ã‚‹ã®ã§
+#define	B_PC_YONDER			(0x20)		//   å¤‰æ›´æ™‚ã«ã¯åŒæ™‚ã«é§’ãƒ‡ãƒ¼ã‚¿ã‚‚å¯¾å¿œãŒå¿…è¦
 #define	BM_PC_TURN			(0x60)
 
-// U•û‹îƒR[ƒh
+// æ”»æ–¹é§’ã‚³ãƒ¼ãƒ‰
 #define	HI_FU				(PC_FU | B_PC_HITHER)
 #define	HI_KY				(PC_KY | B_PC_HITHER)
 #define	HI_KE				(PC_KE | B_PC_HITHER)
@@ -84,7 +84,7 @@
 #define	HI_F0				(HI_F1 - 1)
 #define	HI_P0				(HI_P1 - 1)
 
-// ó•û‹îƒR[ƒh
+// å—æ–¹é§’ã‚³ãƒ¼ãƒ‰
 #define	YO_FU				(PC_FU | B_PC_YONDER)
 #define	YO_KY				(PC_KY | B_PC_YONDER)
 #define	YO_KE				(PC_KE | B_PC_YONDER)
@@ -115,34 +115,34 @@
 #define	YO_F0				(YO_F1 - 1)
 #define	YO_P0				(YO_P1 - 1)
 
-// “Áê‹îƒR[ƒh
+// ç‰¹æ®Šé§’ã‚³ãƒ¼ãƒ‰
 #define	SQ_ROOM				(ROOM)
 #define	SQ_ROCK				(ROCK)
 #define	SQ_PIT				(PIT)
 
-// ’Êí‹î”Ô†
-#define	NP_FU				(1)		// •à
-#define	NP_KY				(2)		// 
-#define	NP_KE				(3)		// Œj
-#define	NP_GI				(4)		// ‹â
-#define	NP_KI				(5)		// ‹à
-#define	NP_KA				(6)		// Šp
-#define	NP_HI				(7)		// ”ò
-#define	NP_OU				(8)		// ‰¤/‹Ê
-#define	NP_TO				(9)		// ‚Æ
-#define	NP_NY				(10)	// ˆÇ
-#define	NP_NK				(11)	// Œ\
-#define	NP_NG				(12)	// ‘S
-#define	NP_UM				(13)	// ”n
-#define	NP_RY				(14)	// —´
-#define	SP_ROOM				(15)	// E/‹ó
-#define	SP_ROCK				(16)	// œ/Î
-#define	SP_PIT				(17)	// Ÿ/âv
-// ’Êí‹î”Ô†I—¹ˆó
+// é€šå¸¸é§’ç•ªå·
+#define	NP_FU				(1)		// æ­©
+#define	NP_KY				(2)		// é¦™
+#define	NP_KE				(3)		// æ¡‚
+#define	NP_GI				(4)		// éŠ€
+#define	NP_KI				(5)		// é‡‘
+#define	NP_KA				(6)		// è§’
+#define	NP_HI				(7)		// é£›
+#define	NP_OU				(8)		// ç‹/ç‰
+#define	NP_TO				(9)		// ã¨
+#define	NP_NY				(10)	// æ
+#define	NP_NK				(11)	// åœ­
+#define	NP_NG				(12)	// å…¨
+#define	NP_UM				(13)	// é¦¬
+#define	NP_RY				(14)	// é¾
+#define	SP_ROOM				(15)	// ãƒ»/ç©º
+#define	SP_ROCK				(16)	// â—/çŸ³
+#define	SP_PIT				(17)	// â—†/ç©½
+// é€šå¸¸é§’ç•ªå·çµ‚äº†å°
 #define	NP_END				(18)
-// ƒtƒFƒAƒŠ[‹î”Ô†
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ç•ªå·
 #define	FP_START			(20)
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ƒŠ[ƒp[‘°
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - ãƒªãƒ¼ãƒ‘ãƒ¼æ—
 #define	FP_WA				(29)	// (0, 1)-Leaper Wazir
 #define	FP_DA				(30)	// (0, 2)-Leaper Dabbaba
 #define	FP_TL				(31)	// (0, 3)-Leaper Threeleaper
@@ -159,16 +159,16 @@
 #define	FP_R5				(26)	// (1, 7)+(5, 5)-Leaper Root-50-leaper
 #define	FP_R6				(27)	// (1, 8)+(4, 7)-Leaper Root-65-leaper
 #define	FP_ZE				(20)	// (0, 0)-Leaper Zero
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ƒ‰ƒCƒ_[‘°
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - ãƒ©ã‚¤ãƒ€ãƒ¼æ—
 #define	FP_QU				(41)	// (0, 1)+(1, 1)-Rider Queen
 #define	FP_NR				(42)	// (1, 2)-Rider Nightrider
 #define	FP_CR				(43)	// (1, 3)-Rider Camelrider
 #define	FP_ZR				(44)	// (2, 3)-Rider Zebrarider
 #define	FP_RS				(48)	// (1, 2)-CircleRider Rose
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - •¡‡iƒŠ[ƒp[Aƒ‰ƒCƒ_[j‘°
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - è¤‡åˆï¼ˆãƒªãƒ¼ãƒ‘ãƒ¼ã€ãƒ©ã‚¤ãƒ€ãƒ¼ï¼‰æ—
 #define	FP_EM				(50)	// (0, 1)-Rider+(1, 2)-Leaper Empress
 #define	FP_PR				(49)	// (1, 1)-Rider+(1, 2)-Leaper Princess
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ƒzƒbƒp[‘°
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - ãƒ›ãƒƒãƒ‘ãƒ¼æ—
 #define	FP_GH				(51)	// Grasshopper
 #define	FP_LO				(52)	// Locust
 #define	FP_LI				(53)	// Lion
@@ -177,79 +177,79 @@
 #define	FP_EH				(56)	// Equihopper
 #define	FP_SP				(57)	// Sparrow
 #define	FP_EA				(58)	// Eagle
-// ƒtƒFƒAƒŠ[ƒ`ƒFƒX - ÛŠû‘°
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼ãƒã‚§ã‚¹ - è±¡æ£‹æ—
 #define	FP_PA				(61)	// PaO
 #define	FP_VA				(62)	// Vao
 #define	FP_LE				(63)	// Leo
 #define	FP_SH				(64)	// Shan
 #define	FP_MA				(65)	// Mao
 #define	FP_MO				(66)	// Moa
-// ’†«Šû‘°
-#define	FP_SS				(71)	// ‚q
-#define	FP_SZ				(72)	// ŒÛ
-#define	FP_KR				(73)	// êi—Ù
-#define	FP_HO				(74)	// –P™€
-#define	FP_MK				(75)	// –ÓŒÕ
-#define	FP_DO				(76)	// “º«
-#define	FP_MH				(77)	// –Ò•^
-#define	FP_CN				(78)	// ’‡l
-#define	FP_HN				(79)	// –z‰¤
-#define	FP_JG				(80)	// ’Gs
-#define	FP_OG				(81)	// ‰¡s
-#define	FP_HE				(82)	// ”½Ô
-#define	FP_TS				(83)	// ‘¾q <- ŒÛ
-#define	FP_HR				(84)	// ”ò­ <- –ÓŒÕ
-#define	FP_HJ				(85)	// ”ò˜h <- —´‰¤
-#define	FP_TK				(86)	// Šp‘é <- —´”n
-#define	FP_HG				(87)	// ”ò‹ <- ’Gs
-#define	FP_HC				(88)	// –z’– <- ‰¡s
-#define	FP_KG				(89)	// Œ~éÇ <- ”½Ô
-#define	FP_HK				(90)	// ”’‹î <- Ô
-#define	FP_CHI				(91)	// ’†«ŠûF”ò
-#define	FP_CKA				(92)	// ’†«ŠûFŠp
-#define	FP_CKI				(93)	// ’†«ŠûF‹à
-#define	FP_CGI				(94)	// ’†«ŠûF‹â
-#define	FP_CRY				(95)	// ’†«ŠûF—´
-#define	FP_CUM				(96)	// ’†«ŠûF”n
-#define	FP_CKY				(97)	// ’†«ŠûF
-#define	FP_PSS				(98)	// ti¬‚qj
-#define	FP_PHN				(99)	// –{i¬–z‰¤j
-#define	FP_PRY				(100)	// ƒŠi¬—´‰¤j
-#define	FP_PUM				(101)	// ƒ}i¬—´”nj
-#define	FP_PHI				(102)	// ƒqi¬”òÔj
-#define	FP_PKA				(103)	// ƒNi¬Špsj
-#define	FP_PJG				(104)	// —§i¬’Gsj
-#define	FP_POG				(105)	// ‰©i¬‰¡sj
-#define	FP_PSZ				(106)	// æ³i¬ŒÛj
-// ‹×«Šû‘°
-#define	FP_THO				(111)	// –Q
-#define	FP_TTR				(112)	// ’ß
-#define	FP_TKJ				(113)	// è³
-#define	FP_TLU				(114)	// ‹i¶êGj
-#define	FP_TRU				(115)	// ’¹i‰EêGj
-#define	FP_TTK				(116)	// ‘é
-#define	FP_TKT				(117)	// üGi‚­‚Ü‚½‚©j<- ‘é
-#define	FP_TTB				(118)	// ‰
-#define	FP_TKR				(119)	// éì <- ‰
-// ‘å«Šû‘°
-#define	FP_DHR				(121)	// ”ò—´ -> ‹à«i¬‹àj
-#define	FP_DMG				(122)	// –Ò‹ -> ‹à«i¬‹àj
-#define	FP_DSC				(123)	// šp’– -> ‹à«i¬‹àj
-#define	FP_DMJ				(124)	// ”Ln -> ‹à«i¬‹àj
-#define	FP_DNK				(125)	// ‹à«i¬‹àj <- ”ò—´A–Ò‹Ašp’–A”Ln
-// –€æd‘å‘å«Šû‘°
-#define	FP_DBJ				(126)	// å´Ö
-// ƒtƒFƒAƒŠ[‹î”Ô†I—¹ˆó
+// ä¸­å°†æ£‹æ—
+#define	FP_SS				(71)	// ç…å­
+#define	FP_SZ				(72)	// é…”è±¡
+#define	FP_KR				(73)	// éº’éºŸ
+#define	FP_HO				(74)	// é³³å‡°
+#define	FP_MK				(75)	// ç›²è™
+#define	FP_DO				(76)	// éŠ…å°†
+#define	FP_MH				(77)	// çŒ›è±¹
+#define	FP_CN				(78)	// ä»²äºº
+#define	FP_HN				(79)	// å¥”ç‹
+#define	FP_JG				(80)	// ç«ªè¡Œ
+#define	FP_OG				(81)	// æ¨ªè¡Œ
+#define	FP_HE				(82)	// åè»Š
+#define	FP_TS				(83)	// å¤ªå­ <- é…”è±¡
+#define	FP_HR				(84)	// é£›é¹¿ <- ç›²è™
+#define	FP_HJ				(85)	// é£›é·² <- é¾ç‹
+#define	FP_TK				(86)	// è§’é·¹ <- é¾é¦¬
+#define	FP_HG				(87)	// é£›ç‰› <- ç«ªè¡Œ
+#define	FP_HC				(88)	// å¥”çŒª <- æ¨ªè¡Œ
+#define	FP_KG				(89)	// é¯¨é¯¢ <- åè»Š
+#define	FP_HK				(90)	// ç™½é§’ <- é¦™è»Š
+#define	FP_CHI				(91)	// ä¸­å°†æ£‹ï¼šé£›
+#define	FP_CKA				(92)	// ä¸­å°†æ£‹ï¼šè§’
+#define	FP_CKI				(93)	// ä¸­å°†æ£‹ï¼šé‡‘
+#define	FP_CGI				(94)	// ä¸­å°†æ£‹ï¼šéŠ€
+#define	FP_CRY				(95)	// ä¸­å°†æ£‹ï¼šé¾
+#define	FP_CUM				(96)	// ä¸­å°†æ£‹ï¼šé¦¬
+#define	FP_CKY				(97)	// ä¸­å°†æ£‹ï¼šé¦™
+#define	FP_PSS				(98)	// å¸«ï¼ˆæˆç…å­ï¼‰
+#define	FP_PHN				(99)	// æœ¬ï¼ˆæˆå¥”ç‹ï¼‰
+#define	FP_PRY				(100)	// ãƒªï¼ˆæˆé¾ç‹ï¼‰
+#define	FP_PUM				(101)	// ãƒï¼ˆæˆé¾é¦¬ï¼‰
+#define	FP_PHI				(102)	// ãƒ’ï¼ˆæˆé£›è»Šï¼‰
+#define	FP_PKA				(103)	// ã‚¯ï¼ˆæˆè§’è¡Œï¼‰
+#define	FP_PJG				(104)	// ç«‹ï¼ˆæˆç«ªè¡Œï¼‰
+#define	FP_POG				(105)	// é»„ï¼ˆæˆæ¨ªè¡Œï¼‰
+#define	FP_PSZ				(106)	// è±•ï¼ˆæˆé…”è±¡ï¼‰
+// ç¦½å°†æ£‹æ—
+#define	FP_THO				(111)	// éµ¬
+#define	FP_TTR				(112)	// é¶´
+#define	FP_TKJ				(113)	// é›‰
+#define	FP_TLU				(114)	// äº«ï¼ˆå·¦é¶‰ï¼‰
+#define	FP_TRU				(115)	// é³¥ï¼ˆå³é¶‰ï¼‰
+#define	FP_TTK				(116)	// é·¹
+#define	FP_TKT				(117)	// éµ°ï¼ˆãã¾ãŸã‹ï¼‰<- é·¹
+#define	FP_TTB				(118)	// ç‡•
+#define	FP_TKR				(119)	// é´ˆ <- ç‡•
+// å¤§å°†æ£‹æ—
+#define	FP_DHR				(121)	// é£›é¾ -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+#define	FP_DMG				(122)	// çŒ›ç‰› -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+#define	FP_DSC				(123)	// å—”çŒª -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+#define	FP_DMJ				(124)	// çŒ«åˆƒ -> é‡‘å°†ï¼ˆæˆé‡‘ï¼‰
+#define	FP_DNK				(125)	// é‡‘å°†ï¼ˆæˆé‡‘ï¼‰ <- é£›é¾ã€çŒ›ç‰›ã€å—”çŒªã€çŒ«åˆƒ
+// æ‘©è¨¶å¤§å¤§å°†æ£‹æ—
+#define	FP_DBJ				(126)	// èŸ è›‡
+// ãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ç•ªå·çµ‚äº†å°
 #define	FP_END				(131)
-// Šg’£ƒtƒFƒAƒŠ[‹î”Ô†
-#define	FP_EX1				(131)	// Šg’£ƒtƒFƒAƒŠ[‹î‚P
-#define	FP_EX2				(132)	// Šg’£ƒtƒFƒAƒŠ[‹î‚Q
-#define	FP_EX3				(133)	// Šg’£ƒtƒFƒAƒŠ[‹î‚R
-#define	FP_EX4				(134)	// Šg’£ƒtƒFƒAƒŠ[‹î‚S
-#define	FP_EX5				(135)	// Šg’£ƒtƒFƒAƒŠ[‹î‚T
-#define	FP_EX6				(136)	// Šg’£ƒtƒFƒAƒŠ[‹î‚U
-#define	FP_EX7				(137)	// Šg’£ƒtƒFƒAƒŠ[‹î‚V
-// Šg’£ƒtƒFƒAƒŠ[‹î”Ô†I—¹ˆó
+// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ç•ªå·
+#define	FP_EX1				(131)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼‘
+#define	FP_EX2				(132)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼’
+#define	FP_EX3				(133)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼“
+#define	FP_EX4				(134)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼”
+#define	FP_EX5				(135)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼•
+#define	FP_EX6				(136)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼–
+#define	FP_EX7				(137)	// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ï¼—
+// æ‹¡å¼µãƒ•ã‚§ã‚¢ãƒªãƒ¼é§’ç•ªå·çµ‚äº†å°
 #define	FP_EXEND			(138)
 
 // board masks
@@ -257,47 +257,47 @@
 #define	BM_SQ_RAW_PC		(0x0f)
 
 // piece attribute bits & masks
-#define	B_PA_DEFINED		(0x80000000)	// ’è‹`Ï
-#define	B_PA_PIECE   		(0x40000000)	// ‹î
-#define	B_PA_ROYAL			(0x20000000)	// ‰¤‘®«iRoyal‘®«j
-#define	B_PA_PROMOTABLE		(0x08000000)	// ¬‚ê‚é‹î
-#define	B_PA_PROMOTABLE_FE	(0x04000000)	// ¬‹Ö‚Ì‚Æ‚«A‹l‰ñ”ğ‚Å¬‚ê‚é‹î (For Escape)
-#define	BM_PA_PROMOTABLE	(0x0c000000)	// ‹l‰ñ”ğ‚Å¬‚ê‚é‹î
-#define	B_PA_PLACABLE  		(0x00800000)	// ‘Å‚Ä‚é‹îiÄg—p‚Å‚«‚é‹îB¶‹î‚Ég—pj
-#define	B_PA_REUSABLE  		(0x00400000)	// Äg—p‚Å‚«‚é‹îi¬‹î‚Ég—pj
-#define	B_PA_SAME_FACE 		(0x00010000)	// “¯‚¶‹î–Ê‚ ‚è
-#define	B_PA_CONSTRAINT_SQ	(0x00008000)	// ˆÚ“®æi‘Åæj§–ñ‚ ‚è
-#define	B_PA_CONSTRAINT_2F	(0x00004000)	// “ñ•à§–ñ‚ ‚è
-#define	B_PA_CONSTRAINT_3T	(0x00002000)	// O‰§–ñ‚ ‚è
-#define	BM_PA_CONSTRAINT	(0x0000e000)	// §–ñ
-#define	B_PA_CONSTRAINT_PM	(0x00001000)	// ‘Å‹l (Place Mate) §–ñi‘Å•à‹l§–ñA‘Å‰‹l§–ñj
-#define	B_PA_PASSED			(0x00000800)	// “§‰ß«‚ ‚èi‹î‚ª’Ê‚è”²‚¯‚ç‚ê‚éj
+#define	B_PA_DEFINED		(0x80000000)	// å®šç¾©æ¸ˆ
+#define	B_PA_PIECE   		(0x40000000)	// é§’
+#define	B_PA_ROYAL			(0x20000000)	// ç‹å±æ€§ï¼ˆRoyalå±æ€§ï¼‰
+#define	B_PA_PROMOTABLE		(0x08000000)	// æˆã‚Œã‚‹é§’
+#define	B_PA_PROMOTABLE_FE	(0x04000000)	// æˆç¦ã®ã¨ãã€è©°å›é¿ã§æˆã‚Œã‚‹é§’ (For Escape)
+#define	BM_PA_PROMOTABLE	(0x0c000000)	// è©°å›é¿ã§æˆã‚Œã‚‹é§’
+#define	B_PA_PLACABLE  		(0x00800000)	// æ‰“ã¦ã‚‹é§’ï¼ˆï¼å†ä½¿ç”¨ã§ãã‚‹é§’ã€‚ç”Ÿé§’ã«ä½¿ç”¨ï¼‰
+#define	B_PA_REUSABLE  		(0x00400000)	// å†ä½¿ç”¨ã§ãã‚‹é§’ï¼ˆæˆé§’ã«ä½¿ç”¨ï¼‰
+#define	B_PA_SAME_FACE 		(0x00010000)	// åŒã˜é§’é¢ã‚ã‚Š
+#define	B_PA_CONSTRAINT_SQ	(0x00008000)	// ç§»å‹•å…ˆï¼ˆæ‰“å…ˆï¼‰åˆ¶ç´„ã‚ã‚Š
+#define	B_PA_CONSTRAINT_2F	(0x00004000)	// äºŒæ­©åˆ¶ç´„ã‚ã‚Š
+#define	B_PA_CONSTRAINT_3T	(0x00002000)	// ä¸‰ç‡•åˆ¶ç´„ã‚ã‚Š
+#define	BM_PA_CONSTRAINT	(0x0000e000)	// åˆ¶ç´„
+#define	B_PA_CONSTRAINT_PM	(0x00001000)	// æ‰“è©° (Place Mate) åˆ¶ç´„ï¼ˆæ‰“æ­©è©°åˆ¶ç´„ã€æ‰“ç‡•è©°åˆ¶ç´„ï¼‰
+#define	B_PA_PASSED			(0x00000800)	// é€éæ€§ã‚ã‚Šï¼ˆé§’ãŒé€šã‚ŠæŠœã‘ã‚‰ã‚Œã‚‹ï¼‰
 
 // piece move-style bits & masks
-#define	B_MS_LEAP			(0x80000000)	// ’µ‚Ñi‡‹î‚Ì—˜‚©‚È‚¢ˆÚ“®j
-#define	B_MS_SHISHI_LEAP	(0x40000000)	// ‚q•—‚Ì’µ‚Ñi‡‹î‚Ì—˜‚©‚È‚¢ˆÚ“®j
-#define	B_MS_LONG_LEAP		(0x10000000)	// ’·’µ‚Ñi’µ‚Ñ•â‘«B55‚©‚ç’µ‚×‚È‚¢—˜‚«‚ª‚ ‚éê‡j
-#define	BM_MS_LEAP_FAMILY	(0xc0000000)	// ’µ‚ÑŒn
-#define	B_MS_STEP			(0x08000000)	// ’µXˆÚ“®i‡‹î‚Ì—˜‚­ˆÚ“®BÛŠû‚ÌÛj
-#define	B_MS_MAO_STEP		(0x04000000)	// Mao•—‚Ì’µXi‡‹î‚Ì—˜‚­ˆÚ“®BÛŠû‚Ì”nj
-#define	BM_MS_STEP_FAMILY	(0x0c000000)	// ’µXŒn
-#define	B_MS_RUN			(0x00800000)	// ‘–‚è
+#define	B_MS_LEAP			(0x80000000)	// è·³ã³ï¼ˆåˆé§’ã®åˆ©ã‹ãªã„ç§»å‹•ï¼‰
+#define	B_MS_SHISHI_LEAP	(0x40000000)	// ç…å­é¢¨ã®è·³ã³ï¼ˆåˆé§’ã®åˆ©ã‹ãªã„ç§»å‹•ï¼‰
+#define	B_MS_LONG_LEAP		(0x10000000)	// é•·è·³ã³ï¼ˆè·³ã³è£œè¶³ã€‚55ã‹ã‚‰è·³ã¹ãªã„åˆ©ããŒã‚ã‚‹å ´åˆï¼‰
+#define	BM_MS_LEAP_FAMILY	(0xc0000000)	// è·³ã³ç³»
+#define	B_MS_STEP			(0x08000000)	// è·³ã€…ç§»å‹•ï¼ˆåˆé§’ã®åˆ©ãç§»å‹•ã€‚è±¡æ£‹ã®è±¡ï¼‰
+#define	B_MS_MAO_STEP		(0x04000000)	// Maoé¢¨ã®è·³ã€…ï¼ˆåˆé§’ã®åˆ©ãç§»å‹•ã€‚è±¡æ£‹ã®é¦¬ï¼‰
+#define	BM_MS_STEP_FAMILY	(0x0c000000)	// è·³ã€…ç³»
+#define	B_MS_RUN			(0x00800000)	// èµ°ã‚Š
 #define	B_MS_HOP			(0x00400000)	// Grasshopper move
 #define	B_MS_DECAPT_HOP		(0x00200000)	// Locust move
 #define	B_MS_PAO_JUMP		(0x00100000)	// Pao move
 #define	B_MS_JUMP			(0x00080000)	// Lion move
 #define	B_MS_JUMP_HOP		(0x00040000)	// Kangaroo move
-#define	BM_MS_RUN_FAMILY	(0x00fc0000)	// ‘–‚èŒn
+#define	BM_MS_RUN_FAMILY	(0x00fc0000)	// èµ°ã‚Šç³»
 #define	B_MS_REFL135		(0x00020000)	// Sparrow move
 #define	B_MS_REFL90			(0x00010000)	// Eagle move
 #define	B_MS_EQUI_JUMP		(0x00008000)	// Equihopper move
 #define	B_MS_NS_EQUI_JUMP	(0x00004000)	// Non-stop Equihopper move
-#define	BM_MS_HOP_FAMILY	(0x007fc000)	// Hop-jumpŒn
+#define	BM_MS_HOP_FAMILY	(0x007fc000)	// Hop-jumpç³»
 #define	B_MS_CIRCLE_RUN		(0x00002000)	// Rose move
-#define	BM_MS_EXRUN_FAMILY	(0x00fc2000)	// Šg’£‘–‚èŒn
+#define	BM_MS_EXRUN_FAMILY	(0x00fc2000)	// æ‹¡å¼µèµ°ã‚Šç³»
 
-#define	EOP					(-1)	// ˆÊ’u‚Ì”z—ñ‚ÌI’[‹L†
-#define	NOP					(-1)	// ”Õã‚Å‚È‚¢ˆÊ’uiˆÊ’u‚Ì‰Šú’l‚Ég—pj
+#define	EOP					(-1)	// ä½ç½®ã®é…åˆ—ã®çµ‚ç«¯è¨˜å·
+#define	NOP					(-1)	// ç›¤ä¸Šã§ãªã„ä½ç½®ï¼ˆä½ç½®ã®åˆæœŸå€¤ã«ä½¿ç”¨ï¼‰
 
 // macros
 #define	POS(f, r)			((f) * 9 + (r))
@@ -337,7 +337,7 @@
 typedef struct {
 	int file;
 	int rank;
-	int range;		// ’µXAŒÀ’è‘–‚èA‰ñ“]‘–‚è‚Ì‚Æ‚«w’è
+	int range;		// è·³ã€…ã€é™å®šèµ°ã‚Šã€å›è»¢èµ°ã‚Šã®ã¨ãæŒ‡å®š
 } vec_t;
 
 // Active Piece Information
@@ -404,13 +404,13 @@ extern char *yo_leap_to_pos[PC_END][81];
 extern char **hi_run_to_posv[PC_END][81];
 extern char **yo_run_to_posv[PC_END][81];
 extern char *around_to_pos[81];
-extern uchar_t *hi_to_board[PC_END][81];		// U•ûˆÚ“®æƒŠƒXƒg
-extern uchar_t *yo_to_board[PC_END][81];		// U•ûˆÚ“®æƒŠƒXƒg
+extern uchar_t *hi_to_board[PC_END][81];		// æ”»æ–¹ç§»å‹•å…ˆãƒªã‚¹ãƒˆ
+extern uchar_t *yo_to_board[PC_END][81];		// æ”»æ–¹ç§»å‹•å…ˆãƒªã‚¹ãƒˆ
 extern uchar_t *hi_close_check_board[81];
 extern uchar_t *yo_close_check_board[81];
 extern uchar_t *hi_remote_check_board[81];
 extern uchar_t *yo_remote_check_board[81];
-extern uchar_t *around_sq[81];					// üˆÍƒŠƒXƒg
+extern uchar_t *around_sq[81];					// å‘¨å›²ãƒªã‚¹ãƒˆ
 extern ulong_t fairy_move_style;
 extern uchar_t *hi_valid_sq[PC_END];
 extern uchar_t *yo_valid_sq[PC_END];

@@ -9,7 +9,7 @@
 #include	<stdio.h>
 #include	<time.h>
 
-// ƒ†[ƒU’è‹`Œ^
+// ãƒ¦ãƒ¼ã‚¶å®šç¾©å‹
 typedef unsigned char uchar_t;
 typedef unsigned short ushort_t;
 typedef unsigned long ulong_t;
@@ -22,7 +22,7 @@ typedef unsigned long long ulonglong_t;
 typedef unsigned long ulonglong_t;
 #endif
 
-// ’è”
+// å®šæ•°
 #define	ON				(-1)
 #define	OFF				(0)
 #define	SIGQUIT			(3)
@@ -36,21 +36,21 @@ typedef unsigned long ulonglong_t;
 #define	DEFAULT_MSEQ_INC_COUNT	((1024 * 1024 * 32) / sizeof(mseq_t))
 #define	DEFAULT_BOARD_INC_COUNT	((1024 * 1024 * 32) / sizeof(board_t))
 
-// ‹l/“¦‚ê/”ñ“¦‚ê’l
+// è©°/é€ƒã‚Œ/éé€ƒã‚Œå€¤
 #define	RC_MATE			(0)
 #define	RC_ESCAPE		(-1)
 #define	RC_NOTESCAPE	(1)
 
-// ‡–@/”ñ‡–@’l
+// åˆæ³•/éåˆæ³•å€¤
 #define	RC_LEGAL		(0)
 #define	RC_ILLEGAL		(-1)
 
-// ƒƒbƒZ[ƒWo—Íí•ÊƒR[ƒh
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›ç¨®åˆ¥ã‚³ãƒ¼ãƒ‰
 #define	B_PM_DISPLAY	(0x1)
 #define	B_PM_FILE		(0x2)
 #define	B_PM_BOTH		(B_PM_DISPLAY | B_PM_FILE)
 
-// ƒ‹[ƒ‹ƒtƒ‰ƒOƒrƒbƒg
+// ãƒ«ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ
 #define	RULE_MATE			(0x8000)
 #define	RULE_SELFMATE		(0x4000)
 #define	RULE_SEREASEMATE	(0x2000)
@@ -64,11 +64,11 @@ typedef unsigned long ulonglong_t;
 #define	RULE_NFMSERM		(RULE_SEREASEMATE)
 #define	RULE_NFMHA			(RULE_HELP | RULE_TARGETFIG)
 
-// ğŒƒtƒ‰ƒOƒrƒbƒg
+// æ¡ä»¶ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ
 #define	COND_PWC		(0x8000)
 #define	COND_NO_PROM	(0x0008)
 
-// è‡ˆÚ“®•ûŒüƒtƒ‰ƒOƒrƒbƒg
+// æ‰‹é †ç§»å‹•æ–¹å‘ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ
 #define	DIR_RIGHT		(0x01)
 #define	DIR_LEFT		(0x02)
 #define	DIR_STRAIGHT	(0x04)
@@ -78,12 +78,12 @@ typedef unsigned long ulonglong_t;
 #define	DIR_DOWN		(0x40)
 #define	DIR_JUMP		(0x80)
 
-// \‘¢‘Ì
+// æ§‹é€ ä½“
 
-// ‹î¬ƒrƒbƒg
-#define	B_PC_PROMOTE	(0x08)	// ¬–Ê
+// é§’æˆãƒ“ãƒƒãƒˆ
+#define	B_PC_PROMOTE	(0x08)	// æˆé¢
 
-// ‹îƒR[ƒh
+// é§’ã‚³ãƒ¼ãƒ‰
 #define	PC_FU		(0x01)
 #define	PC_KY		(0x02)
 #define	PC_KE		(0x03)
@@ -100,17 +100,17 @@ typedef unsigned long ulonglong_t;
 #define	PC_RY		(PC_HI | B_PC_PROMOTE)
 #define	PC_END		(16)
 #define	SQ_ROOM		(0x10)
-#define	SQ_ROCK		(0x11)		// Îie‚ğè—L‚µA•s“§‰ßj
-#define	SQ_HOLE		(0x12)		// ŒŠie‚ğè—L‚µA“§‰ßj
+#define	SQ_ROCK		(0x11)		// çŸ³ï¼ˆæ¡ã‚’å æœ‰ã—ã€ä¸é€éï¼‰
+#define	SQ_HOLE		(0x12)		// ç©´ï¼ˆæ¡ã‚’å æœ‰ã—ã€é€éï¼‰
 #define	SQ_END		(19)
 #define	SQ_OofB		(0x00)
 
-// ‹îUóƒrƒbƒg
+// é§’æ”»å—ãƒ“ãƒƒãƒˆ
 #define	B_PC_HITHER		(0x80)
 #define	B_PC_YONDER		(0x40)
 #define	B_SQ_CONTROL	(0x10)
 
-// U•û‹îƒR[ƒh
+// æ”»æ–¹é§’ã‚³ãƒ¼ãƒ‰
 #define	HI_FU		(PC_FU | B_PC_HITHER)
 #define	HI_KY		(PC_KY | B_PC_HITHER)
 #define	HI_KE		(PC_KE | B_PC_HITHER)
@@ -126,7 +126,7 @@ typedef unsigned long ulonglong_t;
 #define	HI_UM		(HI_KA | B_PC_PROMOTE)
 #define	HI_RY		(HI_HI | B_PC_PROMOTE)
 
-// ó•û‹îƒR[ƒh
+// å—æ–¹é§’ã‚³ãƒ¼ãƒ‰
 #define	YO_FU		(PC_FU | B_PC_YONDER)
 #define	YO_KY		(PC_KY | B_PC_YONDER)
 #define	YO_KE		(PC_KE | B_PC_YONDER)
@@ -142,23 +142,23 @@ typedef unsigned long ulonglong_t;
 #define	YO_UM		(YO_KA | B_PC_PROMOTE)
 #define	YO_RY		(YO_HI | B_PC_PROMOTE)
 
-// ”Õ–Êƒ}ƒXƒNƒpƒ^[ƒ“
+// ç›¤é¢ãƒã‚¹ã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³
 #define	M_SQ_PIECE		(0x0f)
 #define	M_SQ_RAW_PC		(0x07)
 #define	M_SQ_ONBD		(0x1f)
 #define	M_SQ_OofB		(0x00)
 
-// ”Õ–ÊƒZƒ‹\‘¢‘Ì
+// ç›¤é¢ã‚»ãƒ«æ§‹é€ ä½“
 struct board_ {
-	board_t *next;				// Ÿ”Õ–ÊƒZƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	uchar_t board[BOARD_SIZE];	// ”Õ–Ê
-	uchar_t hi_hand[HAND_SIZE];	// U•û‹î
-	uchar_t yo_hand[HAND_SIZE];	// ó•û‹î
-	uchar_t hi_ou_pos;			// U•û‰¤ˆÊ’u
-	uchar_t yo_gy_pos;			// ó•û‹ÊˆÊ’u
-	uchar_t fire[BOARD_SIZE];	// ‰Îüƒ}ƒbƒv
-	uchar_t hi_ck_pos;			// U•û‰¤èˆÊ’ui—¼‰¤è‚Ì‚Æ‚«‚ÍA0xff)
-	uchar_t yo_ck_pos;			// ó•û‰¤èˆÊ’ui—¼‰¤è‚Ì‚Æ‚«‚ÍA0xff)
+	board_t *next;				// æ¬¡ç›¤é¢ã‚»ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	uchar_t board[BOARD_SIZE];	// ç›¤é¢
+	uchar_t hi_hand[HAND_SIZE];	// æ”»æ–¹æŒé§’
+	uchar_t yo_hand[HAND_SIZE];	// å—æ–¹æŒé§’
+	uchar_t hi_ou_pos;			// æ”»æ–¹ç‹ä½ç½®
+	uchar_t yo_gy_pos;			// å—æ–¹ç‰ä½ç½®
+	uchar_t fire[BOARD_SIZE];	// ç«ç·šãƒãƒƒãƒ—
+	uchar_t hi_ck_pos;			// æ”»æ–¹ç‹æ‰‹ä½ç½®ï¼ˆä¸¡ç‹æ‰‹ã®ã¨ãã¯ã€0xff)
+	uchar_t yo_ck_pos;			// å—æ–¹ç‹æ‰‹ä½ç½®ï¼ˆä¸¡ç‹æ‰‹ã®ã¨ãã¯ã€0xff)
 };
 
 #define	B_BD_HI_STEPFIRE	(0x80)
@@ -175,82 +175,82 @@ struct board_ {
 #define	B_BD_YO_FIRE		(B_BD_YO_STEPFIRE | B_BD_YO_RUNFIRE | B_BD_YO_OVERFIRE)
 //#define	B_BD_YO_FIRE		(B_BD_YO_STEPFIRE | B_BD_YO_RUNFIRE)
 
-// è‡ƒZƒ‹\‘¢‘Ì
+// æ‰‹é †ã‚»ãƒ«æ§‹é€ ä½“
 struct mseq_ {
-	mseq_t *parp;			// ‘O[“x‚Ìè‡ƒZƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	mseq_t *brop;			// “¯ˆê[“x‚Ìè‡ƒZƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	mseq_t *amip;			// ƒnƒbƒVƒ…ƒLƒ…[‚Ü‚½‚Í‹lè‡ƒ|ƒCƒ“ƒ^
+	mseq_t *parp;			// å‰æ·±åº¦ã®æ‰‹é †ã‚»ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	mseq_t *brop;			// åŒä¸€æ·±åº¦ã®æ‰‹é †ã‚»ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	mseq_t *amip;			// ãƒãƒƒã‚·ãƒ¥ã‚­ãƒ¥ãƒ¼ã¾ãŸã¯è©°æ‰‹é †ãƒã‚¤ãƒ³ã‚¿
 	union {
-		board_t *bdp_;		// ”Õ–ÊƒZƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		mseq_t *sphp_;		// “¯ˆê‹Ç–Ê‚Ìè‡ƒZƒ‹ƒ|ƒCƒ“ƒ^
+		board_t *bdp_;		// ç›¤é¢ã‚»ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		mseq_t *sphp_;		// åŒä¸€å±€é¢ã®æ‰‹é †ã‚»ãƒ«ãƒã‚¤ãƒ³ã‚¿
 	} u1_;
-	long depth;				// [“x
-	ulong_t hi_hash;		// ”Õ–ÊU•û‹î‚ÌƒnƒbƒVƒ…’l
-	ulong_t yo_hash;		// ”Õ–Êó•û‹î‚ÌƒnƒbƒVƒ…’l
-	ulong_t hi_hand;		// U•û‹îƒrƒbƒgƒpƒ^[ƒ“
-	ushort_t ps_flag;		// ‹Ç–Êó‘Ôƒtƒ‰ƒO
-	uchar_t ref_count;		// QÆ”
-	uchar_t pc;				// è‡: ‹î
-	uchar_t from;			// è‡: ˆÚ“®Œ³
-	uchar_t to;				// è‡: ˆÚ“®æ
-	uchar_t capt;			// è‡: •ßŠl‹î
-	uchar_t mv_flag;		// è‡: ƒtƒ‰ƒO
+	long depth;				// æ·±åº¦
+	ulong_t hi_hash;		// ç›¤é¢æ”»æ–¹é§’ã®ãƒãƒƒã‚·ãƒ¥å€¤
+	ulong_t yo_hash;		// ç›¤é¢å—æ–¹é§’ã®ãƒãƒƒã‚·ãƒ¥å€¤
+	ulong_t hi_hand;		// æ”»æ–¹æŒé§’ãƒ“ãƒƒãƒˆãƒ‘ã‚¿ãƒ¼ãƒ³
+	ushort_t ps_flag;		// å±€é¢çŠ¶æ…‹ãƒ•ãƒ©ã‚°
+	uchar_t ref_count;		// å‚ç…§æ•°
+	uchar_t pc;				// æ‰‹é †: é§’
+	uchar_t from;			// æ‰‹é †: ç§»å‹•å…ƒ
+	uchar_t to;				// æ‰‹é †: ç§»å‹•å…ˆ
+	uchar_t capt;			// æ‰‹é †: æ•ç²é§’
+	uchar_t mv_flag;		// æ‰‹é †: ãƒ•ãƒ©ã‚°
 };
 
 #define	BDP 		u1_.bdp_
 #define	SPHP 		u1_.sphp_
 
-// ‹îí•Êƒ}ƒXƒN
-#define	M_HH_FU 		(0x000000ff)	// ‹îƒ}ƒXƒN: •à
-#define	M_HH_KY 		(0x00000f00)	// ‹îƒ}ƒXƒN: 
-#define	M_HH_KE 		(0x0000f000)	// ‹îƒ}ƒXƒN: Œj
-#define	M_HH_GI 		(0x000f0000)	// ‹îƒ}ƒXƒN: ‹â
-#define	M_HH_KI 		(0x00f00000)	// ‹îƒ}ƒXƒN: ‹à
-#define	M_HH_KA 		(0x0f000000)	// ‹îƒ}ƒXƒN: Šp
-#define	M_HH_HI 		(0xf0000000)	// ‹îƒ}ƒXƒN: ”ò
+// æŒé§’ç¨®åˆ¥ãƒã‚¹ã‚¯
+#define	M_HH_FU 		(0x000000ff)	// æŒé§’ãƒã‚¹ã‚¯: æ­©
+#define	M_HH_KY 		(0x00000f00)	// æŒé§’ãƒã‚¹ã‚¯: é¦™
+#define	M_HH_KE 		(0x0000f000)	// æŒé§’ãƒã‚¹ã‚¯: æ¡‚
+#define	M_HH_GI 		(0x000f0000)	// æŒé§’ãƒã‚¹ã‚¯: éŠ€
+#define	M_HH_KI 		(0x00f00000)	// æŒé§’ãƒã‚¹ã‚¯: é‡‘
+#define	M_HH_KA 		(0x0f000000)	// æŒé§’ãƒã‚¹ã‚¯: è§’
+#define	M_HH_HI 		(0xf0000000)	// æŒé§’ãƒã‚¹ã‚¯: é£›
 
-// ‹Ç–Êó‘Ôƒtƒ‰ƒOƒrƒbƒg
-#define	B_PS_HI_CHECK		(0x8000)	// U•û‰¤è
-#define	B_PS_HI_STEPCHECK	(0x4000)	// U•û‹ßÚ‰¤è
-#define	B_PS_HI_RUNCHECK	(0x2000)	// U•û‰“Šu‰¤è
-#define	B_PS_HI_DBLCHECK	(0x1000)	// U•û—¼‰¤è
-#define	B_PS_YO_CHECK		(0x0800)	// ó•û‰¤è
-#define	B_PS_YO_STEPCHECK	(0x0400)	// ó•û‹ßÚ‰¤è
-#define	B_PS_YO_RUNCHECK	(0x0200)	// ó•û‰“Šu‰¤è
-#define	B_PS_YO_DBLCHECK	(0x0100)	// ó•û—¼‰¤è
-#define	B_PS_MATE			(0x0080)	// ‹l
-#define	B_PS_ESCAPE			(0x0040)	// “¦‚ê
-#define	B_PS_UFMATE			(0x0020)	// ‘Å•à‹l
-#define	B_PS_UFCHECK		(0x0010)	// ‘Å•à‰¤è
-#define	B_PS_SAMEPHASE		(0x0008)	// “¯ˆê‹Ç–Ê
-#define	B_PS_SAMEBOARD		(0x0004)	// “¯ˆê”Õ–Ê
-#define	B_PS_GIVENMATEPATH	(0x0002)	// w’è‹lè‡
+// å±€é¢çŠ¶æ…‹ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ
+#define	B_PS_HI_CHECK		(0x8000)	// æ”»æ–¹ç‹æ‰‹
+#define	B_PS_HI_STEPCHECK	(0x4000)	// æ”»æ–¹è¿‘æ¥ç‹æ‰‹
+#define	B_PS_HI_RUNCHECK	(0x2000)	// æ”»æ–¹é éš”ç‹æ‰‹
+#define	B_PS_HI_DBLCHECK	(0x1000)	// æ”»æ–¹ä¸¡ç‹æ‰‹
+#define	B_PS_YO_CHECK		(0x0800)	// å—æ–¹ç‹æ‰‹
+#define	B_PS_YO_STEPCHECK	(0x0400)	// å—æ–¹è¿‘æ¥ç‹æ‰‹
+#define	B_PS_YO_RUNCHECK	(0x0200)	// å—æ–¹é éš”ç‹æ‰‹
+#define	B_PS_YO_DBLCHECK	(0x0100)	// å—æ–¹ä¸¡ç‹æ‰‹
+#define	B_PS_MATE			(0x0080)	// è©°
+#define	B_PS_ESCAPE			(0x0040)	// é€ƒã‚Œ
+#define	B_PS_UFMATE			(0x0020)	// æ‰“æ­©è©°
+#define	B_PS_UFCHECK		(0x0010)	// æ‰“æ­©ç‹æ‰‹
+#define	B_PS_SAMEPHASE		(0x0008)	// åŒä¸€å±€é¢
+#define	B_PS_SAMEBOARD		(0x0004)	// åŒä¸€ç›¤é¢
+#define	B_PS_GIVENMATEPATH	(0x0002)	// æŒ‡å®šè©°æ‰‹é †
 
-// è‡ƒtƒ‰ƒOƒrƒbƒg
-#define	B_MV_PROMOTE		(0x80)		// ¬
-#define	B_MV_CAPTIT			(0x40)		// “¯
-#define	B_MV_REBORN			(0x20)		// Ä¶
-#define	B_MV_MATEPATH		(0x08)		// ‹lè‡
-#define	B_MV_MATEBRANCH		(0x04)		// ‹lè‡•ªŠò“_
-#define	B_MV_MATEJOIN		(0x02)		// ‹lè‡‡—¬“_
-#define	B_MV_GIVEN			(0x01)		// w’èè‡
+// æ‰‹é †ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ
+#define	B_MV_PROMOTE		(0x80)		// æˆ
+#define	B_MV_CAPTIT			(0x40)		// åŒ
+#define	B_MV_REBORN			(0x20)		// å†ç”Ÿ
+#define	B_MV_MATEPATH		(0x08)		// è©°æ‰‹é †
+#define	B_MV_MATEBRANCH		(0x04)		// è©°æ‰‹é †åˆ†å²ç‚¹
+#define	B_MV_MATEJOIN		(0x02)		// è©°æ‰‹é †åˆæµç‚¹
+#define	B_MV_GIVEN			(0x01)		// æŒ‡å®šæ‰‹é †
 
-// è‡ƒZƒ‹ƒwƒbƒ_\‘¢‘Ì
+// æ‰‹é †ã‚»ãƒ«ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
 struct mseqhead_ {
-	mseq_t *brop;				// “¯ˆê[“x‚Ìè‡ƒZƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	long all_move_count;		// ‘S¶¬è”i”Õ–Êƒf[ƒ^\‘¢¶¬Œãj
-	long legal_move_count;		// ‡–@è”
-	long new_phase_count;		// V‹Kè”
-	long unique_phase_count;	// —Bˆêè”
-	ushort_t flag;				// ƒtƒ‰ƒO
+	mseq_t *brop;				// åŒä¸€æ·±åº¦ã®æ‰‹é †ã‚»ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	long all_move_count;		// å…¨ç”Ÿæˆæ‰‹æ•°ï¼ˆç›¤é¢ãƒ‡ãƒ¼ã‚¿æ§‹é€ ç”Ÿæˆå¾Œï¼‰
+	long legal_move_count;		// åˆæ³•æ‰‹æ•°
+	long new_phase_count;		// æ–°è¦æ‰‹æ•°
+	long unique_phase_count;	// å”¯ä¸€æ‰‹æ•°
+	ushort_t flag;				// ãƒ•ãƒ©ã‚°
 };
 
-// è‡ƒZƒ‹ƒwƒbƒ_ƒtƒ‰ƒOƒrƒbƒg
-#define	B_MH_MATE			(0x8000)	// ‹l
-#define	B_MH_ESCAPE			(0x4000)	// “¦‚ê
-#define	B_MH_NOCELL			(0x2000)	// è‡ƒZƒ‹‰ğ•úÏ
+// æ‰‹é †ã‚»ãƒ«ãƒ˜ãƒƒãƒ€ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ
+#define	B_MH_MATE			(0x8000)	// è©°
+#define	B_MH_ESCAPE			(0x4000)	// é€ƒã‚Œ
+#define	B_MH_NOCELL			(0x2000)	// æ‰‹é †ã‚»ãƒ«è§£æ”¾æ¸ˆ
 
-// •Ï”
+// å¤‰æ•°
 // hist.c
 extern char cmdname[];
 extern char release[];

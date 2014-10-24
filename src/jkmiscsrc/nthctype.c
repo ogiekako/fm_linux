@@ -14,7 +14,7 @@ nthctype(const char *s, int n)
 {
 	const char *t = s + n;
 
-	/* –Ú•WˆÊ’u t ‚É’B‚·‚é‚Ü‚ÅA•¶š‚ÌƒoƒCƒg”‚É‰‚¶‚Ä s ‚ği‚ß‚é */
+	/* ç›®æ¨™ä½ç½® t ã«é”ã™ã‚‹ã¾ã§ã€æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã«å¿œã˜ã¦ s ã‚’é€²ã‚ã‚‹ */
 	while (s < t) {
 		if (ISKANJI((unsigned char) *s)) {
 			s += 2;
@@ -23,13 +23,13 @@ nthctype(const char *s, int n)
 		}
 	}
 
-	if (s == t) {  /* ‚Ò‚Á‚½‚è‚ÌˆÊ’u‚¾‚Á‚½‚çA‰ü‚ß‚ÄA•’Ê‚É”»’è‚·‚é */
+	if (s == t) {  /* ã´ã£ãŸã‚Šã®ä½ç½®ã ã£ãŸã‚‰ã€æ”¹ã‚ã¦ã€æ™®é€šã«åˆ¤å®šã™ã‚‹ */
 		if (ISKANJI((unsigned char) *s)) {
 			return CT_KJ1;
 		} else {
 			return CT_ANK;
 		}
-	} else {  /* ”ò‚Ñ‰z‚¦‚Ä‚¢‚½‚çAŠ¿šƒR[ƒh‚Ì‚QƒoƒCƒg–Ú‚Æ‚·‚é */
+	} else {  /* é£›ã³è¶Šãˆã¦ã„ãŸã‚‰ã€æ¼¢å­—ã‚³ãƒ¼ãƒ‰ã®ï¼’ãƒã‚¤ãƒˆç›®ã¨ã™ã‚‹ */
 		return CT_KJ2;
 	}
 }

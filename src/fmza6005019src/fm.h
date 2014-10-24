@@ -6,8 +6,8 @@
 #if !defined(FM_H)
 #define FM_H
 
-//   hi - hitheriæèj
-//   yo - yonderiŒãèj
+//   hi - hitherï¼ˆå…ˆæ‰‹ï¼‰
+//   yo - yonderï¼ˆå¾Œæ‰‹ï¼‰
 
 #include	<stdio.h>
 #include	<stdlib.h>
@@ -49,9 +49,9 @@ typedef unsigned char uchar_t;
 #endif
 
 // return code (for direct)
-#define	RC_FAIL				(0)		// ”½‘¥iˆ—‘ÎÛŠO‚ğŠÜ‚Şj
-#define	RC_ESCAPE			(1)		// “¦‚êi’†’f‚ğŠÜ‚Şj
-#define	RC_MATE				(2)		// ‹l
+#define	RC_FAIL				(0)		// åå‰‡ï¼ˆå‡¦ç†å¯¾è±¡å¤–ã‚’å«ã‚€ï¼‰
+#define	RC_ESCAPE			(1)		// é€ƒã‚Œï¼ˆä¸­æ–­ã‚’å«ã‚€ï¼‰
+#define	RC_MATE				(2)		// è©°
 
 // limit (or maximum) value
 #define PROBSIZE			(1024)
@@ -76,61 +76,61 @@ typedef unsigned char uchar_t;
 #define MATE_MOVES			(5)
 
 // mate-rule flags
-#define B_R_DIRECT_MATE		(0x80000000)	// ‚©‚µ‚±‹liè”w’èA–³‘Ê‡‚È‚µj
-#define BM_R_DIRECT			(0x80000000)	// ‚©‚µ‚±Œn
-#define B_R_HELP_MATE		(0x08000000)	// ‹¦—Í‹l
-#define B_R_HELP_STALEMATE	(0x04000000)	// ‹¦—ÍƒXƒeƒCƒ‹ƒƒCƒg
-#define B_R_HELP_SELF_MATE	(0x02000000)	// ‹¦—Í©‹Ê‹l
+#define B_R_DIRECT_MATE		(0x80000000)	// ã‹ã—ã“è©°ï¼ˆæ‰‹æ•°æŒ‡å®šã€ç„¡é§„åˆãªã—ï¼‰
+#define BM_R_DIRECT			(0x80000000)	// ã‹ã—ã“ç³»
+#define B_R_HELP_MATE		(0x08000000)	// å”åŠ›è©°
+#define B_R_HELP_STALEMATE	(0x04000000)	// å”åŠ›ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆ
+#define B_R_HELP_SELF_MATE	(0x02000000)	// å”åŠ›è‡ªç‰è©°
 #define B_R_HELP_SELF_STALEMATE \
-							(0x01000000)	// ‹¦—Í©‹ÊƒXƒeƒCƒ‹ƒƒCƒg
-#define BM_R_HELP			(0x0f000000)	// ‹¦—ÍŒn
+							(0x01000000)	// å”åŠ›è‡ªç‰ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆ
+#define BM_R_HELP			(0x0f000000)	// å”åŠ›ç³»
 
 // mate-condition flags
-#define	B_C_NOPROMOTE		(0x8000000000000000)	// ¬‹Ö
+#define	B_C_NOPROMOTE		(0x8000000000000000)	// æˆç¦
 #define	B_C_ABSOLUTE_NOPROMOTE \
-							(0x4000000000000000)	// â‘Î¬‹Ö
-#define	B_C_NOCAPT			(0x0800000000000000)	// æ‹Ö
-#define	B_C_ABSOLUTE_NOCAPT	(0x0400000000000000)	// â‘Îæ‹ÖiŒ»İA–¢À‘•j
-#define	B_C_HITHER_NOCAPT	(0x0100000000000000)	// U•ûæ‹Ö
-#define	B_C_UCHIFU			(0x0080000000000000)	// ‘Å•à‹l
-#define	B_C_UCHIFU_OK		(0x0040000000000000)	// ‘Å•à‹l‰Â
-#define	B_C_UCHI			(0x0020000000000000)	// ‘Å‹î‹liŒ»İA–¢À‘•j
-#define	B_C_POSITION		(0x0008000000000000)	// ‰¤ˆÊ’u
-#define	B_C_JUST_MATE		(0x0004000000000000)	// ŒÀ’è‹liŒ»İA–¢À‘•j
-#define	B_C_W_GY			(0x0002000000000000)	// “ñ‹Ê‹l
-#define	B_C_GREED			(0x0000800000000000)	// ‹­—~
-#define	B_C_ASCETIC 		(0x0000400000000000)	// ‹Ö—~
-#define	B_C_ANNAN			(0x0000080000000000)	// ˆÀ“ì
-#define	B_C_ANHOKU			(0x0000040000000000)	// ˆÀ–k
-#define	B_C_TAIMEN			(0x0000020000000000)	// ‘Î–Ê
-#define	B_C_HAIMEN			(0x0000010000000000)	// ”w–Ê
-#define	B_C_NEKOSEN			(0x0000008000000000)	// ƒlƒR‘N
-#define	B_C_NEKO2SEN		(0x0000004000000000)	// ƒlƒRƒlƒR‘N
-#define	BM_C_CHANGE_FAMILY	(0x00000fc000000000)	// •ÏgŒn
-#define	B_C_TENJIKU			(0x0000002000000000)	// “V±iŒ»İA–¢À‘•j
-#define	B_C_CIRCE			(0x0000000800000000)	// ƒLƒ‹ƒP
-#define	B_C_ANTICIRCE		(0x0000000400000000)	// ƒAƒ“ƒ`ƒLƒ‹ƒP
+							(0x4000000000000000)	// çµ¶å¯¾æˆç¦
+#define	B_C_NOCAPT			(0x0800000000000000)	// å–ç¦
+#define	B_C_ABSOLUTE_NOCAPT	(0x0400000000000000)	// çµ¶å¯¾å–ç¦ï¼ˆç¾åœ¨ã€æœªå®Ÿè£…ï¼‰
+#define	B_C_HITHER_NOCAPT	(0x0100000000000000)	// æ”»æ–¹å–ç¦
+#define	B_C_UCHIFU			(0x0080000000000000)	// æ‰“æ­©è©°
+#define	B_C_UCHIFU_OK		(0x0040000000000000)	// æ‰“æ­©è©°å¯
+#define	B_C_UCHI			(0x0020000000000000)	// æ‰“é§’è©°ï¼ˆç¾åœ¨ã€æœªå®Ÿè£…ï¼‰
+#define	B_C_POSITION		(0x0008000000000000)	// ç‹ä½ç½®
+#define	B_C_JUST_MATE		(0x0004000000000000)	// é™å®šè©°ï¼ˆç¾åœ¨ã€æœªå®Ÿè£…ï¼‰
+#define	B_C_W_GY			(0x0002000000000000)	// äºŒç‰è©°
+#define	B_C_GREED			(0x0000800000000000)	// å¼·æ¬²
+#define	B_C_ASCETIC 		(0x0000400000000000)	// ç¦æ¬²
+#define	B_C_ANNAN			(0x0000080000000000)	// å®‰å—
+#define	B_C_ANHOKU			(0x0000040000000000)	// å®‰åŒ—
+#define	B_C_TAIMEN			(0x0000020000000000)	// å¯¾é¢
+#define	B_C_HAIMEN			(0x0000010000000000)	// èƒŒé¢
+#define	B_C_NEKOSEN			(0x0000008000000000)	// ãƒã‚³é®®
+#define	B_C_NEKO2SEN		(0x0000004000000000)	// ãƒã‚³ãƒã‚³é®®
+#define	BM_C_CHANGE_FAMILY	(0x00000fc000000000)	// å¤‰èº«ç³»
+#define	B_C_TENJIKU			(0x0000002000000000)	// å¤©ç«ºï¼ˆç¾åœ¨ã€æœªå®Ÿè£…ï¼‰
+#define	B_C_CIRCE			(0x0000000800000000)	// ã‚­ãƒ«ã‚±
+#define	B_C_ANTICIRCE		(0x0000000400000000)	// ã‚¢ãƒ³ãƒã‚­ãƒ«ã‚±
 #define	B_C_PWC				(0x0000000200000000)	// PWC
-#define	BM_C_CIRCE_FAMILY	(0x0000000e00000000)	// ƒLƒ‹ƒPŒn
+#define	BM_C_CIRCE_FAMILY	(0x0000000e00000000)	// ã‚­ãƒ«ã‚±ç³»
 #define	B_C_ANDERNACH		(0x0000000080000000)	// Andernach
 #define	B_C_ANTIANDERNACH	(0x0000000040000000)	// AntiAndernach
-#define	B_C_MADRASI			(0x0000000008000000)	// ƒ}ƒhƒ‰ƒV
-#define	B_C_K_MADRASI		(0x0000000004000000)	// ‚jƒ}ƒhƒ‰ƒV
-#define	BM_C_MADRASI_FAMILY	(0x000000000c000000)	// ƒ}ƒhƒ‰ƒVŒn
+#define	B_C_MADRASI			(0x0000000008000000)	// ãƒãƒ‰ãƒ©ã‚·
+#define	B_C_K_MADRASI		(0x0000000004000000)	// ï¼«ãƒãƒ‰ãƒ©ã‚·
+#define	BM_C_MADRASI_FAMILY	(0x000000000c000000)	// ãƒãƒ‰ãƒ©ã‚·ç³»
 #define	B_C_ISARDAM			(0x0000000000800000)	// Isardam
-#define	B_C_ISARDAM_K		(0x0000000000400000)	// Isardam-KiŒ»İA–¢À‘•j
-#define	BM_C_ISARDAM_FAMILY	(0x0000000000c00000)	// IsardamŒn
+#define	B_C_ISARDAM_K		(0x0000000000400000)	// Isardam-Kï¼ˆç¾åœ¨ã€æœªå®Ÿè£…ï¼‰
+#define	BM_C_ISARDAM_FAMILY	(0x0000000000c00000)	// Isardamç³»
 #define	B_C_KOKO			(0x0000000000200000)	// Koko
 #define	B_C_INVALID_CAPT_OU_2F \
-							(0x0000000000100000)	// “ñ•à‰¤Šl–³Œø
+							(0x0000000000100000)	// äºŒæ­©ç‹ç²ç„¡åŠ¹
 #define	BM_C_PHASE_CONSTRAINT_FAMILY \
-							(0x0000000000f00000)	// ‹Ç–Ê§–ñŒn
+							(0x0000000000f00000)	// å±€é¢åˆ¶ç´„ç³»
 #define	B_C_MESSIGNY		(0x0000000000080000)	// Messigny
-#define	B_C_MESSIGNY_E		(0x0000000000040000)	// Messignyi‰¢B®j
-#define	B_C_MESSIGNY_J		(0x0000000000020000)	// Messignyi“ú–{®j
+#define	B_C_MESSIGNY_E		(0x0000000000040000)	// Messignyï¼ˆæ¬§å·å¼ï¼‰
+#define	B_C_MESSIGNY_J		(0x0000000000020000)	// Messignyï¼ˆæ—¥æœ¬å¼ï¼‰
 #define	BM_C_MESSIGNY_FAMILY \
-							(0x00000000000e0000)	// MessignyŒn
-#define	B_C_CONSTRAINT_1ST	(0x0000000000000001)	// §–ñ—Dæi‹ÊŠl‚è‚É—Dæj
+							(0x00000000000e0000)	// Messignyç³»
+#define	B_C_CONSTRAINT_1ST	(0x0000000000000001)	// åˆ¶ç´„å„ªå…ˆï¼ˆç‰ç²ã‚Šã«å„ªå…ˆï¼‰
 
 // strategy flags group
 #define	B_HI_DENY_SAME		(0x80000000)
@@ -141,13 +141,13 @@ typedef unsigned char uchar_t;
 #define	B_HI_ALLOW_SAME		(0x00800000)
 #define	B_YO_ALLOW_SAME		(0x00400000)
 
-// hint flagsiŒ»İ–¢À‘•j
+// hint flagsï¼ˆç¾åœ¨æœªå®Ÿè£…ï¼‰
 #define	B_H_F_NO_HAND_FU	(0x80000000)
 #define	B_H_F_NO_HAND		(0x40000000)
 #define	B_H_F_NO_HAND_FU2	(0x20000000)
 
 // phase states
-#define B_HITHER_TURN		(0x80)		// ON: U•û”ÔAOFF: ó•û”Ô
+#define B_HITHER_TURN		(0x80)		// ON: æ”»æ–¹ç•ªã€OFF: å—æ–¹ç•ª
 #define B_SYMMETRIC			(0x40)
 #define B_CHECK_MOVE_FOUND	(0x20)
 #define B_ESCAPE_MOVE_FOUND	(0x10)
@@ -155,45 +155,45 @@ typedef unsigned char uchar_t;
 #define B_MODE_ASCETIC		(0x04)
 
 // check states
-#define B_CS_HITHER_CHECK	(0x20)		// U•û‚Ì‰¤è
-#define B_CS_YONDER_CHECK	(0x10)		// ó•û‚Ì‰¤è
+#define B_CS_HITHER_CHECK	(0x20)		// æ”»æ–¹ã®ç‹æ‰‹
+#define B_CS_YONDER_CHECK	(0x10)		// å—æ–¹ã®ç‹æ‰‹
 #define B_CS_CLOSE_CHECK	(0x08)
 #define B_CS_REMOTE_CHECK	(0x04)
 #define B_CS_CHECK_PALALYTIC \
 							(0x02)
 
 // fire states
-#define B_HI_FIRE_PATH		(0x80)		// U•û‚Ì—˜‚«‚Ì˜Hi—˜‚«‚ª‚ ‚é‚í‚¯‚Å‚Í‚È‚¢j
-#define B_YO_FIRE_PATH		(0x40)		// ó•û‚Ì—˜‚«‚Ì˜Hi—˜‚«‚ª‚ ‚é‚í‚¯‚Å‚Í‚È‚¢j
-#define B_CHECK				(0x20)		// “–ŠYˆÊ’u‚Ì‹î‚ª‘Šè‰¤‚É—˜‚«‚ğ‚à‚Â
-#define B_PALALYTIC			(0x10)		// “–ŠYˆÊ’u‚Ì‹î‚ªƒ}ƒqó‘Ô
-#define B_HI_CHECK_SPECIAL	(0x08)		// U•û‹î‘Å‚¿‰¤èŒó•âˆÊ’ui•ÏgŒnAƒ}ƒhƒ‰ƒVj
-#define B_YO_CHECK_SPECIAL	(0x04)		// ó•û‹î‘Å‚¿‰¤èŒó•âˆÊ’ui•ÏgŒnAƒ}ƒhƒ‰ƒVj
-#define B_HI_ESCAPE_SPECIAL	(0x02)		// U•û‹î‘Å‚¿‰¤è‰ñ”ğèŒó•âˆÊ’ui•ÏgŒnAƒ}ƒhƒ‰ƒVj
-#define B_YO_ESCAPE_SPECIAL	(0x01)		// ó•û‹î‘Å‚¿‰¤è‰ñ”ğèŒó•âˆÊ’ui•ÏgŒnAƒ}ƒhƒ‰ƒVj
+#define B_HI_FIRE_PATH		(0x80)		// æ”»æ–¹ã®åˆ©ãã®è·¯ï¼ˆåˆ©ããŒã‚ã‚‹ã‚ã‘ã§ã¯ãªã„ï¼‰
+#define B_YO_FIRE_PATH		(0x40)		// å—æ–¹ã®åˆ©ãã®è·¯ï¼ˆåˆ©ããŒã‚ã‚‹ã‚ã‘ã§ã¯ãªã„ï¼‰
+#define B_CHECK				(0x20)		// å½“è©²ä½ç½®ã®é§’ãŒç›¸æ‰‹ç‹ã«åˆ©ãã‚’ã‚‚ã¤
+#define B_PALALYTIC			(0x10)		// å½“è©²ä½ç½®ã®é§’ãŒãƒãƒ’çŠ¶æ…‹
+#define B_HI_CHECK_SPECIAL	(0x08)		// æ”»æ–¹é§’æ‰“ã¡ç‹æ‰‹å€™è£œä½ç½®ï¼ˆå¤‰èº«ç³»ã€ãƒãƒ‰ãƒ©ã‚·ï¼‰
+#define B_YO_CHECK_SPECIAL	(0x04)		// å—æ–¹é§’æ‰“ã¡ç‹æ‰‹å€™è£œä½ç½®ï¼ˆå¤‰èº«ç³»ã€ãƒãƒ‰ãƒ©ã‚·ï¼‰
+#define B_HI_ESCAPE_SPECIAL	(0x02)		// æ”»æ–¹é§’æ‰“ã¡ç‹æ‰‹å›é¿æ‰‹å€™è£œä½ç½®ï¼ˆå¤‰èº«ç³»ã€ãƒãƒ‰ãƒ©ã‚·ï¼‰
+#define B_YO_ESCAPE_SPECIAL	(0x01)		// å—æ–¹é§’æ‰“ã¡ç‹æ‰‹å›é¿æ‰‹å€™è£œä½ç½®ï¼ˆå¤‰èº«ç³»ã€ãƒãƒ‰ãƒ©ã‚·ï¼‰
 
 // move flags
 #define B_MV_PROMOTE		(0x80)
 #define B_MV_SHUTOFF		(0x40)
-#define B_MV_NOT_PROMOTE	(0x20)		// w’èè‡‚Åg—p
-#define B_MV_TESTED			(0x10)		// w’èè‡‚Åg—pBŒ»İ–¢g—p
+#define B_MV_NOT_PROMOTE	(0x20)		// æŒ‡å®šæ‰‹é †ã§ä½¿ç”¨
+#define B_MV_TESTED			(0x10)		// æŒ‡å®šæ‰‹é †ã§ä½¿ç”¨ã€‚ç¾åœ¨æœªä½¿ç”¨
 #define B_MV_MATE			(0x08)
 #define B_MV_MATESEQ		(0x04)
 #define B_MV_SAME			(0x02)
 //							(0x01)
-#define B_MV2_REBORN		(0x80)		// •œŠˆ
-#define B_MV2_REBORN_1ST	(0x40)		// •œŠˆi‚QèˆÚ“®‚Ì‚Pè–Ú‚É‘Î‚·‚éj
-#define B_MV2_REBORN_MORE	(0x20)		// ‘I‘ğ•œŠˆc‚ ‚è
-#define B_MV2_TURN			(0x10)		// ‹î”½“]
-#define B_MV2_EXCHANGE		(0x08)		// ‹îŒğŠ·
+#define B_MV2_REBORN		(0x80)		// å¾©æ´»
+#define B_MV2_REBORN_1ST	(0x40)		// å¾©æ´»ï¼ˆï¼’æ‰‹ç§»å‹•ã®ï¼‘æ‰‹ç›®ã«å¯¾ã™ã‚‹ï¼‰
+#define B_MV2_REBORN_MORE	(0x20)		// é¸æŠå¾©æ´»æ®‹ã‚ã‚Š
+#define B_MV2_TURN			(0x10)		// é§’åè»¢
+#define B_MV2_EXCHANGE		(0x08)		// é§’äº¤æ›
 
 // mate-move flags
-#define B_MM_PROMOTE		(0x80)		// ¬
-#define B_MM_DEL			(0x10)		// íœi—\’èj
-#define B_MM_HITHER_TURN	(0x08)		// U•û”Ô
-#define B_MM_MATE			(0x04)		// ‹l
-#define B_MM_SHORT_MATE		(0x02)		// ‘‹l
-#define B_MM_EXCESS_MATE	(0x01)		// ‹î—]‚è‹l
+#define B_MM_PROMOTE		(0x80)		// æˆ
+#define B_MM_DEL			(0x10)		// å‰Šé™¤ï¼ˆäºˆå®šï¼‰
+#define B_MM_HITHER_TURN	(0x08)		// æ”»æ–¹ç•ª
+#define B_MM_MATE			(0x04)		// è©°
+#define B_MM_SHORT_MATE		(0x02)		// æ—©è©°
+#define B_MM_EXCESS_MATE	(0x01)		// é§’ä½™ã‚Šè©°
 
 // L option switch flags
 #define	B_LF_SOL_LIMIT		(0x80)
@@ -229,50 +229,50 @@ typedef unsigned char uchar_t;
 #define	SPACE()				printf("\n")
 #define	SPACE2()			printf("\n\n")
 
-// ‹lè\‘¢‘Ì
+// è©°æ‰‹æ§‹é€ ä½“
 typedef struct {
 	uchar_t pc;
-	uchar_t fpc;				// —˜‚«‹îí
+	uchar_t fpc;				// åˆ©ãé§’ç¨®
 	char to;
 	char from;
 	char reborn;
-	char to_1st;				// ‚qAå›—p
+	char to_1st;				// ç…å­ã€è—ç”¨
 	char reborn_1st;
 	uchar_t flag;
 	uchar_t flag2;
 } move_t;
 
-// ‹Ç–Ê\‘¢‘Ì
+// å±€é¢æ§‹é€ ä½“
 typedef struct {
-	ulong_t hash_hi_pieces;		// ‹Ç–Êî•ñ
-	ulong_t hash_yo_pieces;		// ‹Ç–Êî•ñ
-	ulong_t hash_hi_hands;		// ‹Ç–Êî•ñ
-	short hi_hand[RAW_PC_END];	// ‹Ç–Êî•ñ
-	short yo_hand[RAW_PC_END];	// ‹Ç–Êî•ñ
-	uchar_t state;				// ‹Ç–Êî•ñ
-	uchar_t check_state;		// ‹Ç–Êî•ñ
-	char hi_ou_pos;				// ‹Ç–Êî•ñ
-	char yo_gy_pos;				// ‹Ç–Êî•ñ
-	move_t move;				// ‹Ç–Êî•ñ
-	uchar_t board[81];			// ‹Ç–Êî•ñ
-	uchar_t fire[81];			// ‰ğÍî•ñ
-	uchar_t fpc_board[81];		// ‰ğÍî•ñiŒ»‹Ç–Ê‚Ì—˜‚«î•ñj
+	ulong_t hash_hi_pieces;		// å±€é¢æƒ…å ±
+	ulong_t hash_yo_pieces;		// å±€é¢æƒ…å ±
+	ulong_t hash_hi_hands;		// å±€é¢æƒ…å ±
+	short hi_hand[RAW_PC_END];	// å±€é¢æƒ…å ±
+	short yo_hand[RAW_PC_END];	// å±€é¢æƒ…å ±
+	uchar_t state;				// å±€é¢æƒ…å ±
+	uchar_t check_state;		// å±€é¢æƒ…å ±
+	char hi_ou_pos;				// å±€é¢æƒ…å ±
+	char yo_gy_pos;				// å±€é¢æƒ…å ±
+	move_t move;				// å±€é¢æƒ…å ±
+	uchar_t board[81];			// å±€é¢æƒ…å ±
+	uchar_t fire[81];			// è§£ææƒ…å ±
+	uchar_t fpc_board[81];		// è§£ææƒ…å ±ï¼ˆç¾å±€é¢ã®åˆ©ãæƒ…å ±ï¼‰
 } phase_t;
 
-// ˆø—pˆó\‘¢‘Ì
+// å¼•ç”¨å°æ§‹é€ ä½“
 typedef struct {
 	char *start;
 	char *end;
 } quote_mark_t;
 
-// ƒ‹[ƒ‹EğŒ\‘¢‘Ì
+// ãƒ«ãƒ¼ãƒ«ãƒ»æ¡ä»¶æ§‹é€ ä½“
 typedef struct {
 	char *name;
 	ulong_t rule_flag;
 	ulonglong_t cond_flag;
 } rule_cond_t;
 
-// “¦‚ê‹Ç–Ê\‘¢‘Ì
+// é€ƒã‚Œå±€é¢æ§‹é€ ä½“
 typedef struct escape_hash_ escape_hash_t;
 struct escape_hash_ {
 	escape_hash_t *next;
@@ -283,14 +283,14 @@ struct escape_hash_ {
 	ushort_t ref_count;
 };
 
-// è‡’†‹Ç–Ê\‘¢‘Ì
+// æ‰‹é †ä¸­å±€é¢æ§‹é€ ä½“
 typedef struct seq_phase_hash_ seq_phase_hash_t;
 struct seq_phase_hash_ {
 	seq_phase_hash_t *next;
 	phase_t *php;
 };
 
-// ‹lè‡–Ø—p‹lè\‘¢‘Ì
+// è©°æ‰‹é †æœ¨ç”¨è©°æ‰‹æ§‹é€ ä½“
 typedef struct mate_move_ mate_move_t;
 typedef struct mate_move_ {
 	mate_move_t *next;
@@ -302,7 +302,7 @@ typedef struct mate_move_ {
 	char to;
 	char from;
 	char reborn;
-	char to_1st;				// ‚qAå›—p
+	char to_1st;				// ç…å­ã€è—ç”¨
 	char reborn_1st;
 	uchar_t flag;
 	uchar_t flag2;
@@ -841,7 +841,7 @@ extern int walk_mate_move_tree(mate_move_t *mmp, mate_move_t *mmq);
 extern char release[];
 
 // data.c
-// ŠÂ‹«•Ï”
+// ç’°å¢ƒå¤‰æ•°
 extern ulonglong_t cond_flag;
 extern ulong_t seed;
 extern ulong_t strategy;
@@ -854,7 +854,7 @@ extern char title[TITLESIZE];
 extern char in_file[FNAMEMAX + 1];
 extern char out_file[FNAMEMAX + 1];
 extern char restart_file[FNAMEMAX + 1];
-// ƒIƒvƒVƒ‡ƒ“ŠÂ‹«•Ï”
+// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç’°å¢ƒå¤‰æ•°
 extern char *arg_x;
 extern long solution_limit;
 #if defined(_M_X64)
@@ -883,7 +883,7 @@ extern uchar_t dancing;
 extern uchar_t loose;
 extern uchar_t verbose;
 extern uchar_t debug;
-// ì‹Æ•Ï”
+// ä½œæ¥­å¤‰æ•°
 extern FILE *inFp;
 extern FILE *fileFp;
 extern char *mate_buf;
@@ -912,7 +912,7 @@ extern uchar_t all_used_pc_count[RAW_PC_END];
 extern uchar_t hi_used_pc_count[RAW_PC_END];
 extern uchar_t yo_used_pc_count[RAW_PC_END];
 extern char inbuf[PROBSIZE];
-// ƒIƒvƒVƒ‡ƒ“ì‹Æ•Ï”
+// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä½œæ¥­å¤‰æ•°
 extern FILE *restartFp;
 extern seq_phase_hash_t *hi_sph_head[NOSPHHEAD];
 extern seq_phase_hash_t *yo_sph_head[NOSPHHEAD];
@@ -927,7 +927,7 @@ extern mate_move_t *mm_free;
 extern mate_move_t *mm_root;
 extern uchar_t restarting;
 extern uchar_t print_2nd_phase;
-// ŒÅ’èƒf[ƒ^
+// å›ºå®šãƒ‡ãƒ¼ã‚¿
 extern phase_t null_phase;
 extern char fpc_pos_back[81];
 extern char fpc_pos_forward[81];

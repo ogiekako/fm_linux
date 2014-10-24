@@ -274,18 +274,18 @@ gath_checkmove(mseq_t *msp_par)
 		ck_pos = bdp_par->yo_gy_pos - hi_step_vec[i];
 		ck_sq = bdp_par->board[ck_pos];
 		if (IS_ROOM(ck_sq)) {
-			// ����ꏊ�͋�ł���F
-			// => ����ꏊ�ɉ��藘���������ł�
+			// 王手場所は空である：
+			// => 王手場所に王手利きをもつ駒を打つ
 			gen_p_wsv(&mseq, ck_pos, i);
 			if (bdp_par->fire[ck_pos] & (B_BD_HI_STEPFIRE | B_BD_HI_RUNFIRE)) {
-				// ����ꏊ�ɂ͍U����̗���������F
-				// => ����ꏊ�ɗ����̌��ɂȂ��Ă����ŉ��藘����������ړ�����
+				// 王手場所には攻方駒の利きがある：
+				// => 王手場所に利きの元になっている駒で王手利きをもつ駒を移動する
 				gen_mt_wsv_fa(&mseq, ck_pos, i);
 			}
 		} else if (IS_YO_PC(ck_sq)) {
 			if (bdp_par->fire[ck_pos] & (B_BD_HI_STEPFIRE | B_BD_HI_RUNFIRE)) {
-				// ����ꏊ�ɂ͍U����̗���������F
-				// => ����ꏊ�ɗ����̌��ɂȂ��Ă����ŉ��藘����������ړ�����
+				// 王手場所には攻方駒の利きがある：
+				// => 王手場所に利きの元になっている駒で王手利きをもつ駒を移動する
 				gen_mt_wsv_fa(&mseq, ck_pos, i);
 			}
 		}
@@ -296,12 +296,12 @@ gath_checkmove(mseq_t *msp_par)
 			ck_pos -= ck_vec)
 		{
 			if (IS_ROOM(bdp_par->board[ck_pos])) {
-				// ����ꏊ�ɍU����ړ��ł���F
-				// => ����ꏊ�ɉ��藘���������ł�
+				// 王手場所に攻方駒が移動できる：
+				// => 王手場所に王手利きをもつ駒を打つ
 				gen_p_wrv(&mseq, ck_pos, i);
 				if (bdp_par->fire[ck_pos] & (B_BD_HI_STEPFIRE | B_BD_HI_RUNFIRE)) {
-					// ����ꏊ�ɂ͍U����̗���������F
-					// => ����ꏊ�ɗ����̌��ɂȂ��Ă������ړ�����
+					// 王手場所には攻方駒の利きがある：
+					// => 王手場所に利きの元になっている駒を移動する
 					gen_mt_wrv_fa(&mseq, ck_pos, i);
 				}
 			}

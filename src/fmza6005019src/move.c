@@ -501,14 +501,14 @@ static int
 hi_pc_constraint_sub(phase_t *ophp, uchar_t pc, uchar_t bpc, int from, int to)
 {
 	if (piece[pc].attr & B_PA_CONSTRAINT_SQ) {
-		// s‚«ˆ‚Ì‚È‚¢‹î
+		// è¡Œãå‡¦ã®ãªã„é§’
 		if (hi_valid_sq[pc][to] == OFF) {
 			return -1;	// invalid sq
 		}
 	}
 	if (piece[pc].attr & B_PA_CONSTRAINT_2F) {
 		int pos, pos1;
-		// “ñ•àƒ`ƒFƒbƒN
+		// äºŒæ­©ãƒã‚§ãƒƒã‚¯
 		for (pos = POS(POS_FILE(to), 8), pos1 = pos - 8; pos >= pos1; pos--) {
 			if (ophp->board[pos] == bpc && pos != from) {
 				return -1;	// double FU pieces
@@ -517,7 +517,7 @@ hi_pc_constraint_sub(phase_t *ophp, uchar_t pc, uchar_t bpc, int from, int to)
 	}
 	if (piece[pc].attr & B_PA_CONSTRAINT_3T) {
 		int pos, pos1, n;
-		// O‰ƒ`ƒFƒbƒN
+		// ä¸‰ç‡•ãƒã‚§ãƒƒã‚¯
 		n = 0;
 		for (pos = POS(POS_FILE(to), 8), pos1 = pos - 8; pos >= pos1; pos--) {
 			if (ophp->board[pos] == bpc && pos != from) {
@@ -536,14 +536,14 @@ static int
 yo_pc_constraint_sub(phase_t *ophp, uchar_t pc, uchar_t bpc, int from, int to)
 {
 	if (piece[pc].attr & B_PA_CONSTRAINT_SQ) {
-		// s‚«ˆ‚Ì‚È‚¢‹î
+		// è¡Œãå‡¦ã®ãªã„é§’
 		if (yo_valid_sq[pc][to] == OFF) {
 			return -1;	// invalid sq
 		}
 	}
 	if (piece[pc].attr & B_PA_CONSTRAINT_2F) {
 		int pos, pos9;
-		// “ñ•àƒ`ƒFƒbƒN
+		// äºŒæ­©ãƒã‚§ãƒƒã‚¯
 		for (pos = POS(POS_FILE(to), 0), pos9 = pos + 8; pos <= pos9; pos++) {
 			if (ophp->board[pos] == bpc && pos != from) {
 				return -1;	// double FU pieces
@@ -552,7 +552,7 @@ yo_pc_constraint_sub(phase_t *ophp, uchar_t pc, uchar_t bpc, int from, int to)
 	}
 	if (piece[pc].attr & B_PA_CONSTRAINT_3T) {
 		int pos, pos9, n;
-		// O‰ƒ`ƒFƒbƒN
+		// ä¸‰ç‡•ãƒã‚§ãƒƒã‚¯
 		n = 0;
 		for (pos = POS(POS_FILE(to), 0), pos9 = pos + 8; pos <= pos9; pos++) {
 			if (ophp->board[pos] == bpc && pos != from) {
@@ -930,7 +930,7 @@ hi_move_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rcapt;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		nphp->board[omvp->to] = ophp->board[omvp->from];
 		to_sq = ophp->board[omvp->to_1st];
@@ -1028,7 +1028,7 @@ hi_move_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			ophp->board[omvp->to] = ROOM;
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			nphp->board[omvp->to] = ophp->board[omvp->from];
@@ -1136,7 +1136,7 @@ yo_move_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rcapt;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		nphp->board[omvp->to] = ophp->board[omvp->from];
 		to_sq = ophp->board[omvp->to_1st];
@@ -1234,7 +1234,7 @@ yo_move_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			ophp->board[omvp->to] = ROOM;
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			nphp->board[omvp->to] = ophp->board[omvp->from];
@@ -1342,7 +1342,7 @@ hi_move_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rcapt, rpc;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		to_sq = ophp->board[omvp->to_1st];
 		if (IS_YO_PC(to_sq)) {
@@ -1462,7 +1462,7 @@ hi_move_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			}
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			to_sq = ophp->board[omvp->to];
@@ -1603,7 +1603,7 @@ yo_move_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rcapt, rpc;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		to_sq = ophp->board[omvp->to_1st];
 		if (IS_HI_PC(to_sq)) {
@@ -1723,7 +1723,7 @@ yo_move_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			}
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			to_sq = ophp->board[omvp->to];
@@ -1869,13 +1869,13 @@ hi_move_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (hi_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -1901,13 +1901,13 @@ hi_move_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (hi_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -1943,13 +1943,13 @@ yo_move_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (hi_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -1975,13 +1975,13 @@ yo_move_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (hi_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -2027,13 +2027,13 @@ hi_move_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (hi_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -2059,13 +2059,13 @@ hi_move_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (hi_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -2101,13 +2101,13 @@ yo_move_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (yo_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -2133,13 +2133,13 @@ yo_move_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (yo_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -2440,7 +2440,7 @@ hi_move_leaf_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rcapt;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		nphp->board[omvp->to] = ophp->board[omvp->from];
 		to_sq = ophp->board[omvp->to_1st];
@@ -2522,7 +2522,7 @@ hi_move_leaf_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			ophp->board[omvp->to] = ROOM;
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			nphp->board[omvp->to] = ophp->board[omvp->from];
@@ -2614,7 +2614,7 @@ yo_move_leaf_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rcapt;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		nphp->board[omvp->to] = ophp->board[omvp->from];
 		to_sq = ophp->board[omvp->to_1st];
@@ -2696,7 +2696,7 @@ yo_move_leaf_sub_circe(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			ophp->board[omvp->to] = ROOM;
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			nphp->board[omvp->to] = ophp->board[omvp->from];
@@ -2788,7 +2788,7 @@ hi_move_leaf_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rpc;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		to_sq = ophp->board[omvp->to_1st];
 		if (IS_YO_PC(to_sq)) {
@@ -2902,7 +2902,7 @@ hi_move_leaf_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			}
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			to_sq = ophp->board[omvp->to];
@@ -3039,7 +3039,7 @@ yo_move_leaf_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 	uchar_t to_sq, rpc;
 
 	if (omvp->to_1st != NOP) {
-		// ‚QèˆÚ“®iå›j‚Ìê‡
+		// ï¼’æ‰‹ç§»å‹•ï¼ˆè—ï¼‰ã®å ´åˆ
 		nphp->board[omvp->from] = SQ_ROOM;
 		to_sq = ophp->board[omvp->to_1st];
 		if (IS_HI_PC(to_sq)) {
@@ -3153,7 +3153,7 @@ yo_move_leaf_sub_anticirce(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			}
 		}
 	} else {
-		// ‚QèˆÚ“®‚Å‚È‚¢ê‡
+		// ï¼’æ‰‹ç§»å‹•ã§ãªã„å ´åˆ
 		if (omvp->to != omvp->from) {
 			nphp->board[omvp->from] = SQ_ROOM;
 			to_sq = ophp->board[omvp->to];
@@ -3295,13 +3295,13 @@ hi_move_leaf_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (hi_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -3322,13 +3322,13 @@ hi_move_leaf_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (hi_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -3359,13 +3359,13 @@ yo_move_leaf_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (yo_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -3386,13 +3386,13 @@ yo_move_leaf_sub_andernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (yo_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -3428,13 +3428,13 @@ hi_move_leaf_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (hi_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -3455,13 +3455,13 @@ hi_move_leaf_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && hi_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (hi_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_YONDER;
 					omvp->flag2 |= B_MV2_TURN;
 				}
@@ -3492,13 +3492,13 @@ yo_move_leaf_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 			if (piece[omvp->pc].attr & B_PA_ROYAL) {
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-				// ”½“]‚Å‚«‚È‚¢ê‡
+				// åè»¢ã§ããªã„å ´åˆ
 				if (yo_pc_constraint(ophp)) {
 					return -1;
 				}
 				nphp->board[omvp->to] = ophp->board[omvp->from];
 			} else {
-				// ”½“]‚µ‚½ê‡
+				// åè»¢ã—ãŸå ´åˆ
 				nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 				omvp->flag2 |= B_MV2_TURN;
 			}
@@ -3519,13 +3519,13 @@ yo_move_leaf_sub_antiandernach(phase_t *ophp, move_t *omvp, phase_t *nphp)
 				if (piece[omvp->pc].attr & B_PA_ROYAL) {
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else if ((piece[omvp->pc].attr & BM_PA_CONSTRAINT) && yo_pc_constraint_wt(ophp)) {
-					// ”½“]‚Å‚«‚È‚¢ê‡
+					// åè»¢ã§ããªã„å ´åˆ
 					if (yo_pc_constraint(ophp)) {
 						return -1;
 					}
 					nphp->board[omvp->to] = ophp->board[omvp->from];
 				} else {
-					// ”½“]‚µ‚½ê‡
+					// åè»¢ã—ãŸå ´åˆ
 					nphp->board[omvp->to] = omvp->pc | B_PC_HITHER;
 					omvp->flag2 |= B_MV2_TURN;
 				}

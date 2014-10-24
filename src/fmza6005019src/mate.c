@@ -220,8 +220,8 @@ is_yonder_stalemate(phase_t *php)
 	return TRUE;
 }
 
-// 0: “¦‚ê
-// 1: ‹l
+// 0: é€ƒã‚Œ
+// 1: è©°
 int
 test_hither_mate_place_loose(phase_t *php)
 {
@@ -373,7 +373,7 @@ test_hither_mate_shishi_leap(phase_t *php)
 					if (to2 == EOP) {
 						break;
 					}
-					if (_mbsstr(piece[mvp->pc].name, "‚q") == NULL) {
+					if (_mbsstr(piece[mvp->pc].name, "ç…å­") == NULL) {
 						for(k = 0; ; k++) {
 							to3 = hi_leap_to_pos[mvp->fpc][mvp->from][k];
 							if (to3 == EOP) {
@@ -436,8 +436,8 @@ test_hither_mate_step(phase_t *php)
 }
 
 // Mao, Mor:
-// hi_run_to_posv[‹î][ˆÊ’u][ƒxƒNƒgƒ‹ƒCƒ“ƒfƒNƒX]: ‡‹î“_ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-// yo_run_to_posv[‹î][ˆÊ’u][‡‹î“_ˆÊ’u]: —˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
+// hi_run_to_posv[é§’][ä½ç½®][ãƒ™ã‚¯ãƒˆãƒ«ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹]: åˆé§’ç‚¹ä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+// yo_run_to_posv[é§’][ä½ç½®][åˆé§’ç‚¹ä½ç½®]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
 int
 test_hither_mate_mao_step(phase_t *php)
 {
@@ -735,9 +735,9 @@ test_hither_mate_jump_hop(phase_t *php)
 }
 
 // Sparrow, Eagle:
-//   hi_run_to_posv[‹î][ˆÊ’u][ƒxƒNƒgƒ‹][—˜‚«ˆÊ’uƒŠƒXƒg]: ”½Ë‹î—˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-//   yo_run_to_posv[‹î][ˆÊ’u][”½Ë‹îˆÊ’u][—˜‚«ˆÊ’uƒŠƒXƒg]: —˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-//   hi_to_board: ”½Ë‹î—˜‚«ˆÊ’u”Õ–Êƒ}ƒbƒviU•ûAó•û‹¤—pj
+//   hi_run_to_posv[é§’][ä½ç½®][ãƒ™ã‚¯ãƒˆãƒ«][åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ]: åå°„é§’åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+//   yo_run_to_posv[é§’][ä½ç½®][åå°„é§’ä½ç½®][åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+//   hi_to_board: åå°„é§’åˆ©ãä½ç½®ç›¤é¢ãƒãƒƒãƒ—ï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
 int
 test_hither_mate_refl(phase_t *php)
 {
@@ -785,8 +785,8 @@ test_hither_mate_refl(phase_t *php)
 }
 
 // Equihopper:
-//   hi_run_to_posv[0]: —˜‚«ˆÊ’uƒŠƒXƒg
-//   yo_run_to_posv[0]: ‘ÎÌ“_ƒŠƒXƒg
+//   hi_run_to_posv[0]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ
+//   yo_run_to_posv[0]: å¯¾ç§°ç‚¹ãƒªã‚¹ãƒˆ
 int
 test_hither_mate_equi_hop(phase_t *php)
 {
@@ -965,7 +965,7 @@ test_yonder_mate_shishi_leap(phase_t *php)
 					if (to2 == EOP) {
 						break;
 					}
-					if (_mbsstr(piece[mvp->pc].name, "‚q") == NULL) {
+					if (_mbsstr(piece[mvp->pc].name, "ç…å­") == NULL) {
 						for(k = 0; ; k++) {
 							to3 = yo_leap_to_pos[mvp->fpc][mvp->from][k];
 							if (to3 == EOP) {
@@ -1028,8 +1028,8 @@ test_yonder_mate_step(phase_t *php)
 }
 
 // Mao, Mor:
-// hi_run_to_posv[‹î][ˆÊ’u][ƒxƒNƒgƒ‹ƒCƒ“ƒfƒNƒX]: ‡‹î“_ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-// yo_run_to_posv[‹î][ˆÊ’u][‡‹î“_ˆÊ’u]: —˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
+// hi_run_to_posv[é§’][ä½ç½®][ãƒ™ã‚¯ãƒˆãƒ«ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹]: åˆé§’ç‚¹ä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+// yo_run_to_posv[é§’][ä½ç½®][åˆé§’ç‚¹ä½ç½®]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
 int
 test_yonder_mate_mao_step(phase_t *php)
 {
@@ -1327,9 +1327,9 @@ test_yonder_mate_jump_hop(phase_t *php)
 }
 
 // Sparrow, Eagle:
-//   hi_run_to_posv[‹î][ˆÊ’u][ƒxƒNƒgƒ‹][—˜‚«ˆÊ’uƒŠƒXƒg]: ”½Ë‹î—˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-//   yo_run_to_posv[‹î][ˆÊ’u][”½Ë‹îˆÊ’u][—˜‚«ˆÊ’uƒŠƒXƒg]: —˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-//   hi_to_board: ”½Ë‹î—˜‚«ˆÊ’u”Õ–Êƒ}ƒbƒviU•ûAó•û‹¤—pj
+//   hi_run_to_posv[é§’][ä½ç½®][ãƒ™ã‚¯ãƒˆãƒ«][åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ]: åå°„é§’åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+//   yo_run_to_posv[é§’][ä½ç½®][åå°„é§’ä½ç½®][åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+//   hi_to_board: åå°„é§’åˆ©ãä½ç½®ç›¤é¢ãƒãƒƒãƒ—ï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
 int
 test_yonder_mate_refl(phase_t *php)
 {
@@ -1377,8 +1377,8 @@ test_yonder_mate_refl(phase_t *php)
 }
 
 // Equihopper:
-//   hi_run_to_posv[0]: —˜‚«ˆÊ’uƒŠƒXƒg
-//   yo_run_to_posv[0]: ‘ÎÌ“_ƒŠƒXƒg
+//   hi_run_to_posv[0]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ
+//   yo_run_to_posv[0]: å¯¾ç§°ç‚¹ãƒªã‚¹ãƒˆ
 int
 test_yonder_mate_equi_hop(phase_t *php)
 {
@@ -1412,7 +1412,7 @@ test_mate_null(phase_t *php)
 	return -1;
 }
 
-// n: •½
+// n: å¹³
 int
 test_hither_mate_sub_n(phase_t *php)
 {
@@ -1437,7 +1437,7 @@ test_hither_mate_sub_n(phase_t *php)
 	return 1;
 }
 
-// c: ƒLƒ‹ƒPAƒAƒ“ƒ`ƒLƒ‹ƒP
+// c: ã‚­ãƒ«ã‚±ã€ã‚¢ãƒ³ãƒã‚­ãƒ«ã‚±
 int
 test_hither_mate_sub_c(phase_t *php)
 {
@@ -1476,7 +1476,7 @@ test_hither_mate_sub_c(phase_t *php)
 	return 1;
 }
 
-// f: ‘Å•à‹l
+// f: æ‰“æ­©è©°
 int
 test_hither_mate_sub_f(phase_t *php)
 {
@@ -1497,7 +1497,7 @@ test_hither_mate_sub_f(phase_t *php)
 	return 1;
 }
 
-// mf: Messigny‘Å•à‹l
+// mf: Messignyæ‰“æ­©è©°
 int
 test_hither_mate_sub_mf(phase_t *php)
 {
@@ -1546,7 +1546,7 @@ is_hi_legal_move(phase_t *php)
 	return FALSE;
 }
 
-// n: •½
+// n: å¹³
 int
 test_yonder_mate_sub_n(phase_t *php)
 {
@@ -1571,7 +1571,7 @@ test_yonder_mate_sub_n(phase_t *php)
 	return 1;
 }
 
-// c: ƒLƒ‹ƒPAƒAƒ“ƒ`ƒLƒ‹ƒP
+// c: ã‚­ãƒ«ã‚±ã€ã‚¢ãƒ³ãƒã‚­ãƒ«ã‚±
 int
 test_yonder_mate_sub_c(phase_t *php)
 {
@@ -1610,7 +1610,7 @@ test_yonder_mate_sub_c(phase_t *php)
 	return 1;
 }
 
-// f: ‘Å•à‹l
+// f: æ‰“æ­©è©°
 int
 test_yonder_mate_sub_f(phase_t *php)
 {
@@ -1632,7 +1632,7 @@ test_yonder_mate_sub_f(phase_t *php)
 	return 1;
 }
 
-// mf: Messigny‘Å•à‹l
+// mf: Messignyæ‰“æ­©è©°
 int
 test_yonder_mate_sub_mf(phase_t *php)
 {

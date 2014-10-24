@@ -105,68 +105,68 @@ get_rule(char *ib)
 		}
 		len--;
 	}
-	// ”r‘¼ğŒƒ`ƒFƒbƒN
-	// 1) ¬‹ÖŒn	
+	// æ’ä»–æ¡ä»¶ãƒã‚§ãƒƒã‚¯
+	// 1) æˆç¦ç³»	
 	if ((tmp_cond_flag & B_C_NOPROMOTE) && (tmp_cond_flag & B_C_ABSOLUTE_NOPROMOTE)) {
-		error_message("¬‹Ö‚Æâ‘Î¬‹Ö‚Í”r‘¼‚Å‚·", NULL);
+		error_message("æˆç¦ã¨çµ¶å¯¾æˆç¦ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
-	// 1') æ‹ÖŒn	
+	// 1') å–ç¦ç³»	
 	if ((tmp_cond_flag & B_C_NOCAPT) && (tmp_cond_flag & B_C_HITHER_NOCAPT)) {
-		error_message("æ‹Ö‚ÆU•ûæ‹Ö‚Í”r‘¼‚Å‚·", NULL);
+		error_message("å–ç¦ã¨æ”»æ–¹å–ç¦ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
-	// 2) ‘Å•à‹lŒn	
+	// 2) æ‰“æ­©è©°ç³»	
 	if ((tmp_cond_flag & B_C_UCHIFU) && (tmp_cond_flag & B_C_UCHIFU_OK)) {
-		error_message("‘Å•à‹l‚Æ‘Å•à‹l‰Â‚Í”r‘¼‚Å‚·", NULL);
+		error_message("æ‰“æ­©è©°ã¨æ‰“æ­©è©°å¯ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
-	// 3) ‹­—~E‹Ö—~
+	// 3) å¼·æ¬²ãƒ»ç¦æ¬²
 	if ((tmp_cond_flag & B_C_GREED) && (tmp_cond_flag & B_C_ASCETIC)) {
-		error_message("‹­—~‚Æ‹Ö—~‚Í”r‘¼‚Å‚·", NULL);
+		error_message("å¼·æ¬²ã¨ç¦æ¬²ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
 	if ((tmp_cond_flag & (B_C_NOCAPT | B_C_HITHER_NOCAPT)) &&
 			(tmp_cond_flag & (B_C_GREED | B_C_ASCETIC))) {
-		error_message("æ‹ÖEU•ûæ‹Ö‚Æ‹­—~E‹Ö—~‚Í”r‘¼‚Å‚·", NULL);
+		error_message("å–ç¦ãƒ»æ”»æ–¹å–ç¦ã¨å¼·æ¬²ãƒ»ç¦æ¬²ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
-	// 4) •ÏgŒn
+	// 4) å¤‰èº«ç³»
 	if (bit_count_ulonglong(tmp_cond_flag & BM_C_CHANGE_FAMILY) >= 2) {
-		error_message("ˆÀ“ìEˆÀ–kE‘Î–ÊE”w–ÊEƒlƒR‘NEƒlƒRƒlƒR‘N‚Í”r‘¼‚Å‚·", NULL);
+		error_message("å®‰å—ãƒ»å®‰åŒ—ãƒ»å¯¾é¢ãƒ»èƒŒé¢ãƒ»ãƒã‚³é®®ãƒ»ãƒã‚³ãƒã‚³é®®ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
 	if ((tmp_cond_flag & B_C_INVALID_CAPT_OU_2F) &&
 			bit_count_ulonglong(tmp_cond_flag & BM_C_CHANGE_FAMILY) == 0) {
-		error_message("“ñ•à‰¤æ–³Œø‚ÍAˆÀ“ìEˆÀ–kE‘Î–ÊE”w–ÊEƒlƒR‘NEƒlƒRƒlƒR‘N‚Ì"
-				"‚¢‚¸‚ê‚©‚Æ“¯‚Éw’è‚µ‚Ü‚·", NULL);
+		error_message("äºŒæ­©ç‹å–ç„¡åŠ¹ã¯ã€å®‰å—ãƒ»å®‰åŒ—ãƒ»å¯¾é¢ãƒ»èƒŒé¢ãƒ»ãƒã‚³é®®ãƒ»ãƒã‚³ãƒã‚³é®®ã®"
+				"ã„ãšã‚Œã‹ã¨åŒæ™‚ã«æŒ‡å®šã—ã¾ã™", NULL);
 		return NULL;
 	}
-	// 5) ƒLƒ‹ƒPŒni{Andernach{AntiAndernachj	
+	// 5) ã‚­ãƒ«ã‚±ç³»ï¼ˆï¼‹Andernachï¼‹AntiAndernachï¼‰	
 	if (bit_count_ulonglong(tmp_cond_flag &
 			(BM_C_CIRCE_FAMILY | B_C_ANDERNACH | B_C_ANTIANDERNACH)) >= 2) {
-		error_message("ƒLƒ‹ƒPEƒAƒ“ƒ`ƒLƒ‹ƒPEPWCEAndernachEAntiAndernachEMessigny‚Í”r‘¼‚Å‚·",
+		error_message("ã‚­ãƒ«ã‚±ãƒ»ã‚¢ãƒ³ãƒã‚­ãƒ«ã‚±ãƒ»PWCãƒ»Andernachãƒ»AntiAndernachãƒ»Messignyã¯æ’ä»–ã§ã™",
 				NULL);
 		return NULL;
 	}
-	// 6) ƒ}ƒhƒ‰ƒVEIsardamŒn	
+	// 6) ãƒãƒ‰ãƒ©ã‚·ãƒ»Isardamç³»	
 	if (bit_count_ulonglong(tmp_cond_flag & (BM_C_MADRASI_FAMILY | BM_C_ISARDAM_FAMILY)) >= 2) {
-		error_message("ƒ}ƒhƒ‰ƒVE‚jƒ}ƒhƒ‰ƒVEIsardamEIsardamiƒ^ƒCƒvBj‚Í”r‘¼‚Å‚·", NULL);
+		error_message("ãƒãƒ‰ãƒ©ã‚·ãƒ»ï¼«ãƒãƒ‰ãƒ©ã‚·ãƒ»Isardamãƒ»Isardamï¼ˆã‚¿ã‚¤ãƒ—Bï¼‰ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
 	if ((tmp_cond_flag & BM_C_ISARDAM_FAMILY) &&
 			(tmp_cond_flag & (BM_C_CHANGE_FAMILY | B_C_KOKO))) {
-		error_message("IsardamEIsardamiƒ^ƒCƒvBj‚Æ"
-				"ˆÀ“ìEˆÀ–kE‘Î–ÊE”w–ÊEƒlƒR‘NEƒlƒRƒlƒR‘NEKoko‚Í”r‘¼‚Å‚·", NULL);
+		error_message("Isardamãƒ»Isardamï¼ˆã‚¿ã‚¤ãƒ—Bï¼‰ã¨"
+				"å®‰å—ãƒ»å®‰åŒ—ãƒ»å¯¾é¢ãƒ»èƒŒé¢ãƒ»ãƒã‚³é®®ãƒ»ãƒã‚³ãƒã‚³é®®ãƒ»Kokoã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
 	if (bit_count_ulonglong(tmp_cond_flag & (BM_C_MADRASI_FAMILY | BM_C_ISARDAM_FAMILY)) >= 2) {
-		error_message("IsardamEIsardamiƒ^ƒCƒvBj‚Æ‚Í”r‘¼‚Å‚·", NULL);
+		error_message("Isardamãƒ»Isardamï¼ˆã‚¿ã‚¤ãƒ—Bï¼‰ã¨ã¯æ’ä»–ã§ã™", NULL);
 		return NULL;
 	}
-	// 7) –¢ƒTƒ|[ƒg
+	// 7) æœªã‚µãƒãƒ¼ãƒˆ
 	if ((tmp_cond_flag & BM_C_MESSIGNY_FAMILY) && (tmp_cond_flag & (B_C_GREED | B_C_ASCETIC))) {
-		error_message("‹­—~E‹Ö—~‚ÌMessigny‚Í–¢ƒTƒ|[ƒg‚Å‚·", NULL);
+		error_message("å¼·æ¬²ãƒ»ç¦æ¬²ã®Messignyã¯æœªã‚µãƒãƒ¼ãƒˆã§ã™", NULL);
 		return NULL;
 	}
 	if (tmp_rule_flag == 0 && tmp_cond_flag == 0) {
@@ -201,7 +201,7 @@ setup_depth(char *s)
 	n = strtol(s, &t, 10);
 	memset(s, '_', t - s);
 	if (n > LIMIT_DEPTH) {
-		error_message("‹lè”‚ª‘å‚«‰ß‚¬‚Ü‚·", NULL);
+		error_message("è©°æ‰‹æ•°ãŒå¤§ãéãã¾ã™", NULL);
 		return;
 	}
 	limit_depth = n;
@@ -259,7 +259,7 @@ toasciiuc(char *ib)
 					continue;
 				}
 			}
-			// šSJIS
+			// â˜…SJIS
 			if (nthctype(ib_start, (int)(ib - ib_start)) == CT_ANK) {
 				ib[0] = toupper((uchar_t)ib[0]);
 			}
@@ -275,8 +275,8 @@ toasciiuc(char *ib)
 char *
 skip_space(char *ib)
 {
-	while (ib[0] && (isspace((uchar_t)ib[0]) || EQUALZ(ib, "@"))) {
-		// šSJIS
+	while (ib[0] && (isspace((uchar_t)ib[0]) || EQUALZ(ib, "ã€€"))) {
+		// â˜…SJIS
 		ib += isspace((uchar_t)ib[0]) ? 1 : 2;
 	}
 
@@ -286,8 +286,8 @@ skip_space(char *ib)
 char *
 skip_nonspace(char *ib)
 {
-	while (ib[0] && NOT(isspace((uchar_t)ib[0])) && NEQUALZ(ib, "@")) {
-		// šSJIS
+	while (ib[0] && NOT(isspace((uchar_t)ib[0])) && NEQUALZ(ib, "ã€€")) {
+		// â˜…SJIS
 		ib += (isascii((uchar_t)ib[0]) || ISKANA((uchar_t)ib[0])) ? 1 : 2;
 	}
 
@@ -301,13 +301,13 @@ error_message(const char *em, const char *ib)
 	char work[256];
 
 	if (ib == NULL) {
-		fprintf(stderr, "HHH@%s...\n", em);
+		fprintf(stderr, "ï¼Ÿï¼Ÿï¼Ÿã€€%s...\n", em);
 	} else {
 		epos = (int)(ib - inbuf + 1);
 		if (epos < 75) {
-			fprintf(stderr, "HHH  %s...\n%s\n%*c\n", em, inbuf, (ib - inbuf + 1), '*');
+			fprintf(stderr, "ï¼Ÿï¼Ÿï¼Ÿ  %s...\n%s\n%*c\n", em, inbuf, (ib - inbuf + 1), '*');
 		} else {
-			fprintf(stderr, "HHH  %s...\n", em);
+			fprintf(stderr, "ï¼Ÿï¼Ÿï¼Ÿ  %s...\n", em);
 			sum = 0;
 			while (epos >= 75) {
 				for (i = 35; i < 75; i++) {
@@ -361,7 +361,7 @@ make_move(phase_t *php, char *ob)
 		return 0;
 	}
 	if (mvp->to == (php - 1)->move.to && mvp->from != NOP) {
-		strcpy(ob, "“¯");
+		strcpy(ob, "åŒ");
 	} else if (mvp->to != mvp->from || mvp->to_1st != NOP) {
 		if (mvp->to_1st == NOP) {
 			sprintf(ob, "%d", PR_POS(mvp->to));
@@ -384,28 +384,28 @@ make_move(phase_t *php, char *ob)
 
 	if (mvp->from != NOP) {
 		if (mvp->flag & B_MV_PROMOTE) {
-			strcat(ob, "¬");
+			strcat(ob, "æˆ");
 		} else if (IS_PROMOTABLE(mvp->pc) && NOT(mvp->flag2 & B_MV2_EXCHANGE) &&
 				(IS_HI_TURN(php) ?
                     IS_HI_PROMOTABLE_MOVE(mvp->to, mvp->from) :
                     IS_YO_PROMOTABLE_MOVE(mvp->to, mvp->from))) {
-			strcat(ob, "¶");
+			strcat(ob, "ç”Ÿ");
 		}
 		if (mvp->to != mvp->from || mvp->to_1st != NOP) {
 			if (mvp->flag2 & (B_MV2_REBORN | B_MV2_REBORN_1ST | B_MV2_EXCHANGE)) {
 				make_reborn(php, mvp, ob);
 			} else {
 				if (mvp->flag2 & B_MV2_TURN) {
-					strcat(ob, "“]");
+					strcat(ob, "è»¢");
 				}
 				len = (int)strlen(ob);
 				sprintf(ob + len, "<%d", PR_POS(mvp->from));
 			}
 		} else {
-			strcat(ob, "‹");
+			strcat(ob, "å±…");
 		}
 	} else {
-		strcat(ob, "‘Å");
+		strcat(ob, "æ‰“");
 	}
 	len = (int)strlen(ob);
 
@@ -417,36 +417,36 @@ reg_rule(char *b)
 {
 	b[0] = '\0';
 	if (cond_flag & B_C_GREED) {
-		strcat(b, "‹­—~");
+		strcat(b, "å¼·æ¬²");
 	} else if (cond_flag & B_C_ASCETIC) {
-		strcat(b, "‹Ö—~");
+		strcat(b, "ç¦æ¬²");
 	} else if (cond_flag & B_C_NOCAPT) {
-		strcat(b, "æ‹Ö");
+		strcat(b, "å–ç¦");
 	} else if (cond_flag & B_C_HITHER_NOCAPT) {
-		strcat(b, "U•ûæ‹Ö");
+		strcat(b, "æ”»æ–¹å–ç¦");
 	}
 	if (cond_flag & B_C_NOPROMOTE) {
-		strcat(b, "¬‹Ö");
+		strcat(b, "æˆç¦");
 	} else if (cond_flag & B_C_ABSOLUTE_NOPROMOTE) {
-		strcat(b, "â‘Î¬‹Ö");
+		strcat(b, "çµ¶å¯¾æˆç¦");
 	}
 	if (cond_flag & B_C_ANNAN) {
-		strcat(b, "ˆÀ“ì");
+		strcat(b, "å®‰å—");
 	} else if (cond_flag & B_C_ANHOKU) {
-		strcat(b, "ˆÀ–k");
+		strcat(b, "å®‰åŒ—");
 	} else if (cond_flag & B_C_TAIMEN) {
-		strcat(b, "‘Î–Ê");
+		strcat(b, "å¯¾é¢");
 	} else if (cond_flag & B_C_HAIMEN) {
-		strcat(b, "”w–Ê");
+		strcat(b, "èƒŒé¢");
 	} else if (cond_flag & B_C_NEKOSEN) {
-		strcat(b, "ƒlƒR‘N");
+		strcat(b, "ãƒã‚³é®®");
 	} else if (cond_flag & B_C_NEKO2SEN) {
-		strcat(b, "ƒlƒRƒlƒR‘N");
+		strcat(b, "ãƒã‚³ãƒã‚³é®®");
 	}
 	if (cond_flag & B_C_CIRCE) {
-		strcat(b, "ƒLƒ‹ƒP");
+		strcat(b, "ã‚­ãƒ«ã‚±");
 	} else if (cond_flag & B_C_ANTICIRCE) {
-		strcat(b, "ƒAƒ“ƒ`ƒLƒ‹ƒP");
+		strcat(b, "ã‚¢ãƒ³ãƒã‚­ãƒ«ã‚±");
 	} else if (cond_flag & B_C_PWC) {
 		strcat(b, "PWC");
 	}
@@ -462,9 +462,9 @@ reg_rule(char *b)
 		}
 		strcat(b, "Messigny");
 		if (cond_flag & B_C_MESSIGNY_E) {
-			strcat(b, "i‰¢B®j");
+			strcat(b, "ï¼ˆæ¬§å·å¼ï¼‰");
 		} else if (cond_flag & B_C_MESSIGNY_J) {
-			strcat(b, "i“ú–{®j");
+			strcat(b, "ï¼ˆæ—¥æœ¬å¼ï¼‰");
 		}
 	}
 	if (cond_flag & B_C_ANDERNACH) {
@@ -479,42 +479,42 @@ reg_rule(char *b)
 		strcat(b, "AntiAndernach");
 	}
 	if (cond_flag & B_C_MADRASI) {
-		strcat(b, "ƒ}ƒhƒ‰ƒV");
+		strcat(b, "ãƒãƒ‰ãƒ©ã‚·");
 	} else if (cond_flag & B_C_K_MADRASI) {
-		strcat(b, "‚jƒ}ƒhƒ‰ƒV");
+		strcat(b, "ï¼«ãƒãƒ‰ãƒ©ã‚·");
 	} else if (cond_flag & B_C_ISARDAM) {
 		if (isalnum((uchar_t)b[strlen(b) - 1])) {
 			strcat(b, "-");
 		}
 		strcat(b, "Isardam");
 		if (NOT(cond_flag & B_C_CONSTRAINT_1ST)) {
-			strcat(b, "iƒ^ƒCƒvBj");
+			strcat(b, "ï¼ˆã‚¿ã‚¤ãƒ—Bï¼‰");
 		}
 	}
 	if (cond_flag & B_C_UCHIFU) {
-		strcat(b, "‘Å•à");
+		strcat(b, "æ‰“æ­©");
 	} else if (cond_flag & B_C_UCHIFU_OK) {
-		strcat(b, "‘Å•à‰Â");
+		strcat(b, "æ‰“æ­©å¯");
 	}
 	if (cond_flag & B_C_W_GY) {
-		strcat(b, "“ñ‹Ê");
+		strcat(b, "äºŒç‰");
 	}
 	if (rule_flag & B_R_DIRECT_MATE) {
-		strcat(b, "‚©‚µ‚±‹l");
+		strcat(b, "ã‹ã—ã“è©°");
 	} else if (rule_flag & B_R_HELP_SELF_STALEMATE) {
-		strcat(b, "‹¦—Í©‹ÊƒXƒeƒCƒ‹ƒƒCƒg");
+		strcat(b, "å”åŠ›è‡ªç‰ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆ");
 	} else if (rule_flag & B_R_HELP_SELF_MATE) {
-		strcat(b, "‹¦—Í©‹Ê‹l");
+		strcat(b, "å”åŠ›è‡ªç‰è©°");
 	} else if (rule_flag & B_R_HELP_STALEMATE) {
-		strcat(b, "‹¦—ÍƒXƒeƒCƒ‹ƒƒCƒg");
+		strcat(b, "å”åŠ›ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆ");
 	} else {
-		strcat(b, "‹¦—Í‹l");
+		strcat(b, "å”åŠ›è©°");
 	}
 	if (cond_flag & B_C_INVALID_CAPT_OU_2F) {
-		strcat(b, "i“ñ•à‹ÊŠl–³Œøj");
+		strcat(b, "ï¼ˆäºŒæ­©ç‰ç²ç„¡åŠ¹ï¼‰");
 	}
 	if (cond_flag & B_C_POSITION) {
-		sprintf(b + strlen(b), "‰¤ˆÊ’u[%d", PR_POS(mate_position));
+		sprintf(b + strlen(b), "ç‹ä½ç½®[%d", PR_POS(mate_position));
 		if (mate_counter_position != NOP) {
 			sprintf(b + strlen(b), "/%d", PR_POS(mate_counter_position));
 		}
@@ -533,10 +533,10 @@ get_move(char *ib, move_t *mvp)
 	mvp->to_1st = NOP;
 	mvp->flag = 0x00;
 	mvp->flag2 = 0x00;
-	if (EQUALZ(ib, "“¯")) {
+	if (EQUALZ(ib, "åŒ")) {
 		mvp->to = NOP;
 		mvp->flag |= B_MV_SAME;
-		ib += STR_SIZE_OF("“¯");
+		ib += STR_SIZE_OF("åŒ");
 	} else {
 		mvp->to = get_pos(&ib);
 	}
@@ -546,19 +546,19 @@ get_move(char *ib, move_t *mvp)
 		mvp->to = get_pos(&ib);
 	}
 	mvp->pc = get_pc_code(&ib);
-	if (EQUALZ(ib, "‘Å")) {
+	if (EQUALZ(ib, "æ‰“")) {
 		mvp->from = NOP;
-		ib += STR_SIZE_OF("‘Å");
-	} else if (EQUALZ(ib, "‹")) {
+		ib += STR_SIZE_OF("æ‰“");
+	} else if (EQUALZ(ib, "å±…")) {
 		mvp->from = mvp->to;
-		ib += STR_SIZE_OF("‹");
+		ib += STR_SIZE_OF("å±…");
 	} else {
-		if (EQUALZ(ib, "¬")) {
+		if (EQUALZ(ib, "æˆ")) {
 			mvp->flag |= B_MV_PROMOTE;
-			ib += STR_SIZE_OF("¬");
-		} else if (EQUALZ(ib, "¶")) {
+			ib += STR_SIZE_OF("æˆ");
+		} else if (EQUALZ(ib, "ç”Ÿ")) {
 			mvp->flag |= B_MV_NOT_PROMOTE;
-			ib += STR_SIZE_OF("¶");
+			ib += STR_SIZE_OF("ç”Ÿ");
 		}
 		if (ib[0] == '<') {
 			ib++;

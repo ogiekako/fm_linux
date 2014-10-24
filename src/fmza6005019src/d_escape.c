@@ -8,52 +8,52 @@
 #include	"piece.h"
 
 // rc:
-//   0:  ”½‘¥iˆ—‘ÎÛŠO‚ğŠÜ‚Şj
-//   1:  “¦‚êi’†’f‚ğŠÜ‚Şj
-//   2:  ‹l
+//   0:  åå‰‡ï¼ˆå‡¦ç†å¯¾è±¡å¤–ã‚’å«ã‚€ï¼‰
+//   1:  é€ƒã‚Œï¼ˆä¸­æ–­ã‚’å«ã‚€ï¼‰
+//   2:  è©°
 // -----------------------------------------------------------------------------
 #define	DIRECT_ESCAPE_PART_1 \
 	depth++; \
 	rc = RC_FAIL; \
  \
-	/* ó•û‹Ç–Ê‚ğ‰ğÍ */ \
+	/* å—æ–¹å±€é¢ã‚’è§£æ */ \
 	if (analyze_phase(php) != 0) { \
 		goto return_rc; \
 	} \
  \
-	/* ƒ‹[ƒ‹ã‚ÌŒŸõ‘ÅØ‚èğŒi‰¤è‰ñ”ğƒ`ƒFƒbƒNj */ \
+	/* ãƒ«ãƒ¼ãƒ«ä¸Šã®æ¤œç´¢æ‰“åˆ‡ã‚Šæ¡ä»¶ï¼ˆç‹æ‰‹å›é¿ãƒã‚§ãƒƒã‚¯ï¼‰ */ \
 	if (php->check_state & B_CS_YONDER_CHECK) { \
 		goto return_rc; \
 	} \
  \
-	/* ƒ‹[ƒ‹ã‚ÌŒŸõ‘ÅØ‚èğŒi‰¤è‹`–±ƒ`ƒFƒbƒNj */ \
-	/* ‚½‚¾‚µAóæ‚Ìê‡‚É‚Í‰Œ`‚Å‚Í‰¤èó‘Ô‚Å‚È‚¢‚±‚Æ‚ğl—¶ */ \
+	/* ãƒ«ãƒ¼ãƒ«ä¸Šã®æ¤œç´¢æ‰“åˆ‡ã‚Šæ¡ä»¶ï¼ˆç‹æ‰‹ç¾©å‹™ãƒã‚§ãƒƒã‚¯ï¼‰ */ \
+	/* ãŸã ã—ã€å—å…ˆã®å ´åˆã«ã¯åˆå½¢ã§ã¯ç‹æ‰‹çŠ¶æ…‹ã§ãªã„ã“ã¨ã‚’è€ƒæ…® */ \
 	if (NOT(php->check_state & B_CS_HITHER_CHECK) && depth >= 2) { \
 		goto return_rc; \
 	} \
  \
-	/* ‰¤è¬—§‚ğİ’è */ \
+	/* ç‹æ‰‹æˆç«‹ã‚’è¨­å®š */ \
 	if (depth >= 2) { \
 		(php - 1)->state |= B_CHECK_MOVE_FOUND; \
 	} \
  \
-	/* ‰ğÍó‹µ‚ğƒ`ƒFƒbƒNi‰ğÍó‹µ•\¦j */ \
+	/* è§£æçŠ¶æ³ã‚’ãƒã‚§ãƒƒã‚¯ï¼ˆè§£æçŠ¶æ³è¡¨ç¤ºï¼‰ */ \
 	if (++phase_count >= check_point) { \
 		mile_stone(); \
 	} \
  \
-	/* ŒŸõ‹Ç–ÊíŒ¸F‹Ç–Ê‚Ì‘ÎÌ«ƒ`ƒFƒbƒN */ \
+	/* æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šå±€é¢ã®å¯¾ç§°æ€§ãƒã‚§ãƒƒã‚¯ */ \
 	if (((php - 1)->state & B_SYMMETRIC) && depth >= 2 && test_symmetric(php) == 0) { \
 		goto return_rc; \
 	} \
  \
-	/* ƒgƒŒ[ƒXãŒÀ‚ÌŒŸõ‘ÅØ‚èğŒ */ \
+	/* ãƒˆãƒ¬ãƒ¼ã‚¹ä¸Šé™ã®æ¤œç´¢æ‰“åˆ‡ã‚Šæ¡ä»¶ */ \
 	if (trace_limit >= 1 && depth >= 2 && trace_move(php) != 0) { \
 		goto return_rc; \
 	} \
  \
-	/* ‘Å•à‹l‚Ì‚Æ‚«Aw’è‹lè”‚Ì‚Pè‘O‚Å•àƒ[ƒ‚©ƒ`ƒFƒbƒN */ \
-	/* š‘Å•à‹l‚Ìê‡A‰‚àl—¶‚·‚é•K—v‚ª‚ ‚éB */ \
+	/* æ‰“æ­©è©°ã®ã¨ãã€æŒ‡å®šè©°æ‰‹æ•°ã®ï¼‘æ‰‹å‰ã§æŒæ­©ã‚¼ãƒ­ã‹ãƒã‚§ãƒƒã‚¯ */ \
+	/* â˜…æ‰“æ­©è©°ã®å ´åˆã€ç‡•ã‚‚è€ƒæ…®ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚ */ \
 	if (depth == limit_depth - 1 && (cond_flag & B_C_UCHIFU) && php->hi_hand[PC_FU] == 0) { \
 		if ((php - 1)->move.pc == PC_FU && (php - 1)->move.from == NOP && is_yonder_mate(php)) { \
 			rc = direct_mate_rule_check(php); \
@@ -63,12 +63,12 @@
 		goto return_rc; \
 	} \
  \
-	/* ŒŸõ‹Ç–ÊíŒ¸FU•û‚Ì“¯ˆê‹Ç–Ê‚ğƒ`ƒFƒbƒNA“o˜^ */ \
+	/* æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šæ”»æ–¹ã®åŒä¸€å±€é¢ã‚’ãƒã‚§ãƒƒã‚¯ã€ç™»éŒ² */ \
 	if (depth < limit_depth && (strategy & (B_HI_DENY_SAME | B_YO_DENY_SAME))) { \
 		hi_hash_diff(php); \
 		if ((strategy & B_HI_DENY_SAME)) { \
-			/* è‡’†“¯ˆê‹Ç–Ê‚ğƒ`ƒFƒbƒNAU•û‚Ì•s‹l“¯ˆê‹Ç–Ê‚ğƒ`ƒFƒbƒN */ \
-			/* “¯ˆê‹Ç–Ê‚Å‚È‚©‚Á‚½ê‡‚ÉAè‡’†“¯ˆê‹Ç–Ê‚ğ“o˜^ */ \
+			/* æ‰‹é †ä¸­åŒä¸€å±€é¢ã‚’ãƒã‚§ãƒƒã‚¯ã€æ”»æ–¹ã®ä¸è©°åŒä¸€å±€é¢ã‚’ãƒã‚§ãƒƒã‚¯ */ \
+			/* åŒä¸€å±€é¢ã§ãªã‹ã£ãŸå ´åˆã«ã€æ‰‹é †ä¸­åŒä¸€å±€é¢ã‚’ç™»éŒ² */ \
 			int is_same = is_hi_same_phase(php); \
 			if (is_same != 0) { \
 				rc = RC_ESCAPE; \
@@ -77,7 +77,7 @@
 		} \
 	} \
  \
-	/* ‹lè”‚ğ’´‚¦‚Ä‚¢‚ê‚ÎA‹l‚ğƒ`ƒFƒbƒN */ \
+	/* è©°æ‰‹æ•°ã‚’è¶…ãˆã¦ã„ã‚Œã°ã€è©°ã‚’ãƒã‚§ãƒƒã‚¯ */ \
 	if (depth > limit_depth) { \
 		if (is_yonder_mate(php)) { \
 			rc = direct_mate_rule_check(php); \
@@ -89,7 +89,7 @@
 // -----------------------------------------------------------------------------
 #define	DIRECT_ESCAPE_PART_2 \
 	if (rc == RC_FAIL) { \
-		/* ‰¤è‰ñ”ğè‚ªŒŸo‚Å‚«‚È‚¯‚ê‚ÎA‹l‚ğƒ`ƒFƒbƒN */ \
+		/* ç‹æ‰‹å›é¿æ‰‹ãŒæ¤œå‡ºã§ããªã‘ã‚Œã°ã€è©°ã‚’ãƒã‚§ãƒƒã‚¯ */ \
 		if (is_yonder_mate(php) && direct_mate_rule_check(php) == RC_MATE) { \
 			rc = RC_MATE; \
 		} else { \
@@ -97,7 +97,7 @@
 		} \
 	} \
  \
-	/* ‹lè‡‚ğo—Í */ \
+	/* è©°æ‰‹é †ã‚’å‡ºåŠ› */ \
 	if (depth == 1) { \
 		if (rc == RC_MATE && trace_limit == 0) { \
 			print_direct_mate(); \
@@ -105,16 +105,16 @@
 		} \
 	} \
  \
-	/* ŒŸõ‹Ç–ÊíŒ¸FU•û‚Ì“¯ˆê‹Ç–Ê‚ğ“o˜^A‰ğœ */ \
+	/* æ¤œç´¢å±€é¢å‰Šæ¸›ï¼šæ”»æ–¹ã®åŒä¸€å±€é¢ã‚’ç™»éŒ²ã€è§£é™¤ */ \
 	if ((strategy & B_HI_DENY_SAME) && depth < limit_depth) { \
 		ulong_t index; \
  \
-		/* è‡’†“¯ˆê‹Ç–Êƒ`ƒFƒbƒN—pƒnƒbƒVƒ…’l‚ğ‰ğœ */ \
+		/* æ‰‹é †ä¸­åŒä¸€å±€é¢ãƒã‚§ãƒƒã‚¯ç”¨ãƒãƒƒã‚·ãƒ¥å€¤ã‚’è§£é™¤ */ \
 		index = php->hash_hi_pieces ^ php->hash_yo_pieces ^ php->hash_hi_hands; \
 		index &= NOSPHHEAD - 1; \
 		hi_sph_head[index] = hi_sph_head[index]->next; \
-		/* ‹lè‡’†‚Ì‹Ç–Ê‚Å‚È‚¯‚ê‚ÎAU•û‚Ì•s‹l“¯ˆê‹Ç–Ê‚ğ“o˜^ */ \
-		/* i‰ğ”ãŒÀ’´‚¦‚Ìê‡‚ğœ‚­j */ \
+		/* è©°æ‰‹é †ä¸­ã®å±€é¢ã§ãªã‘ã‚Œã°ã€æ”»æ–¹ã®ä¸è©°åŒä¸€å±€é¢ã‚’ç™»éŒ² */ \
+		/* ï¼ˆè§£æ•°ä¸Šé™è¶…ãˆã®å ´åˆã‚’é™¤ãï¼‰ */ \
 		if ((strategy & B_HI_ESCAPE) && rc == RC_ESCAPE) { \
 			set_hi_eh_cell(php); \
 		} \
@@ -132,9 +132,9 @@ return_rc:; \
 static int direct_escape_exchange(phase_t *php);
 
 // rc:
-//   0:  ”½‘¥iˆ—‘ÎÛŠO‚ğŠÜ‚Şj
-//   1:  “¦‚êi’†’f‚ğŠÜ‚Şj
-//   2:  ‹l
+//   0:  åå‰‡ï¼ˆå‡¦ç†å¯¾è±¡å¤–ã‚’å«ã‚€ï¼‰
+//   1:  é€ƒã‚Œï¼ˆä¸­æ–­ã‚’å«ã‚€ï¼‰
+//   2:  è©°
 int
 direct_escape_normal(phase_t *php)
 {
@@ -142,7 +142,7 @@ direct_escape_normal(phase_t *php)
 
 	DIRECT_ESCAPE_PART_1
 	
-	// ‰¤è‰ñ”ğèŒŸõ
+	// ç‹æ‰‹å›é¿æ‰‹æ¤œç´¢
 	rc = direct_escape_all(php);
 
 	DIRECT_ESCAPE_PART_2
@@ -155,7 +155,7 @@ direct_escape_messigny(phase_t *php)
 
 	DIRECT_ESCAPE_PART_1
 
-	// ‰¤è‰ñ”ğèŒŸõ
+	// ç‹æ‰‹å›é¿æ‰‹æ¤œç´¢
 	rc = direct_escape_all_messigny(php);
 
 	DIRECT_ESCAPE_PART_2
@@ -168,7 +168,7 @@ direct_escape_greed(phase_t *php)
 
 	DIRECT_ESCAPE_PART_1
 	
-	// ‰¤è‰ñ”ğèŒŸõ
+	// ç‹æ‰‹å›é¿æ‰‹æ¤œç´¢
 	rc = direct_escape_all_greed(php);
 	if (NOT(php->state & B_ESCAPE_MOVE_FOUND)) {
 		rc = direct_escape_all_ascetic(php);
@@ -184,7 +184,7 @@ direct_escape_ascetic(phase_t *php)
 
 	DIRECT_ESCAPE_PART_1
 	
-	// ‰¤è‰ñ”ğèŒŸõ
+	// ç‹æ‰‹å›é¿æ‰‹æ¤œç´¢
 	rc = direct_escape_all_ascetic(php);
 	if (NOT(php->state & B_ESCAPE_MOVE_FOUND)) {
 		rc = direct_escape_all_greed(php);
@@ -487,7 +487,7 @@ direct_escape_place_normal(phase_t *php)
 	rc = RC_FAIL;
 	if ((php->check_state == (B_CS_HITHER_CHECK | B_CS_REMOTE_CHECK) &&
 				(php->fire[mvp->to] & B_HI_FIRE_PATH)) ||
-			(depth == 1 && NOT(php->check_state & B_CS_HITHER_CHECK))) {	// óæ‚Ì‰è—pƒ‹[ƒg
+			(depth == 1 && NOT(php->check_state & B_CS_HITHER_CHECK))) {	// å—å…ˆã®åˆæ‰‹ç”¨ãƒ«ãƒ¼ãƒˆ
 		for (i = 0; NOT_NUL(hand_pc[i]); i++) {
 			pc = hand_pc[i];
 			if (php->yo_hand[pc] > 0) {
@@ -505,7 +505,7 @@ direct_escape_place_normal(phase_t *php)
 	return rc;
 }
 
-// ‘Î–ÊA”w–ÊAƒlƒRƒlƒR‘NAƒ}ƒhƒ‰ƒVŒn
+// å¯¾é¢ã€èƒŒé¢ã€ãƒã‚³ãƒã‚³é®®ã€ãƒãƒ‰ãƒ©ã‚·ç³»
 int
 direct_escape_place_taihaink2mad(phase_t *php)
 {
@@ -517,7 +517,7 @@ direct_escape_place_taihaink2mad(phase_t *php)
 	if ((php->check_state == (B_CS_HITHER_CHECK | B_CS_REMOTE_CHECK) &&
 				(php->fire[mvp->to] & B_HI_FIRE_PATH)) ||
 			(php->fire[mvp->to] & B_YO_ESCAPE_SPECIAL) ||
-			(depth == 1 && NOT(php->check_state & B_CS_HITHER_CHECK))) {	// óæ‚Ì‰è—pƒ‹[ƒg
+			(depth == 1 && NOT(php->check_state & B_CS_HITHER_CHECK))) {	// å—å…ˆã®åˆæ‰‹ç”¨ãƒ«ãƒ¼ãƒˆ
 		for (i = 0; NOT_NUL(hand_pc[i]); i++) {
 			pc = hand_pc[i];
 			if (php->yo_hand[pc] > 0) {
@@ -622,7 +622,7 @@ direct_escape_shishi_leap(phase_t *php)
 					if (to2 == EOP) {
 						break;
 					}
-					if (_mbsstr(piece[mvp->pc].name, "‚q") == NULL) {
+					if (_mbsstr(piece[mvp->pc].name, "ç…å­") == NULL) {
 						for(k = 0; ; k++) {
 							to3 = yo_leap_to_pos[mvp->fpc][mvp->from][k];
 							if (to3 == EOP) {
@@ -702,8 +702,8 @@ direct_escape_step(phase_t *php)
 }
 
 // Mao, Mor:
-// hi_run_to_posv[‹î][ˆÊ’u][ƒxƒNƒgƒ‹ƒCƒ“ƒfƒNƒX]: ‡‹î“_ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-// yo_run_to_posv[‹î][ˆÊ’u][‡‹î“_ˆÊ’u]: —˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
+// hi_run_to_posv[é§’][ä½ç½®][ãƒ™ã‚¯ãƒˆãƒ«ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹]: åˆé§’ç‚¹ä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+// yo_run_to_posv[é§’][ä½ç½®][åˆé§’ç‚¹ä½ç½®]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
 int
 direct_escape_mao_step(phase_t *php)
 {
@@ -1042,9 +1042,9 @@ direct_escape_jump_hop(phase_t *php)
 }
 
 // Sparrow, Eagle:
-//   hi_run_to_posv[‹î][ˆÊ’u][ƒxƒNƒgƒ‹][—˜‚«ˆÊ’uƒŠƒXƒg]: ”½Ë‹î—˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-//   yo_run_to_posv[‹î][ˆÊ’u][”½Ë‹îˆÊ’u][—˜‚«ˆÊ’uƒŠƒXƒg]: —˜‚«ˆÊ’uƒŠƒXƒgiU•ûAó•û‹¤—pj
-//   hi_to_board: ”½Ë‹î—˜‚«ˆÊ’u”Õ–Êƒ}ƒbƒviU•ûAó•û‹¤—pj
+//   hi_run_to_posv[é§’][ä½ç½®][ãƒ™ã‚¯ãƒˆãƒ«][åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ]: åå°„é§’åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+//   yo_run_to_posv[é§’][ä½ç½®][åå°„é§’ä½ç½®][åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
+//   hi_to_board: åå°„é§’åˆ©ãä½ç½®ç›¤é¢ãƒãƒƒãƒ—ï¼ˆæ”»æ–¹ã€å—æ–¹å…±ç”¨ï¼‰
 int
 direct_escape_refl(phase_t *php)
 {
@@ -1118,8 +1118,8 @@ direct_escape_refl(phase_t *php)
 }
 
 // Equihopper:
-//   hi_run_to_posv[0]: —˜‚«ˆÊ’uƒŠƒXƒg
-//   yo_run_to_posv[0]: ‘ÎÌ“_ƒŠƒXƒg
+//   hi_run_to_posv[0]: åˆ©ãä½ç½®ãƒªã‚¹ãƒˆ
+//   yo_run_to_posv[0]: å¯¾ç§°ç‚¹ãƒªã‚¹ãƒˆ
 int
 direct_escape_equi_hop(phase_t *php)
 {

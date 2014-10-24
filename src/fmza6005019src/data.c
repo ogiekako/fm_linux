@@ -7,7 +7,7 @@
 #include	"fm.h"
 #include	"piece.h"
 
-// ŠÂ‹«•Ï”
+// ç’°å¢ƒå¤‰æ•°
 ulonglong_t cond_flag = 0x0000000000000000ULL;
 ulong_t seed = 0UL;				// seed of pseudorandom number
 ulong_t strategy = 0x00000000UL;
@@ -21,7 +21,7 @@ char in_file[FNAMEMAX + 1] = "(stdin)";
 char out_file[FNAMEMAX + 1] = "(stdout)";
 char restart_file[FNAMEMAX + 1] = "FM000.FMS";
 
-// ƒIƒvƒVƒ‡ƒ“ŠÂ‹«•Ï”
+// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç’°å¢ƒå¤‰æ•°
 char *arg_x = NULL;
 long solution_limit = 10L;		// limit # of solution to output
 #if defined(_M_X64)
@@ -51,7 +51,7 @@ uchar_t loose = OFF;
 uchar_t verbose = OFF;
 uchar_t debug = 0x00;
 
-// ì‹Æ•Ï”
+// ä½œæ¥­å¤‰æ•°
 FILE *inFp = NULL;				// input file
 FILE *fileFp = NULL;			// output file
 char *mate_buf;
@@ -81,7 +81,7 @@ uchar_t hi_used_pc_count[RAW_PC_END];
 uchar_t yo_used_pc_count[RAW_PC_END];
 char inbuf[PROBSIZE];
 
-// ƒIƒvƒVƒ‡ƒ“ì‹Æ•Ï”
+// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä½œæ¥­å¤‰æ•°
 FILE *restartFp = NULL;			// restart file
 seq_phase_hash_t *hi_sph_head[NOSPHHEAD]; // sph: same phase hash
 seq_phase_hash_t *yo_sph_head[NOSPHHEAD];
@@ -97,7 +97,7 @@ mate_move_t *mm_root = NULL;
 uchar_t restarting = OFF;
 uchar_t print_2nd_phase = OFF;
 
-// ŒÅ’èƒf[ƒ^
+// å›ºå®šãƒ‡ãƒ¼ã‚¿
 phase_t null_phase = {
 	0x00000000,	// hash_hi_pieces
 	0x00000000,	// hash_yo_pieces
@@ -202,15 +202,15 @@ char *hi_yo_ctrl_haimen = fpc_pos_forward;
 quote_mark_t quote_mark[] = {
 	{ "\007\007", "\007\007", },
 	{ "\"", "\"", },
-	{ "u", "v", },
-	{ "w", "x", },
+	{ "ã€Œ", "ã€", },
+	{ "ã€", "ã€", },
 	{ NULL, NULL, },
 };
 
 char *kanji_num[9] = {
-	"ˆê", "“ñ", "O", "l", "ŒÜ", "˜Z", "µ", "”ª", "‹ã",
+	"ä¸€", "äºŒ", "ä¸‰", "å››", "äº”", "å…­", "ä¸ƒ", "å…«", "ä¹",
 };
 char *zen_num[9] = {
-	"‚P", "‚Q", "‚R", "‚S", "‚T", "‚U", "‚V", "‚W", "‚X",
+	"ï¼‘", "ï¼’", "ï¼“", "ï¼”", "ï¼•", "ï¼–", "ï¼—", "ï¼˜", "ï¼™",
 };
 

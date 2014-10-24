@@ -36,11 +36,11 @@ main(int argc, char *argv[])
 //		getch();
 	}
 #endif
-	argc = argc;	// warning message ‚ğ”ğ‚¯‚é‚½‚ß‚Ìƒ_ƒ~[ƒR[ƒh
+	argc = argc;	// warning message ã‚’é¿ã‘ã‚‹ãŸã‚ã®ãƒ€ãƒŸãƒ¼ã‚³ãƒ¼ãƒ‰
 	setvbuf(stdout, NULL, _IONBF, 0);
 	signal(SIGINT, SIG_IGN);
 
-	atexit(del_file);  // ˆêƒtƒ@ƒCƒ‹‚Ìíœ
+	atexit(del_file);  // ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å‰Šé™¤
 	init_console_win32();
 	atexit(reset_console_win32);
 
@@ -59,7 +59,7 @@ main(int argc, char *argv[])
 			strcpy(out_file, optarg);
 			fileFp = fopen(out_file, "a");
 			if (fileFp == NULL) {
-				fprintf(stderr, "%s: o—Íƒtƒ@ƒCƒ‹ %s ‚ªƒI[ƒvƒ“‚Å‚«‚Ü‚¹‚ñ...\n\n",
+				fprintf(stderr, "%s: å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ« %s ãŒã‚ªãƒ¼ãƒ—ãƒ³ã§ãã¾ã›ã‚“...\n\n",
 						cmdname, out_file);
 				fm_exit(1);
 			}
@@ -80,7 +80,7 @@ main(int argc, char *argv[])
 		case 'E':		// extra option switches
 			option_E(optarg);
 			break;
-		case 'M':		// “ÁêğŒ‚‘¬‰»ƒ‚[ƒh
+		case 'M':		// ç‰¹æ®Šæ¡ä»¶é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
 			option_M(optarg);
 			break;
 		case 'I':		// input file name
@@ -88,7 +88,7 @@ main(int argc, char *argv[])
 			strcpy(in_file, optarg);
 			inFp = fopen(in_file, "r");
 			if (inFp == NULL) {
-				fprintf(stderr, "%s: “ü—Íƒtƒ@ƒCƒ‹ %s ‚ªƒI[ƒvƒ“‚Å‚«‚Ü‚¹‚ñ...\n\n",
+				fprintf(stderr, "%s: å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ« %s ãŒã‚ªãƒ¼ãƒ—ãƒ³ã§ãã¾ã›ã‚“...\n\n",
 						cmdname, in_file);
 				fm_exit(1);
 			}
@@ -129,7 +129,7 @@ main(int argc, char *argv[])
 end_proc:
 	if (fileFp != NULL) {
 		if (brief_output == 0) {
-			fputs("ˆÈã\n\n", fileFp);
+			fputs("ä»¥ä¸Š\n\n", fileFp);
 		}
 		fclose(fileFp);
 		if (brief_output > 0) {
@@ -182,10 +182,10 @@ solve(void)
 
 	test_deep:
 		if (fileFp != NULL && brief_output == 0) {
-			fprintf(fileFp, "%dèŒŸõ\n\n", limit_depth);
+			fprintf(fileFp, "%dæ‰‹æ¤œç´¢\n\n", limit_depth);
 		}
 		CLEAR_LINE();
-		printf("%dèŒŸõ\n\n", limit_depth);
+		printf("%dæ‰‹æ¤œç´¢\n\n", limit_depth);
 	}
 
 	if (trace_limit == 0 || fileFp != NULL) {
@@ -200,7 +200,7 @@ solve(void)
 
 	php = &phase[1];
 	if (rule_flag & B_R_DIRECT_MATE) {
-		// ‚©‚µ‚±‹l
+		// ã‹ã—ã“è©°
 		if (limit_depth % 2 == 0) {
 			php->state &= ~B_HITHER_TURN;
 			escape(php);
@@ -209,7 +209,7 @@ solve(void)
 			check(php);
 		}
 	} else if (rule_flag & (B_R_HELP_SELF_MATE | B_R_HELP_SELF_STALEMATE)) {
-		// ‹¦—Í©‹Ê‹l‚Ü‚½‚Í‹¦—Í©‹ÊƒXƒeƒCƒ‹ƒƒCƒg
+		// å”åŠ›è‡ªç‰è©°ã¾ãŸã¯å”åŠ›è‡ªç‰ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆ
 		if (limit_depth % 2 == 0) {
 			php->state |= B_HITHER_TURN;
 			check(php);
@@ -218,7 +218,7 @@ solve(void)
 			escape(php);
 		}
 	} else {
-		// ‚»‚Ì‘¼i‹¦—Í‹l‚Ü‚½‚Í‹¦—ÍƒXƒeƒCƒ‹ƒƒCƒgj
+		// ãã®ä»–ï¼ˆå”åŠ›è©°ã¾ãŸã¯å”åŠ›ã‚¹ãƒ†ã‚¤ãƒ«ãƒ¡ã‚¤ãƒˆï¼‰
 		if (limit_depth % 2 == 0) {
 			php->state &= ~B_HITHER_TURN;
 			escape(php);
@@ -260,13 +260,13 @@ solve(void)
 
 			if (strategy & B_HI_ESCAPE) {
 				for (i = 0; i < hi_eh_lim; i++) {
-					// TODO –¢g—p‚ÌƒGƒ“ƒgƒŠ‚à–³‹‚µ‚Äˆ—‚µ‚Ä‚¢‚éB
+					// TODO æœªä½¿ç”¨ã®ã‚¨ãƒ³ãƒˆãƒªã‚‚ç„¡è¦–ã—ã¦å‡¦ç†ã—ã¦ã„ã‚‹ã€‚
 					hi_eh_cell[i].depth += 2;
 				}
 			}
 			if (strategy & B_YO_ESCAPE) {
 				for (i = 0; i < yo_eh_lim; i++) {
-					// TODO –¢g—p‚ÌƒGƒ“ƒgƒŠ‚à–³‹‚µ‚Äˆ—‚µ‚Ä‚¢‚éB
+					// TODO æœªä½¿ç”¨ã®ã‚¨ãƒ³ãƒˆãƒªã‚‚ç„¡è¦–ã—ã¦å‡¦ç†ã—ã¦ã„ã‚‹ã€‚
 					yo_eh_cell[i].depth += 2;
 				}
 			}
@@ -289,13 +289,13 @@ solve(void)
 				fputc('\n', fileFp);
 			}
 			print_record(fileFp);
-			fputs("  ƒgƒŒ[ƒXI—¹\n\n", fileFp);
+			fputs("  ãƒˆãƒ¬ãƒ¼ã‚¹çµ‚äº†\n\n", fileFp);
 			CLEAR_LINE();
 		} else {
 			printf("\n");
 		}
 		print_record(stdout);
-		printf("  ƒgƒŒ[ƒXI—¹\n\n");
+		printf("  ãƒˆãƒ¬ãƒ¼ã‚¹çµ‚äº†\n\n");
 	} else {
 		print_record4();
 	}
@@ -306,10 +306,10 @@ solve(void)
 }
 
 // rc:
-//   1:  ‰Šú‰»ƒGƒ‰[
-//   2:  ˆ—’†ƒGƒ‰[
-//   3:  ƒƒ‚ƒŠƒGƒ‰[
-//   9:  ƒVƒOƒiƒ‹óM
+//   1:  åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼
+//   2:  å‡¦ç†ä¸­ã‚¨ãƒ©ãƒ¼
+//   3:  ãƒ¡ãƒ¢ãƒªã‚¨ãƒ©ãƒ¼
+//   9:  ã‚·ã‚°ãƒŠãƒ«å—ä¿¡
 void
 fm_exit(int rc)
 {
@@ -323,7 +323,7 @@ fm_exit_mae(uchar_t *s)
 	if (start_time > 0) {
 		fprintf(stderr, "\n\n");
 	}
-	fprintf(stderr, "%s: %s‚Éƒƒ‚ƒŠ‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ü‚¹‚ñ...\n", cmdname, s);
+	fprintf(stderr, "%s: %sã«ãƒ¡ãƒ¢ãƒªãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¾ã›ã‚“...\n", cmdname, s);
 	fm_exit(3);
 }
 

@@ -482,17 +482,17 @@ put_problem_phase_sub(uchar_t board[], int kind, uchar_t hand[])
 		}
 	}
 	if (outbuf[0] == '\0') {
-	// ”Õã‹î‚È‚µ
+	// ç›¤ä¸Šé§’ãªã—
 		strcat(strcpy(outbuf, editbuf), "\n");
 	} else if (EQUAL(editbuf, "+")) {
-	// ‹î‚È‚µ
+	// æŒé§’ãªã—
 		if (EQUAL(STR_END(outbuf) - 1, "\\\n")) {
 			strcpy(STR_END(outbuf) - 1, "\n");
 		} else {
 			strcat(outbuf, "\n");
 		}
 	} else {
-	// ”Õã‹î‚ ‚èA‹î‚ ‚è
+	// ç›¤ä¸Šé§’ã‚ã‚Šã€æŒé§’ã‚ã‚Š
 		if (NOT(EQUAL(STR_END(outbuf) - 1, "\\\n"))) {
 			if (strlen(outbuf) + 1 + strlen(editbuf) >= line_lim) {
 				strcat(outbuf, "\\\n");

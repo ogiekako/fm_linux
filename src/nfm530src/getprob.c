@@ -149,8 +149,8 @@ del_space(char *buf)
 	for (s = buf; *s != '\0';) {
 		if (isspace((uchar_t)*s)) {
 			memmove(s, s + 1, strlen(s + 1) + 1);
-		} else if (EQUALZ(s, "@")) {
-			memmove(s, s + STR_SIZE_OF("@"), strlen(s + STR_SIZE_OF("@")) + 1);
+		} else if (EQUALZ(s, "ã€€")) {
+			memmove(s, s + STR_SIZE_OF("ã€€"), strlen(s + STR_SIZE_OF("ã€€")) + 1);
 		} else {
 			if (_ismbblead((uchar_t)*s)) {
 				s += 2;
@@ -507,7 +507,7 @@ get_matemseq_nfmstyle(mseq_t *msp, mseq_t *msp_par, char **sp, uchar_t turn)
 	msp->pc |= turn;
 	s += 2;
 	if (*s == '<' || *s == '=' || *s == 'X' || *s == '/') {
-	// ‚Ž‚†‚Ž®iˆÚ“®‚Ìê‡‚Ì‚Ýj
+	// ï½Žï½†ï½å¼ï¼ˆç§»å‹•ã®å ´åˆã®ã¿ï¼‰
 		if (*s == '=') {
 			if (msp->pc & B_PC_PROMOTE) {
 				return STR_ERR_GIVENMATEPATH;
@@ -548,7 +548,7 @@ get_matemseq_nfmstyle(mseq_t *msp, mseq_t *msp_par, char **sp, uchar_t turn)
 			s += 2;
 		}
 	} else {
-	// ‚†‚Ž®i‘Å‚Ìê‡‚ÍA‚Ž‚†‚Ž®‚à‚±‚¿‚ç‚ð’Ê‚éj
+	// ï½†ï½å¼ï¼ˆæ‰“ã®å ´åˆã¯ã€ï½Žï½†ï½å¼ã‚‚ã“ã¡ã‚‰ã‚’é€šã‚‹ï¼‰
 		if (EQUALS(s, str[STR_PROMOTE])) {
 			if (msp->pc & B_PC_PROMOTE) {
 				return STR_ERR_GIVENMATEPATH;
